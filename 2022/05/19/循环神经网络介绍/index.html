@@ -1,0 +1,1191 @@
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>循环神经网络RNN | 小P孩的脑洞</title><meta name="author" content="张文翔"><meta name="copyright" content="张文翔"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="循环神经网络Recurrent Neural Networks RNN的数学描述参考零基础入门深度学习(5) - 循环神经网络 输入层网络的输入是一串m维向量序列  $\boldsymbol{x^1},\boldsymbol{x^2},\cdots,\boldsymbol{x^t},\cdots$  \boldsymbol{x^1} &#x3D;  \begin{bmatrix} x^1_1\\x^1_2\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="循环神经网络RNN">
+<meta property="og:url" content="https://onexiaophai.gitee.io/2022/05/19/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:site_name" content="小P孩的脑洞">
+<meta property="og:description" content="循环神经网络Recurrent Neural Networks RNN的数学描述参考零基础入门深度学习(5) - 循环神经网络 输入层网络的输入是一串m维向量序列  $\boldsymbol{x^1},\boldsymbol{x^2},\cdots,\boldsymbol{x^t},\cdots$  \boldsymbol{x^1} &#x3D;  \begin{bmatrix} x^1_1\\x^1_2\">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://onexiaophai.gitee.io/white">
+<meta property="article:published_time" content="2022-05-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-05-25T15:58:03.327Z">
+<meta property="article:author" content="张文翔">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="神经网络">
+<meta property="article:tag" content="RNN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://onexiaophai.gitee.io/white"><link rel="shortcut icon" href="/img/avatar.jpg"><link rel="canonical" href="https://onexiaophai.gitee.io/2022/05/19/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%BB%8B%E7%BB%8D/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '循环神经网络RNN',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-25 23:58:03'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: white"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小P孩的脑洞</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">循环神经网络RNN</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-18T16:00:00.000Z" title="发表于 2022-05-19 00:00:00">2022-05-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-25T15:58:03.327Z" title="更新于 2022-05-25 23:58:03">2022-05-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>28分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="循环神经网络RNN"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="循环神经网络Recurrent-Neural-Networks"><a href="#循环神经网络Recurrent-Neural-Networks" class="headerlink" title="循环神经网络Recurrent Neural Networks"></a>循环神经网络Recurrent Neural Networks</h1><p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/2256672-cf18bb1f06e750a4.jpg" alt="img"></p>
+<h1 id="RNN的数学描述"><a href="#RNN的数学描述" class="headerlink" title="RNN的数学描述"></a>RNN的数学描述</h1><p>参考<a target="_blank" rel="noopener" href="https://zybuluo.com/hanbingtao/note/541458">零基础入门深度学习(5) - 循环神经网络</a></p>
+<h2 id="输入层"><a href="#输入层" class="headerlink" title="输入层"></a>输入层</h2><p>网络的输入是一串<strong>m维向量序列</strong>  $\boldsymbol{x^1},\boldsymbol{x^2},\cdots,\boldsymbol{x^t},\cdots$</p>
+<script type="math/tex; mode=display">
+\boldsymbol{x^1} = 
+\begin{bmatrix}
+x^1_1\\x^1_2\\\vdots\\x^1_m
+\end{bmatrix},
+\boldsymbol{x^2} = 
+\begin{bmatrix}
+x^2_1\\x^2_2\\\vdots\\x^2_m
+\end{bmatrix},
+\cdots,
+\boldsymbol{x^t} = 
+\begin{bmatrix}
+x^t_1\\x^t_2\\\vdots\\x^t_m
+\end{bmatrix},
+\cdots</script><h2 id="循环层"><a href="#循环层" class="headerlink" title="循环层"></a>循环层</h2><p>网络的状态是一串<strong>n维向量序列</strong> $\boldsymbol{s^0},\boldsymbol{s^1},\boldsymbol{s^2}\cdots,\boldsymbol{s^t},\cdots$</p>
+<script type="math/tex; mode=display">
+\begin{gather*}
+\begin{bmatrix}
+s^t_1\\s^t_2\\\vdots\\s^t_n
+\end{bmatrix}
+=
+f\left(
+\begin{bmatrix}
+u_{11}&u_{12}&\cdots&u_{1m}\\
+u_{21}&u_{22}&\cdots&u_{2m}\\
+\vdots&\vdots&\ddots&\vdots\\
+u_{n1}&u_{n2}&\cdots&u_{nm}\\
+\end{bmatrix}
+\begin{bmatrix}
+x^t_1\\x^t_2\\\vdots\\x^t_m
+\end{bmatrix}
++
+\begin{bmatrix}
+w_{11}&w_{12}&\cdots&w_{1n}\\
+w_{21}&w_{22}&\cdots&w_{2n}\\
+\vdots&\vdots&\ddots&\vdots\\
+w_{n1}&w_{n2}&\cdots&w_{nn}\\
+\end{bmatrix}
+\begin{bmatrix}
+s^{t-1}_1\\s^{t-1}_2\\\vdots\\s^{t-1}_n
+\end{bmatrix}
++
+\begin{bmatrix}
+b^R_1\\b^R_2\\\vdots\\b^R_n
+\end{bmatrix}
+\right)
+\\
+t = 1,2,\cdots
+\end{gather*}</script><h2 id="输出层"><a href="#输出层" class="headerlink" title="输出层"></a>输出层</h2><p>网络的输出是一串<strong>m维的向量序列</strong> $\boldsymbol{o^{1}},\boldsymbol{o^{2}},\cdots,\boldsymbol{o^{t}},\cdots$</p>
+<script type="math/tex; mode=display">
+\begin{gather*}
+\begin{bmatrix}
+o^t_1\\o^t_2\\\vdots\\o^t_m
+\end{bmatrix}
+=
+g\left(
+\begin{bmatrix}
+v_{11}&v_{12}&\cdots&v_{1n}\\
+v_{21}&v_{22}&\cdots&v_{2n}\\
+\vdots&\vdots&\ddots&\vdots\\
+v_{m1}&v_{m2}&\cdots&v_{mn}\\
+\end{bmatrix}
+\begin{bmatrix}
+s^t_1\\s^t_2\\\vdots\\s^t_n
+\end{bmatrix}
++
+\begin{bmatrix}
+b^O_1\\b^O_2\\\vdots\\b^O_m
+\end{bmatrix}
+\right)
+\\
+t = 1,2,\cdots
+\end{gather*}</script><h2 id="网络的输出"><a href="#网络的输出" class="headerlink" title="网络的输出"></a>网络的输出</h2><p>网络在 $t$ 时刻的输出 $\boldsymbol{o^t}$ 由前面各时刻的输入 $\boldsymbol{x^t},\boldsymbol{x^{t-1}},\cdots,\boldsymbol{x^1}$和初始状态 $\boldsymbol{s^0}$ 决定</p>
+<p>(下面的推导式中省略了偏置项 $\boldsymbol{b}$)</p>
+<script type="math/tex; mode=display">
+\begin{split}
+\boldsymbol{o^t} &= g\left( V\boldsymbol{s^t}\right) \\
+&= g\left( Vf\left(U\boldsymbol{x^t}+W\boldsymbol{s^{t-1}}\right)\right) \\
+&=g\left( Vf\left(U\boldsymbol{x^t}+Wf\left(U\boldsymbol{x^{t-1}}+W\boldsymbol{s^{t-2}}\right)\right)\right) \\
+&\vdots\\
+&=g\left( Vf\left(U\boldsymbol{x^t}+Wf\left(U\boldsymbol{x^{t-1}}+Wf\left(U\boldsymbol{x^{t-2}}+\cdots+ Wf\left(U\boldsymbol{x^1}+W\boldsymbol{s^0}\right)\right)\right)\right)\right) \\
+
+
+
+\end{split}</script><h2 id="网络输出的误差"><a href="#网络输出的误差" class="headerlink" title="网络输出的误差"></a>网络输出的误差</h2><p>网络在每个 $t$ 时刻的输出 $\boldsymbol{o^t}$ 都对应一个目标向量 $\boldsymbol{t}^t$ (target),   每个时刻都对应一个误差,   用$E^t$来表示 ,   $E^t$ 是关于 $\boldsymbol{o^t}$和 $\boldsymbol{t}^t$ 的函数,   例如采用二范数的平方表示误差,   误差函数如下计算</p>
+<script type="math/tex; mode=display">
+\begin{split}
+E^t &= \frac{1}{2}\|\boldsymbol{o}^t-\boldsymbol{t}^t\|_2^2
+\\
+&=
+\frac{1}{2}\sum_{i=1}^m (o^t_i-t^t_i)^2
+\end{split}</script><h1 id="梯度的计算-Back-Propagate-Through-Time-BPTT"><a href="#梯度的计算-Back-Propagate-Through-Time-BPTT" class="headerlink" title="梯度的计算(Back Propagate Through Time, BPTT)"></a>梯度的计算(Back Propagate Through Time, BPTT)</h1><h2 id="循环层到输出层"><a href="#循环层到输出层" class="headerlink" title="循环层到输出层"></a>循环层到输出层</h2><p>记输出层 $t$ 时刻的输入向量为 $\boldsymbol{\xi}^{t}$</p>
+<script type="math/tex; mode=display">
+\begin{split}
+\begin{bmatrix}
+o^t_1\\o^t_2\\\vdots\\o^t_m
+\end{bmatrix}
+&=
+g\left(
+\begin{bmatrix}
+\xi^t_1\\
+\xi^t_2\\
+\vdots\\
+\xi^t_m
+\end{bmatrix}
+\right)
+,\quad
+\begin{bmatrix}
+\xi^t_1\\
+\xi^t_2\\
+\vdots\\
+\xi^t_m
+\end{bmatrix}
+&=
+\begin{bmatrix}
+v_{11}&v_{12}&\cdots&v_{1n}\\
+v_{21}&v_{22}&\cdots&v_{2n}\\
+\vdots&\vdots&\ddots&\vdots\\
+v_{m1}&v_{m2}&\cdots&v_{mn}\\
+\end{bmatrix}
+\begin{bmatrix}
+s^t_1\\s^t_2\\\vdots\\s^t_n
+\end{bmatrix}
++
+\begin{bmatrix}
+b^O_1\\b^O_2\\\vdots\\b^O_m
+\end{bmatrix}
+\end{split}</script><script type="math/tex; mode=display">
+\begin{split}
+\frac{\partial E^t}{\partial v_{ij}} &= 
+\frac{\partial E^t}{\partial \xi^t_i}\cdot\frac{\partial \xi^t_i}{\partial v_{ij}}
+=\frac{\partial E^t}{\partial \xi^t_i}\cdot s^t_j
+\\
+\frac{\partial E^t}{\partial b^O_{i}} &= 
+\frac{\partial E^t}{\partial \xi^t_i}\cdot\frac{\partial \xi^t_i}{\partial b^O_{i}}
+=\frac{\partial E^t}{\partial \xi^t_i}\cdot 1
+\end{split}
+\qquad i=1,\cdots,m\quad j=1,\cdots,n</script><p>向量化计算梯度</p>
+<script type="math/tex; mode=display">
+\frac{\partial E^t}{\partial \boldsymbol{b^O}} =
+\begin{bmatrix}
+\frac{\partial E^t}{\partial \xi^t_1}\\\frac{\partial E^t}{\partial \xi^t_2}\\\vdots\\\frac{\partial E^t}{\partial \xi^t_m}
+\end{bmatrix},
+\qquad
+\frac{\partial E^t}{\partial V} = 
+\begin{bmatrix}
+\frac{\partial E^t}{\partial \xi^t_1}\\\frac{\partial E^t}{\partial \xi^t_2}\\\vdots\\\frac{\partial E^t}{\partial \xi^t_m}
+\end{bmatrix}
+\begin{bmatrix}
+s^t_1&s^t_2&\cdots&s^t_n
+\end{bmatrix}
+=
+\begin{bmatrix}
+\frac{\partial E^t}{\partial \xi^t_1} s^t_1 & \frac{\partial E^t}{\partial \xi^t_1} s^t_2 & \cdots & \frac{\partial E^t}{\partial \xi^t_1} s^t_n \\
+\frac{\partial E^t}{\partial \xi^t_2} s^t_1 & \frac{\partial E^t}{\partial \xi^t_2} s^t_2 & \cdots & \frac{\partial E^t}{\partial \xi^t_2} s^t_n \\
+\vdots & \vdots & \ddots & \vdots \\
+\frac{\partial E^t}{\partial \xi^t_m} s^t_1 & \frac{\partial E^t}{\partial \xi^t_m} s^t_2 & \cdots & \frac{\partial E^t}{\partial \xi^t_m} s^t_n \\
+\end{bmatrix}</script><h2 id="输入层到循环层"><a href="#输入层到循环层" class="headerlink" title="输入层到循环层"></a>输入层到循环层</h2><p>记循环层 $t$ 时刻的输入向量为 $\boldsymbol{\eta}^t$ </p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+s^t_1\\s^t_2\\\vdots\\s^t_n
+\end{bmatrix}
+=
+f\left(
+\begin{bmatrix}
+\eta^t_1 \\ \eta^t_2 \\ \vdots \\ \eta^t_n
+\end{bmatrix}
+\right),
+\qquad
+\begin{bmatrix}
+\eta^t_1 \\ \eta^t_2 \\ \vdots \\ \eta^t_n
+\end{bmatrix}
+=
+\begin{bmatrix}
+u_{11}&u_{12}&\cdots&u_{1m}\\
+u_{21}&u_{22}&\cdots&u_{2m}\\
+\vdots&\vdots&\ddots&\vdots\\
+u_{n1}&u_{n2}&\cdots&u_{nm}\\
+\end{bmatrix}
+\begin{bmatrix}
+x^t_1\\x^t_2\\\vdots\\x^t_m
+\end{bmatrix}
++
+\begin{bmatrix}
+w_{11}&w_{12}&\cdots&w_{1n}\\
+w_{21}&w_{22}&\cdots&w_{2n}\\
+\vdots&\vdots&\ddots&\vdots\\
+w_{n1}&w_{n2}&\cdots&w_{nn}\\
+\end{bmatrix}
+\begin{bmatrix}
+s^{t-1}_1\\s^{t-1}_2\\\vdots\\s^{t-1}_n
+\end{bmatrix}
++
+\begin{bmatrix}
+b^R_1\\b^R_2\\\vdots\\b^R_n
+\end{bmatrix}</script><h3 id="关于矩阵U的偏导"><a href="#关于矩阵U的偏导" class="headerlink" title="关于矩阵U的偏导"></a>关于矩阵U的偏导</h3><p>由上面的记号,   $t$ 时刻循环层的输入为$\boldsymbol{\eta}^t$,   $\boldsymbol{\eta}^t$是网络在 $t$ 时刻的输入 $\boldsymbol{x}^t$ 和 上一时刻的状态 $\boldsymbol{s}^{t-1}$ 的线性变换</p>
+<script type="math/tex; mode=display">
+\begin{gather}
+\boldsymbol{\eta}^t = U\boldsymbol{x}^t + W\boldsymbol{s}^{t-1}+\boldsymbol{b}^R
+\\
+\boldsymbol{s}^{t-1} = f(\boldsymbol{\eta}^{t-1})
+\end{gather}</script><p>下面的公式推导出一个 $\partial E^t/\partial U$关于时间的递推式,   我们记$\frac{\partial E^t}{\partial U}(t)$为 $t$ 时刻网络输出的误差$E$关于</p>
+<script type="math/tex; mode=display">
+\begin{split}
+\frac{\partial E^t}{\partial U}
+% 第一个等号
+&= 
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial \boldsymbol{\eta}^t}{\partial U} 
+\\
+(\boldsymbol{\eta}^t = U\boldsymbol{x}^t + W\boldsymbol{s}^{t-1}+\boldsymbol{b}^R)\rightarrow
+% 第二个等号
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+% 第二个等号括号中的内容
+\left( 
+\frac{\partial U\boldsymbol{x}^t}{\partial U}
++
+\frac{\partial W\boldsymbol{s}^{t-1}}{\partial U}
+\right)
+\\
+% 第三个等号
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+% 第三个等号括号中的内容
+\left(
+\frac{\partial U\boldsymbol{x}^t}{\partial U}
++
+W\frac{\partial \boldsymbol{s}^{t-1}}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial \boldsymbol{\eta}^{t-1}}{\partial U}
+\right)
+\\
+% 第四个等号
+将\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}乘进括号中去\rightarrow
+&=
+% 第四个等号加号左边的内容
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial U\boldsymbol{x}^t}{\partial U}
++
+% 第四个等号加号右边的内容
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial W\boldsymbol{s}^{t-1}}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial \boldsymbol{\eta}^{t-1}}{\partial U}
+\\
+\left(\frac{\partial W\boldsymbol{s}^{t-1}}{\partial \boldsymbol{\eta}^{t-1}}=
+\frac{\partial \boldsymbol{\eta}^t}{\partial \boldsymbol{\eta}^{t-1}}\right)\rightarrow
+% 第五个等号
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial U\boldsymbol{x}^t}{\partial U}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial \boldsymbol{\eta}^t}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial \boldsymbol{\eta}^{t-1}}{\partial U}
+\\
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial U\boldsymbol{x}^t}{\partial U}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial \boldsymbol{\eta}^{t-1}}{\partial U}
+
+\end{split}</script><p>由这个递推式可以得到</p>
+<script type="math/tex; mode=display">
+\begin{split}
+\frac{\partial E^t}{\partial U}
+% 第一个等号
+&= 
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial \boldsymbol{\eta}^t}{\partial U}
+\\
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial U\boldsymbol{x}^t}{\partial U}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial \boldsymbol{\eta}^{t-1}}{\partial U}
+\\
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial U\boldsymbol{x}^t}{\partial U}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial U\boldsymbol{x}^{t-1}}{\partial U}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-2}}
+\frac{\partial \boldsymbol{\eta}^{t-2}}{\partial U}
+\\
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial U\boldsymbol{x}^t}{\partial U}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial U\boldsymbol{x}^{t-1}}{\partial U}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-2}}
+\frac{\partial U\boldsymbol{x}^{t-2}}{\partial U}
++
+\cdots
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{2}}
+\frac{\partial U\boldsymbol{x}^{2}}{\partial U}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{1}}
+\frac{\partial U\boldsymbol{x}^{1}}{\partial U}
+\end{split}</script><h3 id="计算-frac-partial-E-t-partial-boldsymbol-eta-k-frac-partial-U-boldsymbol-x-k-partial-U"><a href="#计算-frac-partial-E-t-partial-boldsymbol-eta-k-frac-partial-U-boldsymbol-x-k-partial-U" class="headerlink" title="计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}\frac{\partial U\boldsymbol{x}^k}{\partial U}$"></a>计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}\frac{\partial U\boldsymbol{x}^k}{\partial U}$</h3><h4 id="计算-frac-partial-E-t-partial-boldsymbol-eta-t"><a href="#计算-frac-partial-E-t-partial-boldsymbol-eta-t" class="headerlink" title="计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}$"></a>计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}$</h4><script type="math/tex; mode=display">
+\begin{split}
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+&= 
+\frac{\partial E^t}{\partial \boldsymbol{\xi}^t}
+\frac{\partial \boldsymbol{\xi}^t}{\partial \boldsymbol{s}^t}
+\frac{\partial \boldsymbol{s}^t}{\partial \boldsymbol{\eta}^t}
+\\
+&=
+% 第二行的行向量
+\begin{bmatrix}
+\frac{\partial E^t}{\partial \xi^t_1}&\frac{\partial E^t}{\partial \xi^t_2}&\cdots&\frac{\partial E^t}{\partial \xi^t_m}
+\end{bmatrix}
+
+% 第二行的第一个矩阵
+\begin{bmatrix}
+\frac{\partial \xi^t_1}{\partial s^t_1} & \frac{\partial \xi^t_1}{\partial s^t_2} & \cdots & \frac{\partial \xi^t_1}{\partial s^t_n} \\
+\frac{\partial \xi^t_2}{\partial s^t_1} & \frac{\partial \xi^t_2}{\partial s^t_2} & \cdots & \frac{\partial \xi^t_2}{\partial s^t_n} \\
+\vdots&\vdots&\ddots&\vdots\\
+\frac{\partial \xi^t_m}{\partial s^t_1} & \frac{\partial \xi^t_m}{\partial s^t_2} & \cdots & \frac{\partial \xi^t_m}{\partial s^t_n} \\
+\end{bmatrix}
+
+% 第二行的第二个矩阵
+\begin{bmatrix}
+\frac{\partial s^t_1}{\partial \eta^t_1} & \frac{\partial s^t_1}{\partial s^t_2} & \cdots & \frac{\partial s^t_1}{\partial s^t_n} \\
+\frac{\partial s^t_2}{\partial \eta^t_1} & \frac{\partial s^t_2}{\partial \eta^t_2} & \cdots & \frac{\partial s^t_2}{\partial \eta^t_n} \\
+\vdots&\vdots&\ddots&\vdots\\
+\frac{\partial s^t_n}{\partial \eta^t_1} & \frac{\partial s^t_n}{\partial \eta^t_2} & \cdots & \frac{\partial s^t_n}{\partial \eta^t_n} \\
+\end{bmatrix}
+\\
+&=
+
+% 第三行的行向量
+\begin{bmatrix}
+\frac{\partial E^t}{\partial \xi^t_1}&\frac{\partial E^t}{\partial \xi^t_2}&\cdots&\frac{\partial E^t}{\partial \xi^t_m}
+\end{bmatrix}
+
+% 第三行的V矩阵
+\begin{bmatrix}
+v_{11}&v_{12}&\cdots&v_{1n}\\
+v_{21}&v_{22}&\cdots&v_{2n}\\
+\vdots&\vdots&\ddots&\vdots\\
+v_{m1}&v_{m2}&\cdots&v_{mn}\\
+\end{bmatrix}
+
+% 第三行的对角矩阵
+\begin{bmatrix}
+\frac{\partial s^t_1}{\partial \eta^t_1} & 0 & \cdots & 0 \\
+0 & \frac{\partial s^t_2}{\partial \eta^t_2} & \cdots & 0 \\
+\vdots&\vdots&\ddots&\vdots\\
+0 & 0 & \cdots & \frac{\partial s^t_n}{\partial \eta^t_n} \\
+\end{bmatrix}
+\\
+&=
+\left[
+\frac{\partial s^t_1}{\partial \eta^t_1}
+\sum_{i=1}^m(\frac{\partial E^t}{\partial \xi^t_i}v_{i1})
+,\quad
+\frac{\partial s^t_2}{\partial \eta^t_2}
+\sum_{i=1}^m(\frac{\partial E^t}{\partial \xi^t_i}v_{i2})
+,\quad
+\cdots
+,\quad
+\frac{\partial s^t_n}{\partial \eta^t_n}
+\sum_{i=1}^m(\frac{\partial E^t}{\partial \xi^t_i}v_{in})
+\right]
+\\
+\\
+记为&=
+\begin{bmatrix}
+\delta^{tt}_1&\delta^{tt}_2&\cdots&\delta^{tt}_n
+\end{bmatrix}
+\end{split}</script><p>$\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}$ 的结果记为 $\boldsymbol{\delta^{tt}}$,   称为循环层 $t$ 时刻(第二个 $t$)的输入的<strong>误差项</strong> (<strong>网络 $t$ 时刻输出的误差</strong>关于<strong>循环层 $t$ 时刻输入</strong>的偏导数)</p>
+<h4 id="计算-frac-partial-E-t-partial-boldsymbol-eta-k"><a href="#计算-frac-partial-E-t-partial-boldsymbol-eta-k" class="headerlink" title="计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}$"></a>计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}$</h4><script type="math/tex; mode=display">
+\begin{split}
+\frac{\partial \boldsymbol{\eta}^t}{\partial \boldsymbol{\eta}^{t-1}}
+&=
+\frac{\partial W\boldsymbol{s}^{t-1}}{\partial \boldsymbol{\eta}^{t-1}}
+=
+W\frac{\partial \boldsymbol{s}^{t-1}}{\partial \boldsymbol{\eta}^{t-1}}
+=
+W
+% 第一个矩阵
+\begin{bmatrix}
+\frac{\partial s^{t-1}_{1}}{\partial \eta^{t-1}_{1}}
+&
+\frac{\partial s^{t-1}_{1}}{\partial \eta^{t-1}_{2}}
+&
+\cdots
+&
+\frac{\partial s^{t-1}_{1}}{\partial \eta^{t-1}_{n}}
+\\
+\frac{\partial s^{t-1}_{2}}{\partial \eta^{t-1}_{1}}
+&
+\frac{\partial s^{t-1}_{2}}{\partial \eta^{t-1}_{2}}
+&
+\cdots
+&
+\frac{\partial s^{t-1}_{2}}{\partial \eta^{t-1}_{n}}
+\\
+\vdots&\vdots&\ddots&\vdots\\
+\frac{\partial s^{t-1}_{n}}{\partial \eta^{t-1}_{1}}
+&
+\frac{\partial s^{t-1}_{n}}{\partial \eta^{t-1}_{2}}
+&
+\cdots
+&
+\frac{\partial s^{t-1}_{n}}{\partial \eta^{t-1}_{n}}
+\end{bmatrix}
+=
+% 第二个矩阵
+W\begin{bmatrix}
+\frac{\partial s^{t-1}_{1}}{\partial \eta^{t-1}_{1}}&0&\cdots&0
+\\
+0&\frac{\partial s^{t-1}_{2}}{\partial \eta^{t-1}_{2}}&\cdots&0
+\\
+\vdots&\vdots&\ddots&\vdots\\
+0&0&\cdots&\frac{\partial s^{t-1}_{n}}{\partial \eta^{t-1}_{n}}
+\end{bmatrix}
+\\
+&=
+W\begin{bmatrix}
+f'(\eta^{t-1}_{1})&0&\cdots&0
+\\
+0&f'(\eta^{t-1}_{2})&\cdots&0
+\\
+\vdots&\vdots&\ddots&\vdots\\
+0&0&\cdots&f'(\eta^{t-1}_{n})
+\end{bmatrix}
+\end{split}</script><script type="math/tex; mode=display">
+\begin{split}
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}
+&= 
+\frac{\partial E^t}{\partial \boldsymbol{\xi}^t}
+\frac{\partial \boldsymbol{\xi}^t}{\partial \boldsymbol{s}^t}
+\frac{\partial \boldsymbol{s}^t}{\partial \boldsymbol{\eta}^t}
+\left(
+\frac{\partial \boldsymbol{\eta}^t}{\partial \boldsymbol{\eta}^{t-1}}
+\cdots
+\frac{\partial \boldsymbol{\eta}^{k+1}}{\partial \boldsymbol{\eta}^{k}}
+\right)
+\\
+&=
+\begin{bmatrix}
+\delta^{tt}_1&\delta^{tt}_2&\cdots&\delta^{tt}_n
+\end{bmatrix}
+% 连乘
+\prod_{i=(t-1)}^{k}
+\left(
+W\begin{bmatrix}
+f'(\eta^{i}_{1})&\cdots&0
+\\
+\vdots&\ddots&\vdots\\
+0&\cdots&f'(\eta^{i}_{n})
+\end{bmatrix}
+\right)
+\\
+记为&=
+\begin{bmatrix}
+\delta^{tk}_1&\delta^{tk}_2&\cdots&\delta^{tk}_n
+\end{bmatrix}
+\qquad (t \ge k \ge 1)
+\end{split}</script><p>$\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}$ 的结果记为 $\boldsymbol{\delta^{tk}}$,   称为循环层 $k$ 时刻输入的误差项 (<strong>网络 $t$ 时刻输出的误差</strong>关于<strong>循环层 $k$ 时刻输入</strong>的偏导数)</p>
+<p>实际计算中我们会一步一步地计算$\boldsymbol{\delta}^{tt},\boldsymbol{\delta}^{t(t-1)},\cdots,\boldsymbol{\delta}^{t1}$,   而不是使用连乘运算</p>
+<script type="math/tex; mode=display">
+\begin{split}
+% 第一行
+\begin{bmatrix}
+\delta^{t(t-1)}_1&\delta^{t(t-1)}_2&\cdots&\delta^{t(t-1)}_n
+\end{bmatrix}
+&=
+\begin{bmatrix}
+\delta^{tk}_1&\delta^{tk}_2&\cdots&\delta^{tk}_n
+\end{bmatrix}
+W\begin{bmatrix}
+f'(\eta^{t-1}_{1})&\cdots&0
+\\
+\vdots&\ddots&\vdots\\
+0&\cdots&f'(\eta^{t-1}_{n})
+\end{bmatrix}
+% 第二行
+\\
+\begin{bmatrix}
+\delta^{t(t-2)}_1&\delta^{t(t-2)}_2&\cdots&\delta^{t(t-2)}_n
+\end{bmatrix}
+&=
+\begin{bmatrix}
+\delta^{t(t-1)}_1&\delta^{t(t-1)}_2&\cdots&\delta^{t(t-1)}_n
+\end{bmatrix}
+W\begin{bmatrix}
+f'(\eta^{t-2}_{1})&\cdots&0
+\\
+\vdots&\ddots&\vdots\\
+0&\cdots&f'(\eta^{t-2}_{n})
+\end{bmatrix}
+\\
+&\vdots
+\\
+% 第三行
+\begin{bmatrix}
+\delta^{t1}_1&\delta^{t1}_2&\cdots&\delta^{t1}_n
+\end{bmatrix}
+&=
+\begin{bmatrix}
+\delta^{t(2)}_1&\delta^{t(2)}_2&\cdots&\delta^{t(2)}_n
+\end{bmatrix}
+W\begin{bmatrix}
+f'(\eta^{1}_{1})&\cdots&0
+\\
+\vdots&\ddots&\vdots\\
+0&\cdots&f'(\eta^{1}_{n})
+\end{bmatrix}
+
+\end{split}</script><h4 id="计算-frac-partial-U-boldsymbol-x-k-partial-U"><a href="#计算-frac-partial-U-boldsymbol-x-k-partial-U" class="headerlink" title="计算$\frac{\partial U\boldsymbol{x}^k}{\partial U}$"></a>计算$\frac{\partial U\boldsymbol{x}^k}{\partial U}$</h4><script type="math/tex; mode=display">
+\frac{\partial U\boldsymbol{x}^k}{\partial U}
+=
+% 第一个大矩阵
+\begin{bmatrix}
+\left(\begin{smallmatrix}
+\frac{\partial \eta^k_1}{\partial u_{11}} & \cdots & \frac{\partial \eta^k_1}{\partial u_{1m}}\\
+\vdots & \ddots & \vdots \\
+\frac{\partial \eta^k_1}{\partial u_{n1}} & \cdots & \frac{\partial \eta^k_1}{\partial u_{nm}}\\
+\end{smallmatrix}\right)
+\\
+\vdots
+\\
+\left(\begin{smallmatrix}
+\frac{\partial \eta^k_i}{\partial u_{11}} & \cdots & \frac{\partial \eta^k_i}{\partial u_{1m}}\\
+\vdots & \ddots & \vdots \\
+\frac{\partial \eta^k_i}{\partial u_{n1}} & \cdots & \frac{\partial \eta^k_i}{\partial u_{nm}}\\
+\end{smallmatrix}\right)
+\\
+\vdots
+\\
+\left(\begin{smallmatrix}
+\frac{\partial \eta^k_n}{\partial u_{11}} & \cdots & \frac{\partial \eta^k_n}{\partial u_{1m}}\\
+\vdots & \ddots & \vdots \\
+\frac{\partial \eta^k_n}{\partial u_{n1}} & \cdots & \frac{\partial \eta^k_n}{\partial u_{nm}}\\
+\end{smallmatrix}\right)
+\end{bmatrix}
+=
+% 第二个大矩阵
+\begin{bmatrix}
+\left(\begin{smallmatrix}
+x^k_1 & x^k_2 &\cdots & x^k_m\\
+0 & 0 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & 0\\
+\end{smallmatrix}\right)
+\\
+\vdots
+\\
+
+\left(\begin{smallmatrix}
+0 & 0 & \cdots & 0 \\
+\vdots & \vdots &   & \vdots \\
+x^k_1 & x^k_2 &\cdots & x^k_m\\
+\vdots & \vdots &   & \vdots \\
+0 & 0 & \cdots & 0\\
+\end{smallmatrix}\right)
+
+\begin{smallmatrix}
+1\\\vdots\\i\\\vdots\\n
+\end{smallmatrix}
+
+\\
+\vdots
+\\
+\left(\begin{smallmatrix}
+0 & 0 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & 0\\
+x^k_1 & x^k_2 &\cdots & x^k_m\\
+\end{smallmatrix}\right)
+\end{bmatrix}
+\qquad
+(t \ge k \ge 1)</script><h4 id="计算-frac-partial-E-t-partial-boldsymbol-eta-k-frac-partial-U-boldsymbol-x-k-partial-U-1"><a href="#计算-frac-partial-E-t-partial-boldsymbol-eta-k-frac-partial-U-boldsymbol-x-k-partial-U-1" class="headerlink" title="计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}\frac{\partial U\boldsymbol{x}^k}{\partial U}$"></a>计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}\frac{\partial U\boldsymbol{x}^k}{\partial U}$</h4><script type="math/tex; mode=display">
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}
+\cdot
+\frac{\partial U\boldsymbol{x}^k}{\partial U}
+=
+
+\begin{bmatrix}
+\delta^{tk}_1&\delta^{tk}_2&\cdots&\delta^{tk}_n
+\end{bmatrix}
+
+% 大矩阵
+\begin{bmatrix}
+\left(\begin{smallmatrix}
+x^k_1 & x^k_2 &\cdots & x^k_m\\
+0 & 0 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & 0\\
+\end{smallmatrix}\right)
+\\
+\vdots
+\\
+
+\left(\begin{smallmatrix}
+0 & 0 & \cdots & 0 \\
+\vdots & \vdots &   & \vdots \\
+x^k_1 & x^k_2 &\cdots & x^k_m\\
+\vdots & \vdots &   & \vdots \\
+0 & 0 & \cdots & 0\\
+\end{smallmatrix}\right)
+
+\begin{smallmatrix}
+1\\\vdots\\i\\\vdots\\n
+\end{smallmatrix}
+
+\\
+\vdots
+\\
+\left(\begin{smallmatrix}
+0 & 0 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & 0\\
+x^k_1 & x^k_2 &\cdots & x^k_m\\
+\end{smallmatrix}\right)
+\end{bmatrix}
+
+% 第二个等号
+=
+\begin{bmatrix}
+\delta^{tk}_1 \\ \delta^{tk}_2 \\ \vdots \\ \delta^{tk}_n
+\end{bmatrix}
+\begin{bmatrix}
+x^k_1 &  x^k_2 & \cdots & x^k_m
+\end{bmatrix}
+
+\qquad
+(t \ge k \ge 1)</script><h4 id="最后结果U的梯度"><a href="#最后结果U的梯度" class="headerlink" title="最后结果U的梯度"></a>最后结果U的梯度</h4><script type="math/tex; mode=display">
+\frac{\partial E^t}{\partial U}
+% 第一个等号
+= 
+\sum_{k=1}^t
+\left(
+\begin{bmatrix}
+\delta^{tk}_1 \\ \delta^{tk}_2 \\ \vdots \\ \delta^{tk}_n
+\end{bmatrix}
+\begin{bmatrix}
+x^k_1 &  x^k_2 & \cdots & x^k_m
+\end{bmatrix}
+\right)</script><h3 id="关于矩阵W的偏导"><a href="#关于矩阵W的偏导" class="headerlink" title="关于矩阵W的偏导"></a>关于矩阵W的偏导</h3><script type="math/tex; mode=display">
+\begin{split}
+\frac{\partial E^t}{\partial W}
+% 第一个等号
+&= 
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial \boldsymbol{\eta}^t}{\partial W} 
+\\
+(\boldsymbol{\eta}^t = U\boldsymbol{x}^t + W\boldsymbol{s}^{t-1}+\boldsymbol{b}^R)\rightarrow
+% 第二个等号
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+% 第二个等号括号中的内容
+\left( 
+\frac{\partial W\boldsymbol{s}^{t-1}}{\partial W}
+\right)
+\\
+(莱布尼茨法则)\rightarrow
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+% 第二个等号括号中的内容
+\left( 
+\frac{\partial W}{\partial W}\boldsymbol{s}^{t-1}
++
+W\frac{\partial \boldsymbol{s}^{t-1}}{\partial W}
+\right)
+\\
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial W}{\partial W}\boldsymbol{s}^{t-1}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+W\frac{\partial \boldsymbol{s}^{t-1}}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial \boldsymbol{\eta}^{t-1}}{\partial W}
+\\
+\left(\frac{\partial W\boldsymbol{s}^{t-1}}{\partial \boldsymbol{\eta}^{t-1}}=
+\frac{\partial \boldsymbol{\eta}^t}{\partial \boldsymbol{\eta}^{t-1}}\right)\rightarrow
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial W}{\partial W}\boldsymbol{s}^{t-1}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial \boldsymbol{\eta}^t}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial \boldsymbol{\eta}^{t-1}}{\partial W}
+\\
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial W}{\partial W}\boldsymbol{s}^{t-1}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial \boldsymbol{\eta}^{t-1}}{\partial W}
+\end{split}</script><script type="math/tex; mode=display">
+\begin{split}
+\frac{\partial E^t}{\partial W}
+% 第一个等号
+&= 
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial \boldsymbol{\eta}^t}{\partial W}
+\\
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial W}{\partial W}\boldsymbol{s}^{t-1}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial \boldsymbol{\eta}^{t-1}}{\partial W}
+\\
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial W}{\partial W}\boldsymbol{s}^{t-1}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial W}{\partial W}\boldsymbol{s}^{t-2}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-2}}
+\frac{\partial \boldsymbol{\eta}^{t-2}}{\partial W}
+\\
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial W}{\partial W}\boldsymbol{s}^{t-1}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial W}{\partial W}\boldsymbol{s}^{t-2}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-2}}
+\frac{\partial W}{\partial W}\boldsymbol{s}^{t-3}
++
+\cdots
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{2}}
+\frac{\partial W}{\partial W}\boldsymbol{s}^{1}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{1}}
+\frac{\partial W}{\partial W}\boldsymbol{s}^{0}
+\end{split}</script><h3 id="计算-frac-partial-E-t-partial-boldsymbol-eta-k-frac-partial-W-partial-W-boldsymbol-s-k-1"><a href="#计算-frac-partial-E-t-partial-boldsymbol-eta-k-frac-partial-W-partial-W-boldsymbol-s-k-1" class="headerlink" title="计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}\frac{\partial W}{\partial W}\boldsymbol{s}^{k-1}$"></a>计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}\frac{\partial W}{\partial W}\boldsymbol{s}^{k-1}$</h3><h4 id="计算-frac-partial-W-partial-W"><a href="#计算-frac-partial-W-partial-W" class="headerlink" title="计算$\frac{\partial W}{\partial W}$"></a>计算$\frac{\partial W}{\partial W}$</h4><script type="math/tex; mode=display">
+\begin{split}
+\frac{\partial W}{\partial W}&=
+\frac 
+{\partial
+\left(\begin{smallmatrix}
+w_{11}&\cdots&w_{n1}\\
+\vdots&\ddots&\vdots\\
+w_{n1}&\cdots&w_{nn}
+\end{smallmatrix}\right)}
+{\partial
+\left(\begin{smallmatrix}
+w_{11}&\cdots&w_{n1}\\
+\vdots&\ddots&\vdots\\
+w_{n1}&\cdots&w_{nn}
+\end{smallmatrix}\right)}
+\\
+&=
+% 大矩阵
+\begin{bmatrix}
+\left(
+\begin{smallmatrix}
+1 & 0 & \cdots & 0 \\
+0 & 0 & \cdots & 0 \\
+\vdots& \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & 0 \\
+\end{smallmatrix}
+\right)
+&
+\cdots
+&
+\left(
+\begin{smallmatrix}
+0 & 0 & \cdots & 1 \\
+0 & 0 & \cdots & 0 \\
+\vdots& \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & 0 \\
+\end{smallmatrix}
+\right)
+\\
+\vdots&\ddots&\vdots\\
+\left(
+\begin{smallmatrix}
+0 & 0 & \cdots & 0 \\
+0 & 0 & \cdots & 0 \\
+\vdots& \vdots & \ddots & \vdots\\
+1 & 0 & \cdots & 0 \\
+\end{smallmatrix}
+\right)
+&
+\cdots
+&
+\left(
+\begin{smallmatrix}
+0 & 0 & \cdots & 0 \\
+0 & 0 & \cdots & 0 \\
+\vdots& \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & 1 \\
+\end{smallmatrix}
+\right)
+\end{bmatrix}
+\end{split}</script><h4 id="计算-frac-partial-E-t-partial-boldsymbol-eta-k-frac-partial-W-partial-W-boldsymbol-s-k-1-1"><a href="#计算-frac-partial-E-t-partial-boldsymbol-eta-k-frac-partial-W-partial-W-boldsymbol-s-k-1-1" class="headerlink" title="计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}\frac{\partial W}{\partial W}\boldsymbol{s}^{k-1}$"></a>计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}\frac{\partial W}{\partial W}\boldsymbol{s}^{k-1}$</h4><script type="math/tex; mode=display">
+\begin{split}
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}\frac{\partial W}{\partial W}\boldsymbol{s}^{k-1}
+&=
+\begin{bmatrix}
+\delta^{tk}_1&\delta^{tk}_2&\cdots&\delta^{tk}_n
+\end{bmatrix}
+% 大矩阵
+\begin{bmatrix}
+\left(
+\begin{smallmatrix}
+1 & 0 & \cdots & 0 \\
+0 & 0 & \cdots & 0 \\
+\vdots& \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & 0 \\
+\end{smallmatrix}
+\right)
+&
+\cdots
+&
+\left(
+\begin{smallmatrix}
+0 & 0 & \cdots & 1 \\
+0 & 0 & \cdots & 0 \\
+\vdots& \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & 0 \\
+\end{smallmatrix}
+\right)
+\\
+\vdots&\ddots&\vdots\\
+\left(
+\begin{smallmatrix}
+0 & 0 & \cdots & 0 \\
+0 & 0 & \cdots & 0 \\
+\vdots& \vdots & \ddots & \vdots\\
+1 & 0 & \cdots & 0 \\
+\end{smallmatrix}
+\right)
+&
+\cdots
+&
+\left(
+\begin{smallmatrix}
+0 & 0 & \cdots & 0 \\
+0 & 0 & \cdots & 0 \\
+\vdots& \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & 1 \\
+\end{smallmatrix}
+\right)
+\end{bmatrix}
+\begin{bmatrix}
+s^{k-1}_1\\s^{k-1}_2\\\vdots\\s^{k-1}_n
+\end{bmatrix}
+\\
+&=
+\begin{bmatrix}
+\delta^{tk}_1\\\delta^{tk}_2\\\vdots\\\delta^{tk}_n
+\end{bmatrix}
+\begin{bmatrix}
+s^{k-1}_1&s^{k-1}_2&\cdots&s^{k-1}_n
+\end{bmatrix}
+\qquad
+(t \geq k \geq 1)
+\end{split}</script><h4 id="最后结果W的梯度"><a href="#最后结果W的梯度" class="headerlink" title="最后结果W的梯度"></a>最后结果W的梯度</h4><script type="math/tex; mode=display">
+\frac{\partial E^t}{\partial W}
+% 第一个等号
+= 
+\sum_{k=1}^t
+\left(
+\begin{bmatrix}
+\delta^{tk}_1\\\delta^{tk}_2\\\vdots\\\delta^{tk}_n
+\end{bmatrix}
+\begin{bmatrix}
+s^{k-1}_1&s^{k-1}_2&\cdots&s^{k-1}_n
+\end{bmatrix}
+\right)</script><h3 id="关于偏置项-boldsymbol-b-R-的偏导"><a href="#关于偏置项-boldsymbol-b-R-的偏导" class="headerlink" title="关于偏置项$\boldsymbol{b}^R$的偏导"></a>关于偏置项$\boldsymbol{b}^R$的偏导</h3><script type="math/tex; mode=display">
+\begin{split}
+\frac{\partial E^t}{\partial \boldsymbol{b}^R}
+% 第一个等号
+&= 
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial \boldsymbol{\eta}^t}{\partial \boldsymbol{b}^R} 
+\\
+(\boldsymbol{\eta}^t = U\boldsymbol{x}^t + W\boldsymbol{s}^{t-1}+\boldsymbol{b}^R)\rightarrow
+% 第二个等号
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+% 第二个等号括号中的内容
+\left( 
+\frac{\partial \boldsymbol{b}^R}{\partial \boldsymbol{b}^R}+
+\frac{\partial W\boldsymbol{s}^{t-1}}{\partial \boldsymbol{b}^R}
+\right)
+\\
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial \boldsymbol{b}^R}{\partial \boldsymbol{b}^R}+
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial W\boldsymbol{s}^{t-1}}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial \boldsymbol{\eta}^{t-1}}{\partial \boldsymbol{b}^R}
+\\
+\left(\frac{\partial W\boldsymbol{s}^{t-1}}{\partial \boldsymbol{\eta}^{t-1}}=
+\frac{\partial \boldsymbol{\eta}^t}{\partial \boldsymbol{\eta}^{t-1}}\right)\rightarrow
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial \boldsymbol{b}^R}{\partial \boldsymbol{b}^R}+
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial \boldsymbol{\eta}^t}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial \boldsymbol{\eta}^{t-1}}{\partial \boldsymbol{b}^R}
+\\
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial \boldsymbol{b}^R}{\partial \boldsymbol{b}^R}+
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial \boldsymbol{\eta}^{t-1}}{\partial \boldsymbol{b}^R}
+
+\end{split}</script><script type="math/tex; mode=display">
+\begin{split}
+\frac{\partial E^t}{\partial \boldsymbol{b}^R}
+% 第一个等号
+&= 
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial \boldsymbol{\eta}^t}{\partial \boldsymbol{b}^R} 
+\\
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial \boldsymbol{b}^R}{\partial \boldsymbol{b}^R}+
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial \boldsymbol{\eta}^{t-1}}{\partial \boldsymbol{b}^R}
+\\
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial \boldsymbol{b}^R}{\partial \boldsymbol{b}^R}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial \boldsymbol{b}^R}{\partial \boldsymbol{b}^R}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-2}}
+\frac{\partial \boldsymbol{\eta}^{t-2}}{\partial \boldsymbol{b}^R}
+\\
+&=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}
+\frac{\partial \boldsymbol{b}^R}{\partial \boldsymbol{b}^R}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-1}}
+\frac{\partial \boldsymbol{b}^R}{\partial \boldsymbol{b}^R}
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{t-2}}
+\frac{\partial \boldsymbol{b}^R}{\partial \boldsymbol{b}^R}
++
+\cdots
++
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{1}}
+\frac{\partial \boldsymbol{b}^R}{\partial \boldsymbol{b}^R}
+\end{split}</script><h4 id="计算-frac-partial-E-t-partial-boldsymbol-eta-k-frac-partial-boldsymbol-b-R-partial-boldsymbol-b-R"><a href="#计算-frac-partial-E-t-partial-boldsymbol-eta-k-frac-partial-boldsymbol-b-R-partial-boldsymbol-b-R" class="headerlink" title="计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^{k}}\frac{\partial \boldsymbol{b}^R}{\partial \boldsymbol{b}^R}$"></a>计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^{k}}\frac{\partial \boldsymbol{b}^R}{\partial \boldsymbol{b}^R}$</h4><script type="math/tex; mode=display">
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{k}}
+\frac{\partial \boldsymbol{b}^R}{\partial \boldsymbol{b}^R}=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{k}}
+\cdot 
+I_{nn}
+=
+\frac{\partial E^t}{\partial \boldsymbol{\eta}^{k}}
+=
+\begin{bmatrix}
+\delta^{tk}_1\\\delta^{tk}_2\\\vdots\\\delta^{tk}_n
+\end{bmatrix}</script><h4 id="最后结果-boldsymbol-b-R-的梯度"><a href="#最后结果-boldsymbol-b-R-的梯度" class="headerlink" title="最后结果$\boldsymbol{b}^R$的梯度"></a>最后结果$\boldsymbol{b}^R$的梯度</h4><script type="math/tex; mode=display">
+\frac{\partial E^t}{\partial \boldsymbol{b}^R}=
+\sum_{k=1}^t
+\left(
+\begin{bmatrix}
+\delta^{tk}_1\\\delta^{tk}_2\\\vdots\\\delta^{tk}_n
+\end{bmatrix}
+\right)</script></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://onexiaophai.gitee.io">张文翔</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://onexiaophai.gitee.io/2022/05/19/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%BB%8B%E7%BB%8D/">https://onexiaophai.gitee.io/2022/05/19/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%BB%8B%E7%BB%8D/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://onexiaophai.gitee.io" target="_blank">小P孩的脑洞</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><a class="post-meta__tags" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a><a class="post-meta__tags" href="/tags/RNN/">RNN</a></div><div class="post_share"><div class="social-share" data-image="/white" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/05/22/%E5%9B%9E%E5%A3%B0%E7%8A%B6%E6%80%81%E7%BD%91%E7%BB%9C/"><img class="prev-cover" src="/white" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">回声状态网络</div></div></a></div><div class="next-post pull-right"><a href="/2022/05/15/%E5%AE%9E%E6%88%98mnist%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E8%AF%86%E5%88%AB/"><img class="next-cover" src="/white" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">NumPy神经网络实战——Mnist手写数字数据集的识别</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/06/08/%E5%82%A8%E5%A4%87%E6%B1%A0%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95%E7%9A%84%E5%8F%82%E6%95%B0%E9%80%89%E6%8B%A9%E5%8F%8A%E5%9C%A8%E7%9F%AD%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E9%A2%84%E6%B5%8B%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" title="回声状态网络"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-08</div><div class="title">回声状态网络</div></div></a></div><div><a href="/2022/05/22/%E5%9B%9E%E5%A3%B0%E7%8A%B6%E6%80%81%E7%BD%91%E7%BB%9C/" title="回声状态网络"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-22</div><div class="title">回声状态网络</div></div></a></div><div><a href="/2022/05/15/%E5%AE%9E%E6%88%98mnist%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E8%AF%86%E5%88%AB/" title="NumPy神经网络实战——Mnist手写数字数据集的识别"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-15</div><div class="title">NumPy神经网络实战——Mnist手写数字数据集的识别</div></div></a></div><div><a href="/2022/05/15/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95/" title="梯度下降法"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-15</div><div class="title">梯度下降法</div></div></a></div><div><a href="/2022/05/27/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC/" title="矩阵求导"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-27</div><div class="title">矩阵求导</div></div></a></div><div><a href="/2022/05/10/MNIST%E6%89%8B%E5%86%99%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84Python%E8%AF%BB%E5%8F%96/" title="MNIST手写数据集的Python读取"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-10</div><div class="title">MNIST手写数据集的Python读取</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CRecurrent-Neural-Networks"><span class="toc-number">1.</span> <span class="toc-text">循环神经网络Recurrent Neural Networks</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RNN%E7%9A%84%E6%95%B0%E5%AD%A6%E6%8F%8F%E8%BF%B0"><span class="toc-number">2.</span> <span class="toc-text">RNN的数学描述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%B1%82"><span class="toc-number">2.1.</span> <span class="toc-text">输入层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E5%B1%82"><span class="toc-number">2.2.</span> <span class="toc-text">循环层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E5%B1%82"><span class="toc-number">2.3.</span> <span class="toc-text">输出层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%9A%84%E8%BE%93%E5%87%BA"><span class="toc-number">2.4.</span> <span class="toc-text">网络的输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%BE%93%E5%87%BA%E7%9A%84%E8%AF%AF%E5%B7%AE"><span class="toc-number">2.5.</span> <span class="toc-text">网络输出的误差</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A2%AF%E5%BA%A6%E7%9A%84%E8%AE%A1%E7%AE%97-Back-Propagate-Through-Time-BPTT"><span class="toc-number">3.</span> <span class="toc-text">梯度的计算(Back Propagate Through Time, BPTT)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E5%B1%82%E5%88%B0%E8%BE%93%E5%87%BA%E5%B1%82"><span class="toc-number">3.1.</span> <span class="toc-text">循环层到输出层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%B1%82%E5%88%B0%E5%BE%AA%E7%8E%AF%E5%B1%82"><span class="toc-number">3.2.</span> <span class="toc-text">输入层到循环层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%9F%A9%E9%98%B5U%E7%9A%84%E5%81%8F%E5%AF%BC"><span class="toc-number">3.2.1.</span> <span class="toc-text">关于矩阵U的偏导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-frac-partial-E-t-partial-boldsymbol-eta-k-frac-partial-U-boldsymbol-x-k-partial-U"><span class="toc-number">3.2.2.</span> <span class="toc-text">计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}\frac{\partial U\boldsymbol{x}^k}{\partial U}$</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-frac-partial-E-t-partial-boldsymbol-eta-t"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^t}$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-frac-partial-E-t-partial-boldsymbol-eta-k"><span class="toc-number">3.2.2.2.</span> <span class="toc-text">计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-frac-partial-U-boldsymbol-x-k-partial-U"><span class="toc-number">3.2.2.3.</span> <span class="toc-text">计算$\frac{\partial U\boldsymbol{x}^k}{\partial U}$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-frac-partial-E-t-partial-boldsymbol-eta-k-frac-partial-U-boldsymbol-x-k-partial-U-1"><span class="toc-number">3.2.2.4.</span> <span class="toc-text">计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}\frac{\partial U\boldsymbol{x}^k}{\partial U}$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E7%BB%93%E6%9E%9CU%E7%9A%84%E6%A2%AF%E5%BA%A6"><span class="toc-number">3.2.2.5.</span> <span class="toc-text">最后结果U的梯度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%9F%A9%E9%98%B5W%E7%9A%84%E5%81%8F%E5%AF%BC"><span class="toc-number">3.2.3.</span> <span class="toc-text">关于矩阵W的偏导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-frac-partial-E-t-partial-boldsymbol-eta-k-frac-partial-W-partial-W-boldsymbol-s-k-1"><span class="toc-number">3.2.4.</span> <span class="toc-text">计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}\frac{\partial W}{\partial W}\boldsymbol{s}^{k-1}$</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-frac-partial-W-partial-W"><span class="toc-number">3.2.4.1.</span> <span class="toc-text">计算$\frac{\partial W}{\partial W}$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-frac-partial-E-t-partial-boldsymbol-eta-k-frac-partial-W-partial-W-boldsymbol-s-k-1-1"><span class="toc-number">3.2.4.2.</span> <span class="toc-text">计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^k}\frac{\partial W}{\partial W}\boldsymbol{s}^{k-1}$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E7%BB%93%E6%9E%9CW%E7%9A%84%E6%A2%AF%E5%BA%A6"><span class="toc-number">3.2.4.3.</span> <span class="toc-text">最后结果W的梯度</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%81%8F%E7%BD%AE%E9%A1%B9-boldsymbol-b-R-%E7%9A%84%E5%81%8F%E5%AF%BC"><span class="toc-number">3.2.5.</span> <span class="toc-text">关于偏置项$\boldsymbol{b}^R$的偏导</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-frac-partial-E-t-partial-boldsymbol-eta-k-frac-partial-boldsymbol-b-R-partial-boldsymbol-b-R"><span class="toc-number">3.2.5.1.</span> <span class="toc-text">计算$\frac{\partial E^t}{\partial \boldsymbol{\eta}^{k}}\frac{\partial \boldsymbol{b}^R}{\partial \boldsymbol{b}^R}$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E7%BB%93%E6%9E%9C-boldsymbol-b-R-%E7%9A%84%E6%A2%AF%E5%BA%A6"><span class="toc-number">3.2.5.2.</span> <span class="toc-text">最后结果$\boldsymbol{b}^R$的梯度</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 张文翔</div><div class="footer_custom_text">Hi, welcome to my <a href="https://onexiaophai.gitee.io/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

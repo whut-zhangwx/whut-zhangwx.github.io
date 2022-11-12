@@ -1,0 +1,1026 @@
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>LaTeX基础用法 | 小P孩的脑洞</title><meta name="author" content="张文翔"><meta name="copyright" content="张文翔"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Latex的设计思想——内容与格式分离 在cmd中输入下面的命令可以打开&lt;一份不太简短的latex介绍&gt; 1texdoc lshort-zh 参考视频: https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV15x411j7k6 视频由西北农林科技大学信息工程学院耿楠老师于2016年录制">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LaTeX基础用法">
+<meta property="og:url" content="https://onexiaophai.gitee.io/2022/02/05/latex%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="小P孩的脑洞">
+<meta property="og:description" content="Latex的设计思想——内容与格式分离 在cmd中输入下面的命令可以打开&lt;一份不太简短的latex介绍&gt; 1texdoc lshort-zh 参考视频: https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV15x411j7k6 视频由西北农林科技大学信息工程学院耿楠老师于2016年录制">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://onexiaophai.gitee.io/white">
+<meta property="article:published_time" content="2022-02-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-25T08:17:24.024Z">
+<meta property="article:author" content="张文翔">
+<meta property="article:tag" content="写作">
+<meta property="article:tag" content="Latex">
+<meta property="article:tag" content="论文">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://onexiaophai.gitee.io/white"><link rel="shortcut icon" href="/img/avatar.jpg"><link rel="canonical" href="https://onexiaophai.gitee.io/2022/02/05/latex%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LaTeX基础用法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-25 16:17:24'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: white"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小P孩的脑洞</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">LaTeX基础用法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-02-04T16:00:00.000Z" title="发表于 2022-02-05 00:00:00">2022-02-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-25T08:17:24.024Z" title="更新于 2022-10-25 16:17:24">2022-10-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%86%99%E4%BD%9C/">写作</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">7.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>33分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LaTeX基础用法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong>Latex的设计思想——内容与格式分离</strong></p>
+<p>在cmd中输入下面的命令可以打开&lt;一份不太简短的latex介绍&gt;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">texdoc lshort-zh</span><br></pre></td></tr></table></figure>
+<p>参考视频: <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV15x411j7k6">https://www.bilibili.com/video/BV15x411j7k6</a></p>
+<p>视频由西北农林科技大学信息工程学院耿楠老师于2016年录制</p>
+<span id="more"></span>
+<h4 id="1-LaTeX环境配置"><a href="#1-LaTeX环境配置" class="headerlink" title="1.  LaTeX环境配置"></a>1.  LaTeX环境配置</h4><ul>
+<li><p><strong>安装Texlive</strong></p>
+<p>使用<code>tex --version</code>命令查看环境变量是否配置成功, 如果没有则在环境变量中添加<code>D:\texlive\2021\bin\win32</code></p>
+</li>
+<li><p><strong>安装TeXstudio</strong></p>
+<p><code>Option -&gt; Configure TeXstudio -&gt; Build -&gt; Default Compiler</code>中设置TeXstudio默认编译方式为Xelatex</p>
+</li>
+</ul>
+<h4 id="2-LaTeX源文件的基本结构"><a href="#2-LaTeX源文件的基本结构" class="headerlink" title="2. LaTeX源文件的基本结构"></a>2. LaTeX源文件的基本结构</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%导言区</span></span><br><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;     <span class="comment">%选择文本模式, 可选项有article/book/report/letter</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\title</span>&#123;Title Of My Article&#125; <span class="comment">%设置文章标题</span></span><br><span class="line"><span class="keyword">\author</span>&#123;xiaophai&#125;           <span class="comment">%设置文章作者</span></span><br><span class="line"><span class="keyword">\date</span>&#123;<span class="keyword">\today</span>&#125;               <span class="comment">%设置文章日期</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%正文区</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">	<span class="keyword">\maketitle</span>    <span class="comment">%插入标题</span></span><br><span class="line">	</span><br><span class="line">	Hello World!  <span class="comment">%撰写正文</span></span><br><span class="line">	</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-LaTeX处理中文的方法"><a href="#3-LaTeX处理中文的方法" class="headerlink" title="3. LaTeX处理中文的方法"></a>3. LaTeX处理中文的方法</h4><ul>
+<li><p><strong>设置-构建 中默认编译器设置为XeLaTeX</strong></p>
+</li>
+<li><p><strong>设置-编辑器 默认字体编码 UTF-8</strong></p>
+</li>
+<li><p><strong>引入ctex宏包</strong></p>
+<p>引入ctex宏包后才能显示中文, 否则中文字符不显示, 但编译不报错</p>
+</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;ctex&#125;  <span class="comment">%引入ctex宏包</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">	</span><br><span class="line">	你好, <span class="keyword">\LaTeX</span></span><br><span class="line">	</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>下面两种用法效果是一样的</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;ctexart&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;ctex&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>cmd中输入下面的命令可以打开<CTeX宏集手册></strong></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">texdoc ctex</span><br></pre></td></tr></table></figure>
+<h4 id="4-LaTeX的字体字号设置"><a href="#4-LaTeX的字体字号设置" class="headerlink" title="4. LaTeX的字体字号设置"></a>4. LaTeX的字体字号设置</h4><ul>
+<li><strong>英文字体的设置命令</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%字体命令,作用于命令参数--&#123;&#125;中的内容</span></span><br><span class="line"><span class="keyword">\textrm</span>&#123;Roman Family&#125;       <span class="comment">%罗马字体</span></span><br><span class="line"><span class="keyword">\textsf</span>&#123;Sans Serif Family&#125;  <span class="comment">%无衬线字体</span></span><br><span class="line"><span class="keyword">\texttt</span>&#123;Typewriter Family&#125;  <span class="comment">%打字机字体</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%字体声明,作用于后续的文本</span></span><br><span class="line"><span class="keyword">\rmfamily</span> Roman Family</span><br><span class="line"><span class="keyword">\sffamily</span> Sans Serif Family</span><br><span class="line"><span class="keyword">\ttfamily</span> Typewriter Family</span><br><span class="line"></span><br><span class="line"><span class="comment">%也可以使用大括号对字体进行分组,从而限定字体声明的作用范围</span></span><br><span class="line">&#123;<span class="keyword">\rmfamily</span> Roman Family&#125;</span><br><span class="line">&#123;<span class="keyword">\sffamily</span> Sans Serif Family&#125;</span><br><span class="line">&#123;<span class="keyword">\ttfamily</span> Typewriter Family&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%字体命令</span></span><br><span class="line"><span class="keyword">\textup</span>&#123;Upright Shape&#125;     <span class="comment">%直立</span></span><br><span class="line"><span class="keyword">\textit</span>&#123;Italic Shape&#125;      <span class="comment">%斜体</span></span><br><span class="line"><span class="keyword">\textsl</span>&#123;Slanted Shape&#125;     <span class="comment">%伪斜体</span></span><br><span class="line"><span class="keyword">\textsc</span>&#123;Small Caps Shape&#125;  <span class="comment">%小型大写</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%字体声明</span></span><br><span class="line">&#123;<span class="keyword">\upshape</span> Upright Shape&#125;</span><br><span class="line">&#123;<span class="keyword">\itshape</span> Italic Shape&#125;</span><br><span class="line">&#123;<span class="keyword">\slshape</span> Slanted Shape&#125;</span><br><span class="line">&#123;<span class="keyword">\scshape</span> Small Capes Shape&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%中文字体的设置</span></span><br><span class="line">&#123;<span class="keyword">\songti</span> 宋体&#125;    <span class="comment">%宋体</span></span><br><span class="line">&#123;<span class="keyword">\heiti</span> 黑体&#125;     <span class="comment">%黑体</span></span><br><span class="line">&#123;<span class="keyword">\fangsong</span> 仿宋&#125;  <span class="comment">%仿宋</span></span><br><span class="line">&#123;<span class="keyword">\kaishu</span> 楷书&#125;    <span class="comment">%楷书</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\textbf</span>&#123;粗体&#125;     <span class="comment">%粗体</span></span><br><span class="line"><span class="keyword">\textit</span>&#123;斜体&#125;     <span class="comment">%斜体</span></span><br><span class="line">&#123;<span class="keyword">\bfseries</span> 加粗&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>英文字号的设置命令</strong><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="keyword">\tiny</span> Hello&#125;</span><br><span class="line">&#123;<span class="keyword">\scriptsize</span> Hello&#125;</span><br><span class="line">&#123;<span class="keyword">\footnotesize</span> Hello&#125;</span><br><span class="line">&#123;<span class="keyword">\small</span> Hello&#125;</span><br><span class="line">&#123;<span class="keyword">\normalsize</span> Hello&#125;</span><br><span class="line">&#123;<span class="keyword">\large</span> Hello&#125;</span><br><span class="line">&#123;<span class="keyword">\Large</span> Hello&#125;</span><br><span class="line">&#123;<span class="keyword">\LARGE</span> Hello&#125;</span><br><span class="line">&#123;<span class="keyword">\huge</span> Hello&#125;</span><br><span class="line">&#123;<span class="keyword">\Huge</span> Hello&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">%这些字体的大小是相对于normalsize的字号而言的</span></span><br><span class="line"><span class="comment">%而normalsize的大小是由文档类的参数控制的</span></span><br><span class="line"><span class="comment">%文档类的参数是一个可选参数,可以在方括号中添加</span></span><br><span class="line"><span class="comment">%normalsize只能设置10/11/12pt</span></span><br><span class="line"><span class="keyword">\documentclass</span>[10pt]&#123;article&#125;</span><br><span class="line"><span class="keyword">\documentclass</span>[11pt]&#123;article&#125;</span><br><span class="line"><span class="keyword">\documentclass</span>[12pt]&#123;article&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>中文字号的设置命令</strong></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%中文字号设置命令</span></span><br><span class="line"><span class="keyword">\zihao</span>&#123;5&#125; 你好!</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>自定义字体命令</strong></p>
+<p>当需要复杂且常用的字体命令时可以在导言区自定义命令</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%导言区</span></span><br><span class="line"><span class="keyword">\newcommand</span>&#123;<span class="keyword">\newfont</span>&#125;&#123;<span class="keyword">\textbf</span>&#123;<span class="keyword">\textsf</span>&#123;Fancy Text&#125;&#125;&#125;</span><br><span class="line"><span class="comment">%正文区</span></span><br><span class="line"><span class="keyword">\newfont</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="5-LaTeX文档的基本结构"><a href="#5-LaTeX文档的基本结构" class="headerlink" title="5. LaTeX文档的基本结构"></a>5. LaTeX文档的基本结构</h4><ul>
+<li><strong>标题的使用</strong><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%导言区</span></span><br><span class="line"><span class="keyword">\documentclass</span>&#123;ctexart&#125;</span><br><span class="line"><span class="comment">%正文区</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">	<span class="keyword">\section</span>&#123;实验方法&#125;	</span><br><span class="line">	<span class="keyword">\section</span>&#123;实验结果&#125;</span><br><span class="line">	<span class="keyword">\subsection</span>&#123;数据获取&#125;</span><br><span class="line">	<span class="keyword">\subsubsection</span>&#123;实验条件&#125;</span><br><span class="line">	<span class="keyword">\subsubsection</span>&#123;实验过程&#125;</span><br><span class="line">	<span class="keyword">\subsection</span>&#123;结果分析&#125;</span><br><span class="line">	<span class="keyword">\section</span>&#123;结论&#125;	</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220207234726959.png" alt="image-20220207234726959"></p>
+<ul>
+<li><strong>空行和”\\“的区别</strong><ul>
+<li>“\\“只是换行, 行首不会缩进</li>
+<li>空行是开启新的段落, 行首有缩进 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%导言区</span></span><br><span class="line"><span class="keyword">\documentclass</span>&#123;ctexart&#125;</span><br><span class="line"><span class="comment">%正文区</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;	</span><br><span class="line">	多年以后，奥雷连诺上校站在行刑队面前，准会想起父亲带他去参观冰块的那个遥远的下午。</span><br><span class="line">	<span class="keyword">\\</span>当时，马孔多是个二十户人家的村庄，一座座土房都盖在河岸上，河水清澈，沿着遍布石头的河床流去，河里的石头光滑、洁白，活象史前的巨蛋。</span><br><span class="line">	</span><br><span class="line">	这块天地还是新开辟的，许多东西都叫不出名字，不得不用手指指点点。每年三月，衣衫褴楼的吉卜赛人都要在村边搭起帐篷，在笛鼓的喧嚣声中，向马孔多的居 民介绍科学家的最新发明。</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220207222314075.png" alt="image-20220207222314075"></p>
+<ul>
+<li><strong>自定义标题格式</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\ctexset</span>&#123;</span><br><span class="line">	section=&#123;</span><br><span class="line">		<span class="comment">%format用于设置章节标题全局格式，作用域为标题和编号</span></span><br><span class="line">		<span class="comment">%字号为小三，字体为黑体，左对齐</span></span><br><span class="line">		<span class="comment">%+号表示在原有格式下附加格式命令</span></span><br><span class="line">		format+ = <span class="keyword">\zihao</span>&#123;-3&#125; <span class="keyword">\heiti</span> <span class="keyword">\raggedright</span>,</span><br><span class="line">		<span class="comment">%name用于设置章节编号前后的词语</span></span><br><span class="line">		<span class="comment">%前、后词语用英文状态下,分开</span></span><br><span class="line">		<span class="comment">%如果没有前或后词语可以不填</span></span><br><span class="line">		name = &#123;,、&#125;,</span><br><span class="line">		<span class="comment">%number用于设置章节编号数字输出格式</span></span><br><span class="line">		<span class="comment">%输出section编号为中文</span></span><br><span class="line">		number = <span class="keyword">\chinese</span>&#123;section&#125;,</span><br><span class="line">		<span class="comment">%beforeskip用于设置章节标题前的垂直间距</span></span><br><span class="line">		<span class="comment">%ex为当前字号下字母x的高度</span></span><br><span class="line">		<span class="comment">%基础高度为1.0ex，可以伸展到1.2ex，也可以收缩到0.8ex</span></span><br><span class="line">		beforeskip = 1.0ex plus 0.2ex minus .2ex,</span><br><span class="line">		<span class="comment">%afterskip用于设置章节标题后的垂直间距</span></span><br><span class="line">		afterskip = 1.0ex plus 0.2ex minus .2ex,</span><br><span class="line">		<span class="comment">%aftername用于控制编号和标题之间的格式</span></span><br><span class="line">		<span class="comment">%\hspace用于增加水平间距</span></span><br><span class="line">		aftername = <span class="keyword">\hspace</span>&#123;0pt&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	subsection=&#123;</span><br><span class="line">		format+ = <span class="keyword">\zihao</span>&#123;4&#125; <span class="keyword">\kaishu</span> <span class="keyword">\raggedright</span>,</span><br><span class="line">		<span class="comment">%仅输出subsection编号且为中文</span></span><br><span class="line">		number = <span class="keyword">\chinese</span>&#123;subsection&#125;,</span><br><span class="line">		name = &#123;（,）&#125;,</span><br><span class="line">		beforeskip = 1.0ex plus 0.2ex minus .2ex,</span><br><span class="line">		afterskip = 1.0ex plus 0.2ex minus .2ex,</span><br><span class="line">		aftername = <span class="keyword">\hspace</span>&#123;0pt&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	subsubsection=&#123;</span><br><span class="line">		<span class="comment">%设置对齐方式为居中对齐</span></span><br><span class="line">		format+ = <span class="keyword">\zihao</span>&#123;-4&#125; <span class="keyword">\fangsong</span> <span class="keyword">\centering</span>,</span><br><span class="line">		<span class="comment">%仅输出subsubsection编号，格式为阿拉伯数字，打字机字体</span></span><br><span class="line">		number = <span class="keyword">\ttfamily</span><span class="keyword">\arabic</span>&#123;subsubsection&#125;,</span><br><span class="line">		name = &#123;,.&#125;,</span><br><span class="line">		beforeskip = 1.0ex plus 0.2ex minus .2ex,</span><br><span class="line">		afterskip = 1.0ex plus 0.2ex minus .2ex,</span><br><span class="line">		aftername = <span class="keyword">\hspace</span>&#123;0pt&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220207233649953.png" alt="image-20220207233649953"></p>
+<h4 id="6-LaTeX中的特殊字符"><a href="#6-LaTeX中的特殊字符" class="headerlink" title="6. LaTeX中的特殊字符"></a>6. LaTeX中的特殊字符</h4><ul>
+<li><strong>空白符号</strong><ul>
+<li>空行分段, 多个空行等同一个空行</li>
+<li>自动缩进, 绝对不能使用空格代替</li>
+<li>英文中多个空格处理为一个空格, 中文中空格被忽略</li>
+<li>汉字与其它字符的间距会自动由XeLaTeX处理</li>
+<li>禁止使用中文全角空格</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">a<span class="keyword">\quad</span> b   <span class="comment">%1em(当前字体中M的宽度)</span></span><br><span class="line">a<span class="keyword">\qquad</span> b  <span class="comment">%2em</span></span><br><span class="line">a<span class="keyword">\,</span> b      <span class="comment">%约1/6个em</span></span><br><span class="line">a<span class="keyword">\thinspace</span> b  <span class="comment">%约1/6个em</span></span><br><span class="line">a<span class="keyword">\enspace</span> b    <span class="comment">%约1/2个em</span></span><br><span class="line">a<span class="keyword">\ </span>b       <span class="comment">%输出一个空格</span></span><br><span class="line">a~b        <span class="comment">%一个硬空格</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 1pc = 12pt = 4.218mm</span></span><br><span class="line">a<span class="keyword">\kern</span> 1pc b</span><br><span class="line">a<span class="keyword">\kern</span> -1em b</span><br><span class="line">a<span class="keyword">\hskip</span> 1em b</span><br><span class="line">a<span class="keyword">\hspace</span>&#123;35pt&#125;b</span><br><span class="line"></span><br><span class="line"><span class="comment">%占位宽度</span></span><br><span class="line">a<span class="keyword">\hphantom</span>&#123;xyz&#125;b</span><br><span class="line"></span><br><span class="line"><span class="comment">%弹性空白</span></span><br><span class="line">a<span class="keyword">\hfill</span> b <span class="comment">%可以用于让一行中的一部分右对齐</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220208010116391.png" alt="image-20220208010116391"></p>
+<ul>
+<li><strong>控制符输出</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\#</span> <span class="keyword">\$</span> <span class="keyword">\%</span> <span class="keyword">\&#123;</span> <span class="keyword">\&#125;</span> <span class="keyword">\~</span>&#123;&#125; <span class="keyword">\_</span>&#123;&#125; <span class="keyword">\^</span>&#123;&#125; <span class="keyword">\&amp;</span> <span class="keyword">\textbackslash</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220208010645086.png" alt="image-20220208010645086"></p>
+<ul>
+<li><strong>排版符号</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\S</span> <span class="keyword">\P</span> <span class="keyword">\dag</span> <span class="keyword">\ddag</span> <span class="keyword">\copyright</span> <span class="keyword">\pounds</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220208011344650.png" alt="image-20220208011344650"></p>
+<ul>
+<li><strong>Latex标识符</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\TeX</span>&#123;&#125; <span class="keyword">\LaTeX</span>&#123;&#125; <span class="keyword">\LaTeXe</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220208011555476.png" alt="image-20220208011555476"></p>
+<ul>
+<li><strong>引号</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">`  <span class="comment">%左单引号--数字键1左边的键</span></span><br><span class="line">&#x27;  <span class="comment">%右单引号</span></span><br><span class="line">`` <span class="comment">%左双引号</span></span><br><span class="line">&#x27;&#x27; <span class="comment">%右双引号</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220208012102426.png" alt="image-20220208012102426"></p>
+<ul>
+<li><strong>连字符</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- -- ---</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220208012405425.png" alt="image-20220208012405425"></p>
+<ul>
+<li><strong>重音符号</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\=</span>o <span class="keyword">\&#x27;</span>o <span class="keyword">\v</span>&#123;o&#125; <span class="keyword">\`</span>o </span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220208013501390.png" alt="image-20220208013501390"></p>
+<h4 id="7-LaTeX中的插图"><a href="#7-LaTeX中的插图" class="headerlink" title="7. LaTeX中的插图"></a>7. LaTeX中的插图</h4><ul>
+<li><strong>基础用法</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%导言区</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;graphicx&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">%可以使用下面命令指定图片的存储目录,可以指定多个</span></span><br><span class="line"><span class="keyword">\graphicspath</span>&#123;&#123;figures/&#125;,&#123;pics/&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">%语  法</span></span><br><span class="line"><span class="keyword">\includegraphics</span>[&lt;选项&gt;]&#123;&lt;图片名&gt;&#125;  <span class="comment">%支持格式:EPS,PDF,PNG,JPEG,BMP</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>可选参数</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\includegraphics</span>[scale=0.3]&#123;&#125;  <span class="comment">%比例缩放</span></span><br><span class="line"><span class="keyword">\includegraphics</span>[height=2cm]&#123;&#125; <span class="comment">%固定高度</span></span><br><span class="line"><span class="keyword">\includegraphics</span>[width=2cm]&#123;&#125;  <span class="comment">%固定宽度</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\includegraphics</span>[height=0.1<span class="keyword">\textheight</span>]&#123;&#125; <span class="comment">%版型高度的倍数 </span></span><br><span class="line"><span class="keyword">\includegraphics</span>[width=0.2<span class="keyword">\textwidth</span>]&#123;&#125;   <span class="comment">%版型宽度的倍数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%指定旋转角度,不同参数之间用逗号进行分割</span></span><br><span class="line"><span class="keyword">\includegraphics</span>[angle=-45,width=0.2<span class="keyword">\textwidth</span>]&#123;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>多张插图的排版</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%使用subfigure命令需要引用subfigure宏包</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;subfigure&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[htbp]</span><br><span class="line"><span class="keyword">\centering</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\subfigure</span>[标题1]&#123;</span><br><span class="line"><span class="keyword">\includegraphics</span>[width=0.4<span class="keyword">\textwidth</span>]&#123;fig-1&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">&amp;</span></span><br><span class="line"><span class="keyword">\subfigure</span>[标题2]&#123;</span><br><span class="line"><span class="keyword">\includegraphics</span>[width=0.4<span class="keyword">\textwidth</span>]&#123;fig-2&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\subfigure</span>[标题3]&#123;</span><br><span class="line"><span class="keyword">\includegraphics</span>[width=0.4<span class="keyword">\textwidth</span>]&#123;fig-3&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">&amp;</span></span><br><span class="line"><span class="keyword">\subfigure</span>[标题4]&#123;</span><br><span class="line"><span class="keyword">\includegraphics</span>[width=0.4<span class="keyword">\textwidth</span>]&#123;fig-4&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">\caption</span>&#123;大标题&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Latex双栏排版</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;multicol&#125;  <span class="comment">%使用宏包</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%环境命令</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;multicols&#125;&#123;2&#125;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">\end</span>&#123;multicols&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>双栏排版中使用插入通栏图片</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%普通的figure环境加上*号</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;figure*&#125;[htbp]</span><br><span class="line">  <span class="keyword">\centering</span></span><br><span class="line">  <span class="keyword">\includegraphics</span>[width=<span class="keyword">\textwidth</span>]&#123;...&#125;</span><br><span class="line">  <span class="keyword">\caption</span>&#123;...&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;figure*&#125;</span><br></pre></td></tr></table></figure>
+<p>效果如下</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220219225041433.png" alt="image-20220219225041433"></p>
+<ul>
+<li><strong>双栏插图</strong></li>
+</ul>
+<p>Latex的双栏环境是不支持浮动体的, 直接使用figure环境会导致图片丢失.</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%借助float宏包的[H]选项</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;float&#125;</span><br><span class="line"><span class="comment">%注意这样插入的图片位置是固定的,需要手动调整其位置</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[H]<span class="keyword">\label</span>&#123;...&#125;</span><br><span class="line">	<span class="keyword">\centering</span></span><br><span class="line">    <span class="keyword">\includegraphics</span>[width=0.5<span class="keyword">\textwidth</span>]&#123;...&#125;</span><br><span class="line">    <span class="keyword">\caption</span>&#123;...&#125; </span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220219230239753.png" alt="image-20220219230239753"></p>
+<h4 id="8-LaTeX中的表格和列表"><a href="#8-LaTeX中的表格和列表" class="headerlink" title="8.LaTeX中的表格和列表"></a>8.LaTeX中的表格和列表</h4><p>表格在线生成工具<a target="_blank" rel="noopener" href="https://www.tablesgenerator.com/">https://www.tablesgenerator.com/</a></p>
+<p>Latex表格的绘制语法较为复杂, 建议使用表格生成工具</p>
+<ul>
+<li><strong>表格基础绘制</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 用\\表示换行</span></span><br><span class="line"><span class="comment">% 用&amp;表示不同列</span></span><br><span class="line"><span class="comment">% l-本列左对齐</span></span><br><span class="line"><span class="comment">% c-本列居中对齐</span></span><br><span class="line"><span class="comment">% r-本列右对齐</span></span><br><span class="line"><span class="comment">% p&#123;&lt;宽度&gt;&#125;-本列宽度固定,文本超出宽度能够自动换行</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;tabular&#125;&#123;l||c|c|c|r&#125;  <span class="comment">%使用两个||产生双竖线</span></span><br><span class="line">	<span class="keyword">\hline</span></span><br><span class="line">	姓名 <span class="built_in">&amp;</span> 语文 <span class="built_in">&amp;</span> 数学 <span class="built_in">&amp;</span> 英语 <span class="built_in">&amp;</span> 备注 <span class="keyword">\\</span></span><br><span class="line">	<span class="keyword">\hline</span> <span class="keyword">\hline</span>            <span class="comment">%使用两个\hline产生双横线</span></span><br><span class="line">	张三 <span class="built_in">&amp;</span> 87 <span class="built_in">&amp;</span> 100 <span class="built_in">&amp;</span> 93 <span class="built_in">&amp;</span> 优秀 <span class="keyword">\\</span></span><br><span class="line">    <span class="keyword">\hline</span></span><br><span class="line">    李四 <span class="built_in">&amp;</span> 75 <span class="built_in">&amp;</span> 64 <span class="built_in">&amp;</span> 52 <span class="built_in">&amp;</span> 补考 <span class="keyword">\\</span></span><br><span class="line">    <span class="keyword">\hline</span></span><br><span class="line">    王五 <span class="built_in">&amp;</span> 80 <span class="built_in">&amp;</span> 82 <span class="built_in">&amp;</span> 78 <span class="built_in">&amp;</span> <span class="keyword">\\</span></span><br><span class="line">    <span class="keyword">\hline</span></span><br><span class="line"><span class="keyword">\end</span>&#123;tabular&#125;    </span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220208191620640.png" alt="image-20220208191620640"></p>
+<ul>
+<li><strong>三线表的绘制</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%导言区</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;booktabs&#125;  <span class="comment">%需要加载宏包&#123;booktabs&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%绘制三线表</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;tabular&#125;&#123;ccccc&#125;</span><br><span class="line"><span class="keyword">\toprule</span>               <span class="comment">%添加表格头部粗线</span></span><br><span class="line">x <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 2 <span class="built_in">&amp;</span> 3 <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\midrule</span>               <span class="comment">%添加表格中横线</span></span><br><span class="line">Pr <span class="built_in">&amp;</span> 1/8 <span class="built_in">&amp;</span> 3/8 <span class="built_in">&amp;</span> 3/8 <span class="built_in">&amp;</span> 1/8 <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\bottomrule</span>            <span class="comment">%添加表格底部粗线</span></span><br><span class="line"><span class="keyword">\end</span>&#123;tabular&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220208193707291.png" alt="image-20220208193707291"></p>
+<ul>
+<li><strong>Latex中的列表</strong></li>
+</ul>
+<p>LaTeX 中常见的列表环境有 enumerate、itemize 和 description。这三种列表环境的主要区别是列表项标签的不同：</p>
+<p>1.<strong>enumerate 是有序的列表</strong><br><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;enumerate&#125;</span><br><span class="line"> <span class="keyword">\item</span> This is the first item</span><br><span class="line"> <span class="keyword">\item</span> This is the second item</span><br><span class="line"> <span class="keyword">\item</span> This is the third item</span><br><span class="line"><span class="keyword">\end</span>&#123;enumerate&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;enumitem&#125;</span><br><span class="line"><span class="comment">%给编号加上括号(需要enumitem宏包)</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;enumerate&#125;[label=&#123;(<span class="keyword">\arabic</span>*)&#125;]</span><br><span class="line"> ...</span><br><span class="line"><span class="keyword">\end</span>&#123;enumerate&#125;</span><br><span class="line"><span class="comment">%其它参数设置</span></span><br><span class="line"><span class="comment">%\arabic*(阿拉伯数字)、\roman*(小写罗马数字)、\Roman*(大写罗马数字)、\Alph*(大写字母编号)、\alph*(小写字母编号)</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/181604170295824.png" alt="img"></p>
+<p>2.<strong>itemize 以圆点作为标签</strong></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line"> <span class="keyword">\item</span> This is the first item</span><br><span class="line"> <span class="keyword">\item</span> This is the second item</span><br><span class="line"> <span class="keyword">\item</span> This is the third item</span><br><span class="line"><span class="keyword">\end</span>&#123;itemize&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/181609245917394.png" alt="img"></p>
+<p>3.<strong>description 是解说列表，可以指定标签</strong></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%\usepackage&#123;pifont&#125;</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;description&#125;</span><br><span class="line"> <span class="keyword">\item</span>[<span class="keyword">\ding</span>&#123;47&#125;] This is the first item</span><br><span class="line"> <span class="keyword">\item</span>[<span class="keyword">\ding</span>&#123;47&#125;] This is the second item</span><br><span class="line"> <span class="keyword">\item</span>[<span class="keyword">\ding</span>&#123;47&#125;] This is the third item</span><br><span class="line"><span class="keyword">\end</span>&#123;description&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/181615512164578.png" alt="img"></p>
+<h4 id="9-LaTeX中的浮动体"><a href="#9-LaTeX中的浮动体" class="headerlink" title="9. LaTeX中的浮动体"></a>9. LaTeX中的浮动体</h4><p>浮动体是为了排版更加紧密, 有的图片直接放文字下面会另起一页, 浮动体就避免了这个问题.</p>
+<ul>
+<li><strong>插图浮动体环境</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\LaTeX</span>&#123;&#125;的吉祥物,小狮子见图<span class="keyword">\ref</span>&#123;fig-lion&#125;</span><br><span class="line"><span class="comment">%使用\ref&#123;&#125;命令可以引用设置过label的图片</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;figure&#125;[htbp]</span><br><span class="line">	<span class="keyword">\centering</span></span><br><span class="line">	<span class="keyword">\includegraphics</span>[scale=0.3]&#123;lion&#125;</span><br><span class="line">	<span class="keyword">\caption</span>&#123;<span class="keyword">\LaTeX</span>&#123;&#125;的吉祥物---小狮子&#125;  <span class="comment">%设置图片标题</span></span><br><span class="line">	<span class="keyword">\label</span>&#123;fig-lion&#125;                   <span class="comment">%设置label</span></span><br><span class="line"><span class="keyword">\end</span>&#123;figure&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220208195741724.png" alt="image-20220208195741724"></p>
+<ul>
+<li><strong>表格浮动体环境</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;table&#125;[!htbp]</span><br><span class="line">	<span class="keyword">\centering</span>             <span class="comment">%居中排版</span></span><br><span class="line">    <span class="keyword">\begin</span>&#123;tabular&#125;&#123;ccccc&#125;</span><br><span class="line">    <span class="keyword">\toprule</span>               <span class="comment">%添加表格头部粗线</span></span><br><span class="line">    x <span class="built_in">&amp;</span> 0 <span class="built_in">&amp;</span> 1 <span class="built_in">&amp;</span> 2 <span class="built_in">&amp;</span> 3 <span class="keyword">\\</span></span><br><span class="line">    <span class="keyword">\midrule</span>               <span class="comment">%添加表格中横线</span></span><br><span class="line">    Pr <span class="built_in">&amp;</span> 1/8 <span class="built_in">&amp;</span> 3/8 <span class="built_in">&amp;</span> 3/8 <span class="built_in">&amp;</span> 1/8 <span class="keyword">\\</span></span><br><span class="line">    <span class="keyword">\bottomrule</span>            <span class="comment">%添加表格底部粗线</span></span><br><span class="line">    <span class="keyword">\end</span>&#123;tabular&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;table&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>&lt;允许位置&gt;参数(默认tbp)</p>
+<p><code>h</code> 代表此处(here), 代码所在的上下文位置<br><code>t</code> 代表页顶(top), 代码所在的页面或者之后页面的顶部<br><code>b</code> 代表页底(bottom), 代码所在的页面或者之后页面的底部<br><code>p</code> 代表独立一页(page), 浮动页面<br><code>!</code> 表示忽略美观因素，尽可能按照参数指定的方式来处理表格浮动位置。</p>
+</blockquote>
+<h4 id="10-LaTeX数学公式初步"><a href="#10-LaTeX数学公式初步" class="headerlink" title="10. LaTeX数学公式初步"></a>10. LaTeX数学公式初步</h4><p>公式在线生成工具<a target="_blank" rel="noopener" href="https://www.latexlive.com/##">https://www.latexlive.com/##</a></p>
+<p>TexStudio行内公式快捷键<code>Ctrl</code>+<code>Shift</code>+<code>M</code></p>
+<p>TexStudio行间公式快捷键<code>Ctrl</code>+<code>Shift</code>+<code>N</code></p>
+<ul>
+<li><strong>行内公式</strong><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 行内公式用$...$</span></span><br><span class="line"><span class="built_in">$</span>x<span class="built_in">^</span>2+y<span class="built_in">^</span>2 = 1<span class="built_in">$</span></span><br><span class="line"><span class="comment">% 或者使用\(...\)</span></span><br><span class="line"><span class="built_in">$</span>x<span class="built_in">^</span>2+y<span class="built_in">^</span>2 = 1<span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>$x^2+y^2 = 1$</p>
+<ul>
+<li><strong>行间公式</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%行间公式用$$...$$</span></span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line">	<span class="keyword">\sin</span><span class="built_in">^</span>2(x)+<span class="keyword">\cos</span><span class="built_in">^</span>2(x)=1</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span> </span><br><span class="line"><span class="comment">%也可以使用\[...\]</span></span><br><span class="line"><span class="keyword">\[</span></span><br><span class="line">	<span class="keyword">\sin</span><span class="built_in">^</span>2(x)+<span class="keyword">\cos</span><span class="built_in">^</span>2(x)=1</span><br><span class="line"><span class="keyword">\]</span></span><br><span class="line"><span class="comment">%还可以使用displaymath环境</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;displaymath&#125;</span><br><span class="line">	<span class="keyword">\sin</span><span class="built_in">^</span>2(x)+<span class="keyword">\cos</span><span class="built_in">^</span>2(x)=1</span><br><span class="line"><span class="keyword">\end</span>&#123;displyamath&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">\sin^2(x)+\cos^2(x)=1</script><ul>
+<li><strong>equation环境</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%使用equation环境可对公式实现自动编号</span></span><br><span class="line"><span class="comment">%在equation环境中可以使用\label&#123;&#125;命令对公式贴标签</span></span><br><span class="line"><span class="comment">%在任意位置通过\ref&#123;&#125;命令引用标签</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;equation&#125;</span><br><span class="line">	<span class="keyword">\sin</span><span class="built_in">^</span>2(x)+<span class="keyword">\cos</span><span class="built_in">^</span>2(x)=1 <span class="keyword">\label</span>&#123;eq:identity1&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;equation&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">%当不需要对公式进行编号时,可以使用equation*环境对公式进行排版</span></span><br><span class="line"><span class="comment">%此时依然可以使用\label&#123;&#125;和\ref&#123;&#125;命令,此时交叉引用的编号是小结编号</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;equation*&#125;</span><br><span class="line">	<span class="keyword">\sin</span><span class="built_in">^</span>2(x)+<span class="keyword">\cos</span><span class="built_in">^</span>2(x)=1 <span class="keyword">\label</span>&#123;eq:identity2&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;equation*&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\begin{equation}
+    \sin^2(x)+\cos^2(x)=1 \label{eq:identity1}
+\end{equation}</script><ul>
+<li><strong>上下标</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span>a<span class="built_in">_</span>1,a<span class="built_in">_</span>&#123;22&#125;,a<span class="built_in">^</span>3,a<span class="built_in">^</span>&#123;44&#125;,a<span class="built_in">_</span>&#123;5&#125;<span class="built_in">^</span>&#123;6&#125;<span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">a_1,a_{22},a^3,a^{44},a_{5}^{6}</script><ul>
+<li><strong>希腊字母</strong></li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$\Alpha$</th>
+<th style="text-align:left">$\alpha$</th>
+<th style="text-align:center"><strong>alpha</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$\Beta$</td>
+<td style="text-align:left">$\beta$</td>
+<td style="text-align:center"><strong>beta</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Gamma$</td>
+<td style="text-align:left">$\gamma$</td>
+<td style="text-align:center"><strong>gamma</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Delta$</td>
+<td style="text-align:left">$\delta$</td>
+<td style="text-align:center"><strong>delta</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Epsilon$</td>
+<td style="text-align:left">$\epsilon$</td>
+<td style="text-align:center"><strong>epsilon</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Zeta$</td>
+<td style="text-align:left">$\zeta$</td>
+<td style="text-align:center"><strong>zeta</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Eta$</td>
+<td style="text-align:left">$\eta$</td>
+<td style="text-align:center"><strong>eta</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Theta$</td>
+<td style="text-align:left">$\theta$</td>
+<td style="text-align:center"><strong>theta</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Iota$</td>
+<td style="text-align:left">$\iota$</td>
+<td style="text-align:center"><strong>iota</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Kappa$</td>
+<td style="text-align:left">$\kappa$</td>
+<td style="text-align:center"><strong>kappa</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Lambda$</td>
+<td style="text-align:left">$\lambda$</td>
+<td style="text-align:center"><strong>lambda</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Mu$</td>
+<td style="text-align:left">$\mu$</td>
+<td style="text-align:center"><strong>mu</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Nu$</td>
+<td style="text-align:left">$\nu$</td>
+<td style="text-align:center"><strong>nu</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Xi$</td>
+<td style="text-align:left">$\xi$</td>
+<td style="text-align:center"><strong>xi</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Omicron$</td>
+<td style="text-align:left">$\omicron$</td>
+<td style="text-align:center"><strong>omicron</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Pi$</td>
+<td style="text-align:left">$\pi$</td>
+<td style="text-align:center"><strong>pi</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Rho$</td>
+<td style="text-align:left">$\rho$</td>
+<td style="text-align:center"><strong>rho</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Sigma$</td>
+<td style="text-align:left">$\sigma$</td>
+<td style="text-align:center"><strong>sigma</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Tau$</td>
+<td style="text-align:left">$\tau$</td>
+<td style="text-align:center"><strong>tau</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Upsilon$</td>
+<td style="text-align:left">$\upsilon$</td>
+<td style="text-align:center"><strong>upsilon</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Phi$</td>
+<td style="text-align:left">$\phi$</td>
+<td style="text-align:center"><strong>phi</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Chi$</td>
+<td style="text-align:left">$\chi$</td>
+<td style="text-align:center"><strong>chi</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Psi$</td>
+<td style="text-align:left">$\psi$</td>
+<td style="text-align:center"><strong>psi</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">$\Omega$</td>
+<td style="text-align:left">$\omega$</td>
+<td style="text-align:center"><strong>omega</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><strong>数学函数</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\log</span>,<span class="keyword">\sin</span>,<span class="keyword">\cos</span>,<span class="keyword">\arcsin</span>,<span class="keyword">\arccos</span></span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\log,\sin,\cos,\arcsin,\arccos</script><ul>
+<li><strong>根式和分式</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\sqrt</span>&#123;x&#125;, <span class="keyword">\sqrt</span>[3]&#123;x&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\sqrt{x}, \sqrt[3]{x}</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3/4, <span class="keyword">\frac</span>&#123;3&#125;&#123;4&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+3/4, \frac{3}{4}</script><ul>
+<li><strong>范数符号</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\Vert</span></span><br><span class="line"><span class="comment">%或者</span></span><br><span class="line"><span class="keyword">\|</span></span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\Vert a \|</script><ul>
+<li><strong>关系符号</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\neq</span> <span class="keyword">\leq</span> <span class="keyword">\geq</span> <span class="keyword">\equiv</span> </span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\neq \qquad \leq \qquad \geq \qquad \equiv</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\in</span> <span class="keyword">\owns</span> <span class="keyword">\ll</span> <span class="keyword">\gg</span> </span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\in \qquad \owns \qquad \ll \qquad \gg</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\subset</span> <span class="keyword">\supset</span> <span class="keyword">\subseteq</span> <span class="keyword">\supseteq</span> </span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\subset \qquad \supset \qquad \subseteq \qquad \supseteq</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\propto</span> <span class="keyword">\sim</span> <span class="keyword">\approx</span> <span class="keyword">\cong</span> </span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\propto \qquad \sim \qquad \approx \qquad \cong</script><ul>
+<li><strong>运算符号</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\sum</span> <span class="keyword">\prod</span> <span class="keyword">\bigcup</span> <span class="keyword">\bigcap</span></span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\sum \qquad \prod \qquad \bigcup \qquad \bigcap</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\int</span> <span class="keyword">\iint</span> <span class="keyword">\iiint</span> <span class="keyword">\oint</span> </span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\int \qquad \iint \qquad \iiint \qquad \oint</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\partial</span> <span class="keyword">\nabla</span> <span class="keyword">\pm</span></span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\partial \qquad \nabla \qquad \pm</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\lim</span> <span class="keyword">\varliminf</span> <span class="keyword">\varlimsup</span> <span class="keyword">\limsup</span> <span class="keyword">\liminf</span> </span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\lim \qquad \varliminf \qquad \varlimsup \qquad \limsup \qquad \liminf</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\max</span> <span class="keyword">\min</span> <span class="keyword">\sup</span> <span class="keyword">\inf</span></span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\max \qquad \min \qquad \sup \qquad \inf</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\tilde</span>&#123;x&#125; <span class="keyword">\hat</span>&#123;x&#125; <span class="keyword">\dot</span>&#123;x&#125; <span class="keyword">\ddot</span>&#123;x&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\tilde{x} \qquad \hat{x} \qquad \dot{x} \qquad \ddot{x}</script><ul>
+<li><strong>数学符号加黑</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%使用\boldsymbol&#123;&#125;</span></span><br><span class="line"><span class="keyword">\alpha</span>,<span class="keyword">\boldsymbol</span>&#123;<span class="keyword">\alpha</span>&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\alpha,\boldsymbol{\alpha}</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%在是数学环境中比较推荐的是添加bm宏包</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;bm&#125;</span><br><span class="line"><span class="comment">%使用\bm&#123;&#125;命令对数学符号进行加粗</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>数学黑板粗体符号Blackboard Bold</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;amssymb&#125; <span class="comment">%黑板粗体需要amssymb宏包</span></span><br><span class="line"><span class="keyword">\mathbb</span>&#123;R&#125;,<span class="keyword">\mathbb</span>&#123;Q&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\mathbb{R},\mathbb{Q}</script><ul>
+<li><strong>常用箭头</strong></li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$\leftarrow$</th>
+<th style="text-align:left">\leftarrow或\gets</th>
+<th style="text-align:center">$\rightarrow$</th>
+<th style="text-align:left">\rightarrow或\to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$\nleftarrow$</td>
+<td style="text-align:left">\nleftarrow</td>
+<td style="text-align:center">$\nrightarrow$</td>
+<td style="text-align:left">\nrightarrow</td>
+</tr>
+<tr>
+<td style="text-align:center">$\Leftarrow$</td>
+<td style="text-align:left">\Leftarrow</td>
+<td style="text-align:center">$\Rightarrow$</td>
+<td style="text-align:left">\Rightarrow</td>
+</tr>
+<tr>
+<td style="text-align:center">$\nLeftarrow$</td>
+<td style="text-align:left">\nLeftarrow</td>
+<td style="text-align:center">$\nRightarrow$</td>
+<td style="text-align:left">\nRightarrow</td>
+</tr>
+<tr>
+<td style="text-align:center">$\leftrightarrow$</td>
+<td style="text-align:left">\leftrightarrow</td>
+<td style="text-align:center">$\Leftrightarrow$</td>
+<td style="text-align:left">\Leftrightarrow</td>
+</tr>
+<tr>
+<td style="text-align:center">$\nleftrightarrow$</td>
+<td style="text-align:left">\nleftrightarrow</td>
+<td style="text-align:center">$\nLeftrightarrow$</td>
+<td style="text-align:left">\nLeftrightarrow</td>
+</tr>
+<tr>
+<td style="text-align:center">$\longleftarrow$</td>
+<td style="text-align:left">\longleftarrow</td>
+<td style="text-align:center">$\longrightarrow$</td>
+<td style="text-align:left">\longrightarrow</td>
+</tr>
+<tr>
+<td style="text-align:center">$\Longleftarrow$</td>
+<td style="text-align:left">\Longleftarrow</td>
+<td style="text-align:center">$\Longrightarrow$</td>
+<td style="text-align:left">\Longrightarrow</td>
+</tr>
+<tr>
+<td style="text-align:center">$\longleftrightarrow$</td>
+<td style="text-align:left">\longleftrightarrow</td>
+<td style="text-align:center">$\Longleftrightarrow$</td>
+<td style="text-align:left">\Longleftrightarrow</td>
+</tr>
+<tr>
+<td style="text-align:center">$\uparrow$</td>
+<td style="text-align:left">\uparrow</td>
+<td style="text-align:center">$\downarrow$</td>
+<td style="text-align:left">\downarrow</td>
+</tr>
+<tr>
+<td style="text-align:center">$\Uparrow$</td>
+<td style="text-align:left">\Uparrow</td>
+<td style="text-align:center">$\Downarrow$</td>
+<td style="text-align:left">\Downarrow</td>
+</tr>
+<tr>
+<td style="text-align:center">$\updownarrow$</td>
+<td style="text-align:left">\updownarrow</td>
+<td style="text-align:center">$\Updownarrow$</td>
+<td style="text-align:left">\Updownarrow</td>
+</tr>
+<tr>
+<td style="text-align:center">$\mapsto$</td>
+<td style="text-align:left">\mapsto</td>
+<td style="text-align:center">$\longmapsto$</td>
+<td style="text-align:left">\longmapsto</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="11-LaTeX数学公式——矩阵"><a href="#11-LaTeX数学公式——矩阵" class="headerlink" title="11. LaTeX数学公式——矩阵"></a>11. LaTeX数学公式——矩阵</h4><ul>
+<li><strong>matrix环境</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%使用matrix环境需要先引入amsmath宏包</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;amsmath&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%使用matrix环境</span></span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;matrix&#125;  <span class="comment">%无括号</span></span><br><span class="line">	0 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">	1 <span class="built_in">&amp;</span> 0</span><br><span class="line"><span class="keyword">\end</span>&#123;matrix&#125;,</span><br><span class="line"><span class="keyword">\begin</span>&#123;pmatrix&#125; <span class="comment">%小括号(...)</span></span><br><span class="line">	0 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">	1 <span class="built_in">&amp;</span> 0</span><br><span class="line"><span class="keyword">\end</span>&#123;pmatrix&#125;,</span><br><span class="line"><span class="keyword">\begin</span>&#123;bmatrix&#125; <span class="comment">%中括号[...]</span></span><br><span class="line">	0 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">	1 <span class="built_in">&amp;</span> 0</span><br><span class="line"><span class="keyword">\end</span>&#123;bmatrix&#125;,</span><br><span class="line"><span class="keyword">\begin</span>&#123;Bmatrix&#125; <span class="comment">%大括号&#123;...&#125;</span></span><br><span class="line">	0 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">	1 <span class="built_in">&amp;</span> 0</span><br><span class="line"><span class="keyword">\end</span>&#123;Bmatrix&#125;,</span><br><span class="line"><span class="keyword">\begin</span>&#123;vmatrix&#125; <span class="comment">%单竖线|...|</span></span><br><span class="line">	0 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">	1 <span class="built_in">&amp;</span> 0</span><br><span class="line"><span class="keyword">\end</span>&#123;vmatrix&#125;,</span><br><span class="line"><span class="keyword">\begin</span>&#123;Vmatrix&#125; <span class="comment">%双竖线||...||</span></span><br><span class="line">	0 <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line">	1 <span class="built_in">&amp;</span> 0</span><br><span class="line"><span class="keyword">\end</span>&#123;Vmatrix&#125;</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\begin{matrix}
+    0 & 1 \\
+    1 & 0
+\end{matrix},
+\begin{pmatrix}
+    0 & 1 \\
+    1 & 0
+\end{pmatrix},
+\begin{bmatrix}
+    0 & 1 \\
+    1 & 0
+\end{bmatrix},
+\begin{Bmatrix}
+    0 & 1 \\
+    1 & 0
+\end{Bmatrix},
+\begin{vmatrix}
+    0 & 1 \\
+    1 & 0
+\end{vmatrix},
+\begin{Vmatrix}
+    0 & 1 \\
+    1 & 0
+\end{Vmatrix}</script><ul>
+<li><strong>矩阵中的省略号</strong><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%省略号</span></span><br><span class="line"><span class="keyword">\dots</span> <span class="keyword">\cdots</span> <span class="keyword">\vdots</span> <span class="keyword">\ddots</span> <span class="keyword">\iddots</span></span><br><span class="line"><span class="comment">%其中iddots需要mathdots宏包</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%也可以使用\newcommand命令来定义一个反对角省略符号</span></span><br><span class="line"><span class="keyword">\newcommand</span><span class="keyword">\iddots</span>&#123;<span class="keyword">\mathinner</span>&#123;  <span class="keyword">\kern</span>1mu<span class="keyword">\raise</span>1pt&#123;.&#125;  <span class="keyword">\kern</span>2mu<span class="keyword">\raise</span>4pt&#123;.&#125;  <span class="keyword">\kern</span>2mu<span class="keyword">\raise</span>7pt&#123;<span class="keyword">\Rule</span>&#123;0pt&#125;&#123;7pt&#125;&#123;0pt&#125;.&#125;  <span class="keyword">\kern</span>1mu&#125;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\newcommand\iddots{\mathinner{  \kern1mu\raise1pt{.}  \kern2mu\raise4pt{.}  \kern2mu\raise7pt{\Rule{0pt}{7pt}{0pt}.}  \kern1mu}}
+\dots \qquad \cdots \qquad \vdots \qquad \ddots \qquad \iddots</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%使用hdotsfor&#123;&lt;列数&gt;&#125;产生跨列省略号</span></span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;pmatrix&#125;</span><br><span class="line">a<span class="built_in">_</span>&#123;11&#125; <span class="built_in">&amp;</span> a<span class="built_in">_</span>&#123;12&#125; <span class="built_in">&amp;</span> <span class="keyword">\cdots</span> <span class="built_in">&amp;</span> a<span class="built_in">_</span>&#123;1n&#125; <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\hdotsfor</span>&#123;4&#125; <span class="keyword">\\</span></span><br><span class="line">a<span class="built_in">_</span>&#123;n1&#125; <span class="built_in">&amp;</span> a<span class="built_in">_</span>&#123;n2&#125; <span class="built_in">&amp;</span> <span class="keyword">\cdots</span> <span class="built_in">&amp;</span> a<span class="built_in">_</span>&#123;nn&#125; </span><br><span class="line"><span class="keyword">\end</span>&#123;pmatrix&#125;</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220214115700543.png" alt="image-20220214115700543"></p>
+<ul>
+<li><strong>三角矩阵</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;pmatrix&#125;</span><br><span class="line">	a<span class="built_in">_</span>&#123;11&#125; <span class="built_in">&amp;</span> a<span class="built_in">_</span>&#123;12&#125; <span class="built_in">&amp;</span> <span class="keyword">\cdots</span> <span class="built_in">&amp;</span> a<span class="built_in">_</span>&#123;1n&#125; <span class="keyword">\\</span></span><br><span class="line">	       <span class="built_in">&amp;</span> a<span class="built_in">_</span>&#123;22&#125; <span class="built_in">&amp;</span> <span class="keyword">\cdots</span> <span class="built_in">&amp;</span> a<span class="built_in">_</span>&#123;2n&#125; <span class="keyword">\\</span></span><br><span class="line">	       <span class="built_in">&amp;</span>        <span class="built_in">&amp;</span> <span class="keyword">\ddots</span> <span class="built_in">&amp;</span> <span class="keyword">\vdots</span> <span class="keyword">\\</span></span><br><span class="line">	<span class="keyword">\multicolumn</span>&#123;2&#125;&#123;c&#125;&#123;<span class="keyword">\raisebox</span>&#123;1.3ex&#125;[0pt]&#123;<span class="keyword">\Huge</span> 0&#125;&#125;</span><br><span class="line">	                <span class="built_in">&amp;</span>        <span class="built_in">&amp;</span> a<span class="built_in">_</span>&#123;nn&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;pmatrix&#125;</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220214003015185.png" alt="image-20220214003015185"></p>
+<ul>
+<li><strong>行内小矩阵</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%使用smallmatrix环境排版行内小矩阵</span></span><br><span class="line"><span class="keyword">\left</span>(  <span class="comment">%需要手动添加括号</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;smallmatrix&#125;</span><br><span class="line">x <span class="built_in">&amp;</span> -y <span class="keyword">\\</span> y <span class="built_in">&amp;</span> x</span><br><span class="line"><span class="keyword">\end</span>&#123;smallmatrix&#125;</span><br><span class="line"><span class="keyword">\right</span>)</span><br></pre></td></tr></table></figure>
+<p>例如矩阵$\left(<br>\begin{smallmatrix}<br>x &amp; -y \ y &amp; x<br>\end{smallmatrix}<br>\right)$是排版在行内的</p>
+<ul>
+<li><p><strong>array环境</strong></p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;array&#125;&#123;c|c|c&#125;</span><br><span class="line"> x   <span class="built_in">&amp;</span> 0           <span class="built_in">&amp;</span> 1 <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\hline</span></span><br><span class="line">p(x) <span class="built_in">&amp;</span> <span class="keyword">\frac</span>&#123;1&#125;&#123;4&#125; <span class="built_in">&amp;</span> <span class="keyword">\frac</span>&#123;3&#125;&#123;4&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;array&#125;</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\begin{array}{c|c|c}
+x   & 0           & 1 \\
+\hline
+p(x) & \frac{1}{4} & \frac{3}{4}
+\end{array}</script></li>
+<li><p><strong>使用array环境排版复杂矩阵</strong></p>
+</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%第一行第一列: 大复合矩阵</span></span><br><span class="line"><span class="keyword">\left</span>(</span><br><span class="line"><span class="keyword">\begin</span>&#123;array&#125;&#123;cc|cc&#125;</span><br><span class="line">a<span class="built_in">_</span>&#123;11&#125; <span class="built_in">&amp;</span> a<span class="built_in">_</span>&#123;12&#125; <span class="built_in">&amp;</span> b<span class="built_in">_</span>&#123;11&#125; <span class="built_in">&amp;</span> b<span class="built_in">_</span>&#123;12&#125;<span class="keyword">\\</span></span><br><span class="line">a<span class="built_in">_</span>&#123;21&#125; <span class="built_in">&amp;</span> a<span class="built_in">_</span>&#123;22&#125; <span class="built_in">&amp;</span> b<span class="built_in">_</span>&#123;21&#125; <span class="built_in">&amp;</span> b<span class="built_in">_</span>&#123;22&#125;<span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\hline</span></span><br><span class="line">       <span class="built_in">&amp;</span>        <span class="built_in">&amp;</span> c<span class="built_in">_</span>&#123;11&#125; <span class="built_in">&amp;</span> c<span class="built_in">_</span>&#123;12&#125;<span class="keyword">\\</span></span><br><span class="line">       <span class="built_in">&amp;</span>        <span class="built_in">&amp;</span> c<span class="built_in">_</span>&#123;21&#125; <span class="built_in">&amp;</span> c<span class="built_in">_</span>&#123;22&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;array&#125;</span><br><span class="line"><span class="keyword">\right</span>)</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+%第一行第一列: 大复合矩阵
+\left(
+\begin{array}{cc|cc}
+a_{11} & a_{12} & b_{11} & b_{12}\\
+a_{21} & a_{22} & b_{21} & b_{22}\\
+\hline
+       &        & c_{11} & c_{12}\\
+       &        & c_{21} & c_{22}
+\end{array}
+\right)</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%第一行第二列: 右侧大括号</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;array&#125;&#123;l&#125;</span><br><span class="line"><span class="keyword">\left</span>. <span class="keyword">\rule</span>&#123;0mm&#125;&#123;7mm&#125; <span class="keyword">\right</span><span class="keyword">\&#125;</span>p <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\left</span>. <span class="keyword">\rule</span>&#123;0mm&#125;&#123;7mm&#125; <span class="keyword">\right</span><span class="keyword">\&#125;</span>q</span><br><span class="line"><span class="keyword">\end</span>&#123;array&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+%第一行第二列: 右侧大括号
+\begin{array}{l}
+\left. \rule{0mm}{7mm} \right\}p \\
+\left. \rule{0mm}{7mm} \right\}q
+\end{array}</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%第二行第一列: 下侧大括号</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;array&#125;&#123;cc&#125;</span><br><span class="line"><span class="keyword">\underbrace</span>&#123;<span class="keyword">\rule</span>&#123;17mm&#125;&#123;0mm&#125;&#125;<span class="built_in">_</span>m <span class="built_in">&amp;</span></span><br><span class="line"><span class="keyword">\underbrace</span>&#123;<span class="keyword">\rule</span>&#123;17mm&#125;&#123;0mm&#125;&#125;<span class="built_in">_</span>m</span><br><span class="line"><span class="keyword">\end</span>&#123;array&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+%第二行第一列: 下侧大括号
+\begin{array}{cc}
+\underbrace{\rule{17mm}{0mm}}_m &
+\underbrace{\rule{17mm}{0mm}}_m
+\end{array}</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;array&#125;&#123;c@&#123;<span class="keyword">\hspace</span>&#123;-5pt&#125;&#125;l&#125;</span><br><span class="line"><span class="comment">%第一行第一列: 大复合矩阵</span></span><br><span class="line"><span class="keyword">\left</span>(</span><br><span class="line"><span class="keyword">\begin</span>&#123;array&#125;&#123;cc|cc&#125;</span><br><span class="line">a<span class="built_in">_</span>&#123;11&#125; <span class="built_in">&amp;</span> a<span class="built_in">_</span>&#123;12&#125; <span class="built_in">&amp;</span> b<span class="built_in">_</span>&#123;11&#125; <span class="built_in">&amp;</span> b<span class="built_in">_</span>&#123;12&#125;<span class="keyword">\\</span></span><br><span class="line">a<span class="built_in">_</span>&#123;21&#125; <span class="built_in">&amp;</span> a<span class="built_in">_</span>&#123;22&#125; <span class="built_in">&amp;</span> b<span class="built_in">_</span>&#123;21&#125; <span class="built_in">&amp;</span> b<span class="built_in">_</span>&#123;22&#125;<span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\hline</span></span><br><span class="line">       <span class="built_in">&amp;</span>        <span class="built_in">&amp;</span> c<span class="built_in">_</span>&#123;11&#125; <span class="built_in">&amp;</span> c<span class="built_in">_</span>&#123;12&#125;<span class="keyword">\\</span></span><br><span class="line">       <span class="built_in">&amp;</span>        <span class="built_in">&amp;</span> c<span class="built_in">_</span>&#123;21&#125; <span class="built_in">&amp;</span> c<span class="built_in">_</span>&#123;22&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;array&#125;</span><br><span class="line"><span class="keyword">\right</span>)</span><br><span class="line"><span class="built_in">&amp;</span>  <span class="comment">%&amp;符号连接行间元素</span></span><br><span class="line"><span class="comment">%第一行第二列: 右侧大括号</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;array&#125;&#123;l&#125;</span><br><span class="line"><span class="keyword">\left</span>. <span class="keyword">\rule</span>&#123;0mm&#125;&#123;7mm&#125; <span class="keyword">\right</span><span class="keyword">\&#125;</span>p <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\left</span>. <span class="keyword">\rule</span>&#123;0mm&#125;&#123;7mm&#125; <span class="keyword">\right</span><span class="keyword">\&#125;</span>q</span><br><span class="line"><span class="keyword">\end</span>&#123;array&#125;</span><br><span class="line"><span class="keyword">\\</span> <span class="comment">%第一行结束</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%第二行第一列: 下侧大括号</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;array&#125;&#123;cc&#125;</span><br><span class="line"><span class="keyword">\underbrace</span>&#123;<span class="keyword">\rule</span>&#123;17mm&#125;&#123;0mm&#125;&#125;<span class="built_in">_</span>m <span class="built_in">&amp;</span></span><br><span class="line"><span class="keyword">\underbrace</span>&#123;<span class="keyword">\rule</span>&#123;17mm&#125;&#123;0mm&#125;&#125;<span class="built_in">_</span>m</span><br><span class="line"><span class="keyword">\end</span>&#123;array&#125;</span><br><span class="line"><span class="built_in">&amp;</span></span><br><span class="line"><span class="comment">%第二行第二列: 空</span></span><br><span class="line"><span class="keyword">\end</span>&#123;array&#125;</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\begin{array}{c@{\hspace{-5pt}}l}
+%第一行第一列: 大复合矩阵
+\left(
+\begin{array}{cc|cc}
+a_{11} & a_{12} & b_{11} & b_{12}\\
+a_{21} & a_{22} & b_{21} & b_{22}\\
+\hline
+       &        & c_{11} & c_{12}\\
+       &        & c_{21} & c_{22}
+\end{array}
+\right)
+&  %&符号连接行间元素
+%第一行第二列: 右侧大括号
+\begin{array}{l}
+\left. \rule{0mm}{7mm} \right\}p \\
+\left. \rule{0mm}{7mm} \right\}q
+\end{array}
+\\ %第一行结束
+
+%第二行第一列: 下侧大括号
+\begin{array}{cc}
+\underbrace{\rule{17mm}{0mm}}_m &
+\underbrace{\rule{17mm}{0mm}}_m
+\end{array}
+&
+%第二行第二列: 空
+\end{array}</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;bmatrix&#125;</span><br><span class="line">0      <span class="built_in">&amp;</span> 1/3    <span class="built_in">&amp;</span>  0     <span class="built_in">&amp;</span> <span class="keyword">\cdots</span> <span class="built_in">&amp;</span> 0   <span class="keyword">\\</span></span><br><span class="line">2/3    <span class="built_in">&amp;</span>  0     <span class="built_in">&amp;</span> 1/3    <span class="built_in">&amp;</span> <span class="keyword">\cdots</span> <span class="built_in">&amp;</span> 0   <span class="keyword">\\</span></span><br><span class="line">0      <span class="built_in">&amp;</span> 2/3    <span class="built_in">&amp;</span>  0     <span class="built_in">&amp;</span> <span class="keyword">\ddots</span> <span class="built_in">&amp;</span> 0   <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\vdots</span> <span class="built_in">&amp;</span> <span class="keyword">\vdots</span> <span class="built_in">&amp;</span> <span class="keyword">\ddots</span> <span class="built_in">&amp;</span> <span class="keyword">\ddots</span> <span class="built_in">&amp;</span> 1/3 <span class="keyword">\\</span></span><br><span class="line">0      <span class="built_in">&amp;</span>  0     <span class="built_in">&amp;</span>  0     <span class="built_in">&amp;</span> 2/3    <span class="built_in">&amp;</span> 0</span><br><span class="line"><span class="keyword">\end</span>&#123;bmatrix&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+0      & 1/3    &  0     & \cdots & 0   \\
+2/3    &  0     & 1/3    & \cdots & 0   \\
+0      & 2/3    &  0     & \ddots & 0   \\
+\vdots & \vdots & \ddots & \ddots & 1/3 \\
+0      &  0     &  0     & 2/3    & 0
+\end{bmatrix}</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;array&#125;&#123;cl&#125;</span><br><span class="line"> <span class="built_in">&amp;</span> </span><br><span class="line"><span class="keyword">\begin</span>&#123;matrix&#125;</span><br><span class="line">-1 <span class="built_in">&amp;</span> -2 <span class="built_in">&amp;</span> -3 <span class="built_in">&amp;</span> <span class="keyword">\cdots</span> </span><br><span class="line"><span class="keyword">\end</span>&#123;matrix&#125;</span><br><span class="line"><span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;matrix&#125;</span><br><span class="line">-1 <span class="keyword">\\</span> -2 <span class="keyword">\\</span> -3 <span class="keyword">\\</span> <span class="keyword">\vdots</span></span><br><span class="line"><span class="keyword">\end</span>&#123;matrix&#125;</span><br><span class="line"><span class="built_in">&amp;</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;bmatrix&#125;</span><br><span class="line">0      <span class="built_in">&amp;</span> 1/3    <span class="built_in">&amp;</span>  0     <span class="built_in">&amp;</span> <span class="keyword">\cdots</span> <span class="keyword">\\</span></span><br><span class="line">2/3    <span class="built_in">&amp;</span>  0     <span class="built_in">&amp;</span> 1/3    <span class="built_in">&amp;</span> <span class="keyword">\cdots</span> <span class="keyword">\\</span></span><br><span class="line">0      <span class="built_in">&amp;</span> 2/3    <span class="built_in">&amp;</span>  0     <span class="built_in">&amp;</span> <span class="keyword">\ddots</span> <span class="keyword">\\</span></span><br><span class="line"><span class="keyword">\vdots</span> <span class="built_in">&amp;</span> <span class="keyword">\vdots</span> <span class="built_in">&amp;</span> <span class="keyword">\ddots</span> <span class="built_in">&amp;</span> <span class="keyword">\ddots</span></span><br><span class="line"><span class="keyword">\end</span>&#123;bmatrix&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;array&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\begin{array}{cl}
+ & 
+\begin{matrix}
+-1 & -2 & -3 & \cdots 
+\end{matrix}
+\\
+\begin{matrix}
+-1 \\ -2 \\ -3 \\ \vdots
+\end{matrix}
+&
+\begin{bmatrix}
+0      & 1/3    &  0     & \cdots \\
+2/3    &  0     & 1/3    & \cdots \\
+0      & 2/3    &  0     & \ddots \\
+\vdots & \vdots & \ddots & \ddots
+\end{bmatrix}
+\end{array}</script><h4 id="12-LaTeX数学公式的多行公式"><a href="#12-LaTeX数学公式的多行公式" class="headerlink" title="12. LaTeX数学公式的多行公式"></a>12. LaTeX数学公式的多行公式</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;amsmath&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;amssymb&#125; <span class="comment">%数学花体符号需要amssymb宏包</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>gather和gather*环境实现多行公式排版</strong></li>
+</ul>
+<p>gather环境默认多行公式居中对其（markdown中使用该环境可以居中对其多行公式）</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;gather&#125;</span><br><span class="line">	a + b = b + a <span class="keyword">\\</span></span><br><span class="line">	a <span class="keyword">\cdot</span> b = b <span class="keyword">\cdot</span> a  <span class="keyword">\notag</span>  <span class="comment">%\notag或者\nonumber命令抑制此行编号</span></span><br><span class="line"><span class="keyword">\end</span>&#123;gather&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\begin{gather}
+    a + b = b + a \\
+    a \cdot b = b \cdot a
+\end{gather}</script><ul>
+<li><strong>align和align*环境按指定位置对齐</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;align&#125;</span><br><span class="line">x <span class="built_in">&amp;</span>= t + <span class="keyword">\cos</span>(t) + 1 <span class="keyword">\\</span></span><br><span class="line">y <span class="built_in">&amp;</span>= 2<span class="keyword">\sin</span>(t)</span><br><span class="line"><span class="keyword">\end</span>&#123;align&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\begin{align}
+x &= t + \cos(t) + 1 \\
+y &= 2\sin(t)
+\end{align}</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;align*&#125;</span><br><span class="line">x <span class="built_in">&amp;</span>= t  <span class="built_in">&amp;</span> x <span class="built_in">&amp;</span>= <span class="keyword">\cos</span>(t)   <span class="built_in">&amp;</span> x <span class="built_in">&amp;</span>= t  <span class="keyword">\\</span></span><br><span class="line">y <span class="built_in">&amp;</span>= 2t <span class="built_in">&amp;</span> y <span class="built_in">&amp;</span>= <span class="keyword">\sin</span>(t+1) <span class="built_in">&amp;</span> y <span class="built_in">&amp;</span>= <span class="keyword">\sin</span>(t)</span><br><span class="line"><span class="keyword">\end</span>&#123;align*&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\begin{align*}
+x &= t  & x &= \cos(t)   & x &= t  \\
+y &= 2t & y &= \sin(t+1) & y &= \sin(t)
+\end{align*}</script><ul>
+<li><strong>split环境实现一个公式的多行排版</strong></li>
+</ul>
+<p>split环境可以通过<code>&amp;</code>符号来自定义公式的对齐</p>
+<p>注意<code>split</code>环境本身不能单独使用,  需要放在<code>equation</code>环境中才能使用</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;equation&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;split&#125;</span><br><span class="line"><span class="keyword">\cos</span> 2x <span class="built_in">&amp;</span>= <span class="keyword">\cos</span><span class="built_in">^</span>2 x - <span class="keyword">\sin</span><span class="built_in">^</span>2 x <span class="keyword">\\</span></span><br><span class="line">        <span class="built_in">&amp;</span>= 2<span class="keyword">\cos</span><span class="built_in">^</span>2 x -1</span><br><span class="line"><span class="keyword">\end</span>&#123;split&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;equation&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\begin{split}
+\cos 2x &= \cos^2 x - \sin^2 x \\
+        &= 2\cos^2 x -1
+\end{split}</script><ul>
+<li><strong>cases环境</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;equation&#125;</span><br><span class="line">D(x) = <span class="keyword">\begin</span>&#123;cases&#125;</span><br><span class="line">1, <span class="built_in">&amp;</span> <span class="keyword">\text</span>&#123;如果&#125; x <span class="keyword">\in</span> <span class="keyword">\mathbb</span>&#123;Q&#125;; <span class="keyword">\\</span></span><br><span class="line">0, <span class="built_in">&amp;</span> <span class="keyword">\text</span>&#123;如果&#125; x <span class="keyword">\in</span> <span class="keyword">\mathbb</span>&#123;R&#125;<span class="keyword">\setminus</span><span class="keyword">\mathbb</span>&#123;Q&#125;.</span><br><span class="line"><span class="keyword">\end</span>&#123;cases&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;equation&#125;</span><br><span class="line"><span class="comment">%数学花体符号需要amssymb宏包</span></span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\begin{equation}
+D(x) = \begin{cases}
+1, & \text{如果} x \in \mathbb{Q}; \\
+0, & \text{如果} x \in \mathbb{R}\setminus\mathbb{Q}.
+\end{cases}
+\end{equation}</script><ul>
+<li><strong>插入数学定理/引理/证明</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;amsthm&#125; <span class="comment">% 如果要使用proof环境需要引入amsthm宏包</span></span><br><span class="line"><span class="comment">%其要放在\newtheorem命令的前面,否则会报错</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 使用下面命令定义定理/明题/定义等环境</span></span><br><span class="line"><span class="keyword">\newtheorem</span>&#123;定理环境名&#125;&#123;标题&#125;[主计数器]</span><br><span class="line"><span class="comment">%其中[主计数器]为可选参数,可以选择[chapter][section]等</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\newtheorem</span>&#123;theorem&#125;&#123;定理&#125;[section]</span><br><span class="line"><span class="comment">%定义了一个&quot;theorem&quot;环境,其标题是&quot;定理&quot;,其跟随section计数</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;theorem&#125;<span class="keyword">\label</span>&#123;...&#125;</span><br><span class="line">	...</span><br><span class="line"><span class="keyword">\end</span>&#123;theorem&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%proof环境</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;proof&#125;[证明:]</span><br><span class="line">	...</span><br><span class="line"><span class="keyword">\end</span>&#123;proof&#125;</span><br><span class="line"><span class="comment">%其中[...]为可选项</span></span><br><span class="line"><span class="comment">%proof环境会在证明结束的时候自动打印&quot;□&quot;符号(\qedsymbol)</span></span><br><span class="line"><span class="comment">%如果想输入证毕,则需要进行\renewcommand</span></span><br><span class="line"><span class="keyword">\renewcommand</span>*&#123;<span class="keyword">\qedsymbol</span>&#125;&#123;[证毕]&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%使用ntheorem宏包</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;ntheorem&#125;</span><br><span class="line"><span class="comment">%amsthm宏包默认会在定理的计数器右下角加一个点‘.’</span></span><br><span class="line"><span class="comment">%使用ntheorem宏包可以自定义分隔符</span></span><br><span class="line"><span class="keyword">\theoremseparator</span>&#123;分隔符&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%导言区</span></span><br><span class="line"><span class="comment">%\usepackage&#123;amsthm&#125;</span></span><br><span class="line"><span class="comment">%注意在使用ntheorem宏包的时候要注释掉amsthm宏包，否则会冲突</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;ntheorem&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\theoremseparator</span>&#123;***&#125; <span class="comment">%自定义分隔符</span></span><br><span class="line"><span class="keyword">\newtheorem</span>&#123;theorem&#125;&#123;定理&#125;[section]</span><br><span class="line"></span><br><span class="line"><span class="comment">%正文区</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">\begin</span>&#123;theorem&#125;</span><br><span class="line">		belabela的一个定理</span><br><span class="line">	<span class="keyword">\end</span>&#123;theorem&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220609153726207.png" alt="image-20220609153726207"></p>
+<h4 id="13-LaTeX中的参考文献BibTex"><a href="#13-LaTeX中的参考文献BibTex" class="headerlink" title="13. LaTeX中的参考文献BibTex"></a>13. LaTeX中的参考文献BibTex</h4><ul>
+<li><strong>thebibliography环境</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%一次管理, 一次使用</span></span><br><span class="line"><span class="keyword">\begin</span>&#123;thebibliography&#125;</span><br><span class="line">	<span class="keyword">\bibitem</span>[记号]&#123;引用标志&#125; 文献条目1</span><br><span class="line">	<span class="keyword">\bibitem</span>[记号]&#123;引用标志&#125; 文献条目2</span><br><span class="line">	...</span><br><span class="line"><span class="keyword">\end</span>&#123;thebibliography&#125;</span><br><span class="line"><span class="comment">%其中文献条目包括: 作者,题目,出版社,年代,版本,页码等.</span></span><br><span class="line"><span class="comment">%引用时可以采用: \cite&#123;引用标志1, 引用标志2, ...&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;thebibliography&#125;&#123;9&#125;</span><br><span class="line">	<span class="keyword">\bibitem</span>&#123;3-1&#125; 王玉杰. 自动指纹分类算法的研究[D].南京邮电大学,2012.</span><br><span class="line">	<span class="keyword">\bibitem</span>&#123;3-2&#125; 杨利敏,杨杰,李钢.基于指纹分类的模式匹配[J].电子学报,2003(07):1030-1034.</span><br><span class="line"><span class="keyword">\end</span>&#123;thebibliography&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Latex中thebibliography后面的数字代表的是\bibitem标签的最大宽度<br>标签宽度其实就是数字位数，比如1,21,123，分别是1, 2, 3个宽度<br>如果参考文献数量在1-9，后面的数字可以用, 1,2,3，····，9，a，b，····都可以<br>如果参考文献数量在10-99，后面的数字可以用，10, 21, 33，····，19，ab，bc，b0····都可以<br>以此类推</p>
+</blockquote>
+<ul>
+<li><strong>引用方法</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%正文引用</span></span><br><span class="line"><span class="keyword">\cite</span>&#123;引用标志1,引用标志2&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">%右上角引用,先定义\upcite&#123;&#125;命令</span></span><br><span class="line"><span class="keyword">\newcommand</span>&#123;<span class="keyword">\upcite</span>&#125;[1]&#123;<span class="keyword">\textsuperscript</span>&#123;<span class="keyword">\cite</span>&#123;<span class="params">#1</span>&#125;&#125;&#125;</span><br><span class="line"><span class="comment">%然后在正文中使用</span></span><br><span class="line"><span class="keyword">\upcite</span>&#123;引用标志&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>natbib宏包</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%引用格式</span></span><br><span class="line"><span class="keyword">\usepackage</span>[option]&#123;natbib&#125;</span><br><span class="line"><span class="comment">%多个引用合并(如[3],[4],[5]变成[3-5])</span></span><br><span class="line"><span class="keyword">\usepackage</span>[numbers,sort<span class="built_in">&amp;</span>compress]&#123;natbib&#125;</span><br><span class="line"><span class="comment">%合并+右上角标+[](此时直接使用\cite&#123;&#125;就可以得到角标)</span></span><br><span class="line"><span class="keyword">\usepackage</span>[numbers,sort<span class="built_in">&amp;</span>compress,super,square]&#123;natbib&#125;</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">option</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">round</td>
+<td style="text-align:left">(default) 使用圆括号</td>
+</tr>
+<tr>
+<td style="text-align:center">square</td>
+<td style="text-align:left">使用方括号</td>
+</tr>
+<tr>
+<td style="text-align:center">curly</td>
+<td style="text-align:left">使用花括号</td>
+</tr>
+<tr>
+<td style="text-align:center">angle</td>
+<td style="text-align:left">使用尖括号</td>
+</tr>
+<tr>
+<td style="text-align:center">colon</td>
+<td style="text-align:left">(default) 用引号分隔多个引用</td>
+</tr>
+<tr>
+<td style="text-align:center">comma</td>
+<td style="text-align:left">用逗号分隔多个引用</td>
+</tr>
+<tr>
+<td style="text-align:center">authoryear</td>
+<td style="text-align:left">(default) 使用作者—年引用形式</td>
+</tr>
+<tr>
+<td style="text-align:center">numbers</td>
+<td style="text-align:left">使用编号引用形式</td>
+</tr>
+<tr>
+<td style="text-align:center">super</td>
+<td style="text-align:left">使用 Nature 那样的上标编号引用</td>
+</tr>
+<tr>
+<td style="text-align:center">sort</td>
+<td style="text-align:left">多个引用按照首字母排序</td>
+</tr>
+<tr>
+<td style="text-align:center">sort&amp;compress</td>
+<td style="text-align:left">除排序外，多个引用可以合并 (如 3-6, 15)</td>
+</tr>
+<tr>
+<td style="text-align:center">longnamesfirst</td>
+<td style="text-align:left">多个作者的文献第一次被引用时列出所有作者，以后的引用可以缩写为 et al.</td>
+</tr>
+<tr>
+<td style="text-align:center">sectionbib</td>
+<td style="text-align:left">重定义了 \thebibliography 使用 \section<em> 而不是 \chapter</em>。这样使用 chapterbib 宏包时，参考文献名称为 section 一级</td>
+</tr>
+<tr>
+<td style="text-align:center">nonamebreak</td>
+<td style="text-align:left">在一行排版所有作者名字，这可能引起 overfull hbox 警告但是消除了跨行的 hyperref 问题</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><strong>hyperref宏包</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%hyperref宏包可以修改超链接和文献引用的字体颜色</span></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;hyperref&#125;</span><br><span class="line"><span class="keyword">\hypersetup</span>&#123;</span><br><span class="line">	colorlinks=true,  <span class="comment">%超链接是否带true/false</span></span><br><span class="line">	linkcolor=cyan,   <span class="comment">%目录/公式/图标等内部超链接的字体颜色</span></span><br><span class="line">	filecolor=blue,   <span class="comment">%文件型超链接的字体颜色</span></span><br><span class="line">	urlcolor=red,     <span class="comment">%网页超链接的字体颜色</span></span><br><span class="line">	citecolor=blue,  <span class="comment">%参考文献链接的字体颜色</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">%这样使用后,参考文献的链接颜色将会变成蓝色</span></span><br><span class="line"><span class="keyword">\usepackage</span>[colorlinks=true,</span><br><span class="line">            citecolor=blue,</span><br><span class="line">            ]&#123;hyperref&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>BibTeX文献管理工具</strong></li>
+</ul>
+<p>使用BibTeX之前需要先在设置-构建中修改默认文献工具为BibTeX</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220214233344510.png" alt="image-20220214233344510" style="zoom: 33%;" /></p>
+<p>新建.bib文件, 在.bib文件中记录参考文献信息</p>
+<h4 id="15-LaTeX中的自定义命令和环境"><a href="#15-LaTeX中的自定义命令和环境" class="headerlink" title="15. LaTeX中的自定义命令和环境"></a>15. LaTeX中的自定义命令和环境</h4><ul>
+<li><strong>newcommand定义新命令</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\newcommand</span>&lt;命令名称&gt;[&lt;参数个数&gt;][&lt;首参数默认值&gt;]&#123;&lt;具体定义&gt;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>定义命令作字符串替换</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 例如定义\PRC命令如下:</span></span><br><span class="line"><span class="keyword">\newcommand</span> <span class="keyword">\PRC</span>&#123;People&#x27;s Republic of <span class="keyword">\emph</span>&#123;China&#125;&#125;</span><br><span class="line"><span class="comment">% 在正文中使用\PRC命令就可以得到People&#x27;s Republic of China</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>使用参数</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%参数个数可以从 1 到 9, 使用时用 #1,#2,...,#9 表示</span></span><br><span class="line"><span class="keyword">\newcommand</span> <span class="keyword">\loves</span>[2]&#123;<span class="params">#1</span> 喜欢 <span class="params">#2</span>&#125;</span><br><span class="line"><span class="comment">%在正文中调用如下</span></span><br><span class="line"><span class="keyword">\loves</span>&#123;我&#125;&#123;你&#125;</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\newcommand \loves[2]{ #1 喜欢 #2 }
+\loves{我}{你}</script><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%也可以给参数指定默认值</span></span><br><span class="line"><span class="comment">%但只有第一个参数可以被指定默认值</span></span><br><span class="line"><span class="keyword">\newcommand</span> <span class="keyword">\loves</span>[2][我]&#123;<span class="params">#1</span> 喜欢 <span class="params">#2</span>&#125;</span><br><span class="line"><span class="comment">%在正文中调用命令</span></span><br><span class="line"><span class="keyword">\loves</span>&#123;你&#125; <span class="keyword">\qquad</span> <span class="keyword">\loves</span>[他]&#123;你&#125;</span><br><span class="line"><span class="comment">%得到下面结果</span></span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\newcommand \loves[2][我]{ #1 喜欢 #2 }
+\loves{你} \qquad \loves[他]{你}</script><ul>
+<li><strong>renewcommand</strong><br>renewcommand可以重新定义已有的命令, 且只能定义已有的命令</li>
+</ul>
+<ul>
+<li><strong>newenvironment定义新环境</strong></li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\newenvironment</span>&#123;&lt;环境名称&gt;&#125;[&lt;参数个数&gt;][&lt;首参数默认值&gt;]</span><br><span class="line">				&#123;环境前定义&#125;</span><br><span class="line">				&#123;环境后定义&#125;</span><br><span class="line"><span class="keyword">\renewenvironment</span>&#123;&lt;环境名称&gt;&#125;[&lt;参数个数&gt;][&lt;首参数默认值&gt;]</span><br><span class="line">				&#123;环境前定义&#125;</span><br><span class="line">				&#123;环境后定义&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="16-插入代码块-Minted环境"><a href="#16-插入代码块-Minted环境" class="headerlink" title="16. 插入代码块(Minted环境)"></a>16. 插入代码块(Minted环境)</h4><p>cmd中输入命令<code>texdoc minted</code>查看宏包文档</p>
+<p>参考博客<a target="_blank" rel="noopener" href="https://www.freesion.com/article/1477756370/">MINTED宏包的使用环境与配置</a></p>
+<p>参考视频<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1sT4y1A7KR">minted 宏包配置 python 环境教程</a></p>
+<ul>
+<li>在Python环境中安装pygments库</li>
+</ul>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pygments</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>添加<code>-shell-escape</code></p>
+<p>在<code>TeXstudio</code>内，点击<code>Options-&gt;Configure TeXstudio-&gt;Commands</code></p>
+<p>(如果你的默认编译器设置的是<code>XeLaTex</code>的话)</p>
+<p>原来的<code>XeLaTex</code>编译命令为：</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xelatex.exe -synctex=1 -interaction=nonstopmode %.tex</span><br></pre></td></tr></table></figure>
+<p>​        添加参数<code>-shell-escape</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xelatex.exe -shell-escape -synctex=1 -interaction=nonstopmode %.tex</span><br></pre></td></tr></table></figure>
+<ul>
+<li>引入<code>minted</code>宏包</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>[cache=false]&#123;minted&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用<code>minted</code>环境</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;minted&#125;[</span><br><span class="line">	mathescape,</span><br><span class="line">	linenos,       <span class="comment">% 代码标记行号</span></span><br><span class="line">	numbersep=5pt,</span><br><span class="line">	gobble=2,</span><br><span class="line">	frame=lines,   <span class="comment">% lines-加上下两条线 single-边框</span></span><br><span class="line">	framesep=2mm]&#123;...&#125;<span class="string"> % 设置代码语言</span></span><br><span class="line"><span class="string">    ...</span></span><br><span class="line"><span class="string"></span><span class="keyword">\end</span>&#123;minted&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>示例</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;minted&#125;[mathescape,</span><br><span class="line">	linenos,</span><br><span class="line">	numbersep=5pt,</span><br><span class="line">	gobble=2,</span><br><span class="line">	frame=lines,</span><br><span class="line">	framesep=2mm]&#123;numpy&#125;<span class="string"> % python的numpy库</span></span><br><span class="line"><span class="string">    Y = np.zeros((outSize,testLen))</span></span><br><span class="line"><span class="string">    # 循环计算data[trainLen]后2000个状态</span></span><br><span class="line"><span class="string">    for t in range(testLen):</span></span><br><span class="line"><span class="string">    x = (1-a)*x + a*np.tanh( np.dot( Win, np.vstack((1,u)) ) + np.dot( W, x ) )</span></span><br><span class="line"><span class="string">    y = np.dot( Wout, np.vstack((1,u,x)) )</span></span><br><span class="line"><span class="string">    Y[:,t] = y</span></span><br><span class="line"><span class="string">    # 将网络当前时刻的输出作为下一时刻的输入</span></span><br><span class="line"><span class="string">    u = y</span></span><br><span class="line"><span class="string"></span><span class="keyword">\end</span>&#123;minted&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220528103303236.png" alt="image-20220528103303236"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://onexiaophai.gitee.io">张文翔</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://onexiaophai.gitee.io/2022/02/05/latex%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">https://onexiaophai.gitee.io/2022/02/05/latex%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://onexiaophai.gitee.io" target="_blank">小P孩的脑洞</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%86%99%E4%BD%9C/">写作</a><a class="post-meta__tags" href="/tags/Latex/">Latex</a><a class="post-meta__tags" href="/tags/%E8%AE%BA%E6%96%87/">论文</a></div><div class="post_share"><div class="social-share" data-image="/white" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/03/01/%E8%AE%B0hexo%20g%E7%9A%84%E4%B8%80%E4%B8%AA%E6%8A%A5%E9%94%99/"><img class="prev-cover" src="/white" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">记Hexo使用中的一个报错</div></div></a></div><div class="next-post pull-right"><a href="/2022/02/01/NexT%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/"><img class="next-cover" src="/white" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">NexT主题的配置</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/03/06/%E9%98%BF%E9%87%8C%E4%BA%91+PicGo%E5%9B%BE%E7%89%87%E4%BA%91%E6%89%98%E7%AE%A1/" title="Typora+PicGo+阿里云OSS实现笔记图片云托管"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-06</div><div class="title">Typora+PicGo+阿里云OSS实现笔记图片云托管</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-LaTeX%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">1.  LaTeX环境配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-LaTeX%E6%BA%90%E6%96%87%E4%BB%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">2. LaTeX源文件的基本结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-LaTeX%E5%A4%84%E7%90%86%E4%B8%AD%E6%96%87%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">3. LaTeX处理中文的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-LaTeX%E7%9A%84%E5%AD%97%E4%BD%93%E5%AD%97%E5%8F%B7%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">4. LaTeX的字体字号设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-LaTeX%E6%96%87%E6%A1%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">5.</span> <span class="toc-text">5. LaTeX文档的基本结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-LaTeX%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6"><span class="toc-number">6.</span> <span class="toc-text">6. LaTeX中的特殊字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-LaTeX%E4%B8%AD%E7%9A%84%E6%8F%92%E5%9B%BE"><span class="toc-number">7.</span> <span class="toc-text">7. LaTeX中的插图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-LaTeX%E4%B8%AD%E7%9A%84%E8%A1%A8%E6%A0%BC%E5%92%8C%E5%88%97%E8%A1%A8"><span class="toc-number">8.</span> <span class="toc-text">8.LaTeX中的表格和列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-LaTeX%E4%B8%AD%E7%9A%84%E6%B5%AE%E5%8A%A8%E4%BD%93"><span class="toc-number">9.</span> <span class="toc-text">9. LaTeX中的浮动体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-LaTeX%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E5%88%9D%E6%AD%A5"><span class="toc-number">10.</span> <span class="toc-text">10. LaTeX数学公式初步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-LaTeX%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E2%80%94%E2%80%94%E7%9F%A9%E9%98%B5"><span class="toc-number">11.</span> <span class="toc-text">11. LaTeX数学公式——矩阵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-LaTeX%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E5%A4%9A%E8%A1%8C%E5%85%AC%E5%BC%8F"><span class="toc-number">12.</span> <span class="toc-text">12. LaTeX数学公式的多行公式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-LaTeX%E4%B8%AD%E7%9A%84%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AEBibTex"><span class="toc-number">13.</span> <span class="toc-text">13. LaTeX中的参考文献BibTex</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-LaTeX%E4%B8%AD%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4%E5%92%8C%E7%8E%AF%E5%A2%83"><span class="toc-number">14.</span> <span class="toc-text">15. LaTeX中的自定义命令和环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#16-%E6%8F%92%E5%85%A5%E4%BB%A3%E7%A0%81%E5%9D%97-Minted%E7%8E%AF%E5%A2%83"><span class="toc-number">15.</span> <span class="toc-text">16. 插入代码块(Minted环境)</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 张文翔</div><div class="footer_custom_text">Hi, welcome to my <a href="https://onexiaophai.gitee.io/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>行列式是如何被定义出来的 | 小P孩的脑洞</title><meta name="author" content="张文翔"><meta name="copyright" content="张文翔"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="写在开头这篇文章并不是在介绍行列式，我希望阅读这篇的朋友并不是第一次接触行列式和空间变换。我写这篇文章是想从空间变换的角度来引入行列式，而并不是像课本上一样直接给出它的定义，并且希望你们可以从这个过程中理解行列式的意义。 空间变换首先，我们假设在n维空间上有个变换（不一定是线性的），把这个变换设为：  \begin{cases} y_1 &#x3D; f_1 (x_1, x_2, \dots,x_n)\\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="行列式是如何被定义出来的">
+<meta property="og:url" content="https://onexiaophai.gitee.io/2021/10/09/%E8%A1%8C%E5%88%97%E5%BC%8F%E6%98%AF%E5%A6%82%E4%BD%95%E8%A2%AB%E5%AE%9A%E4%B9%89%E5%87%BA%E6%9D%A5%E7%9A%84/index.html">
+<meta property="og:site_name" content="小P孩的脑洞">
+<meta property="og:description" content="写在开头这篇文章并不是在介绍行列式，我希望阅读这篇的朋友并不是第一次接触行列式和空间变换。我写这篇文章是想从空间变换的角度来引入行列式，而并不是像课本上一样直接给出它的定义，并且希望你们可以从这个过程中理解行列式的意义。 空间变换首先，我们假设在n维空间上有个变换（不一定是线性的），把这个变换设为：  \begin{cases} y_1 &#x3D; f_1 (x_1, x_2, \dots,x_n)\\">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-04-15T08:38:51.686Z">
+<meta property="article:author" content="张文翔">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="线性代数">
+<meta name="twitter:card" content="summary"><link rel="shortcut icon" href="/img/avatar.jpg"><link rel="canonical" href="https://onexiaophai.gitee.io/2021/10/09/%E8%A1%8C%E5%88%97%E5%BC%8F%E6%98%AF%E5%A6%82%E4%BD%95%E8%A2%AB%E5%AE%9A%E4%B9%89%E5%87%BA%E6%9D%A5%E7%9A%84/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '行列式是如何被定义出来的',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-15 16:38:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小P孩的脑洞</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">行列式是如何被定义出来的</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-08T16:00:00.000Z" title="发表于 2021-10-09 00:00:00">2021-10-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-15T08:38:51.686Z" title="更新于 2022-04-15 16:38:51">2022-04-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="行列式是如何被定义出来的"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h4 id="写在开头"><a href="#写在开头" class="headerlink" title="写在开头"></a>写在开头</h4><p>这篇文章并不是在介绍行列式，我希望阅读这篇的朋友并不是第一次接触行列式和空间变换。我写这篇文章是想从空间变换的角度来引入行列式，而并不是像课本上一样直接给出它的定义，并且希望你们可以从这个过程中理解行列式的意义。</p>
+<h4 id="空间变换"><a href="#空间变换" class="headerlink" title="空间变换"></a>空间变换</h4><p>首先，我们假设在n维空间上有个变换（不一定是线性的），把这个变换设为：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+y_1 = f_1 (x_1, x_2, \dots,x_n)\\
+y_2 = f_2 (x_1, x_2, \dots,x_n)\\
+\dots\\
+y_n = f_n (x_1, x_2, \dots,x_n)\\
+\end{cases}</script><p>可以知道$y_1, y_2, \dots,y_n$和$x_1,x_2,\dots,x_n$微分间的关系为：</p>
+<script type="math/tex; mode=display">
+dy_i = \sum_{j=1}^n\frac{\partial f_i}{\partial x_j}dx_j,\ i=1,2,\dots,n</script><p>或者可以写成矩阵形式</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+dy_1\\
+dy_2\\
+\vdots \\
+dy_n
+\end{bmatrix}
+=
+\begin{bmatrix}
+   \frac{\partial f_1}{\partial x_1}  & \frac{\partial f_1}{\partial x_2} & \dots &\frac{\partial f_1}{\partial x_n} \\
+   \frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \dots &\frac{\partial f_2}{\partial x_n}\\
+   \vdots & \vdots & &\vdots \\
+   \frac{\partial f_n}{\partial x_1} & \frac{\partial f_n}{\partial x_2} & \dots &\frac{\partial f_n}{\partial x_n}\\  
+  \end{bmatrix}
+\begin{bmatrix}
+dx_1\\
+dx_2\\
+\vdots \\
+dx_n
+\end{bmatrix}</script><h4 id="有向面积和矢量的外积"><a href="#有向面积和矢量的外积" class="headerlink" title="有向面积和矢量的外积"></a>有向面积和矢量的外积</h4><p>我们可以把$dx_1, dx_2, \dots,dx_n$理解成<strong>”矢量微元“</strong>，对$dx_1, dx_2, \dots,dx_n$取<strong>外积</strong>得到$dx_1\wedge dx_2 \wedge \dots \wedge dx_n$。而$dx_1\wedge dx_2 \wedge \dots \wedge dx_n$的意义是n维空间上带方向的<strong>”有向面积“</strong>，它的大小是矢量微元$dx_1, dx_2, \dots,dx_n$构成的n维超体的体积，它的方向由右手法则决定。</p>
+<p>（说明一下，这里把$dx$理解成矢量是做了简化，实际上这里应该用<strong>微分形式</strong>来解释，但微分形式很多教材里面没有涉及，所以暂时不作说明，我想这并不妨碍后文的阅读。）</p>
+<p>对于外积我们有两个重要的性质</p>
+<p>（1）反称性</p>
+<script type="math/tex; mode=display">
+x\wedge y = -y\wedge x</script><p>由反称性可以推出</p>
+<script type="math/tex; mode=display">
+x\wedge x = 0</script><p>（2）双线性</p>
+<script type="math/tex; mode=display">
+x \wedge (y+z) = x\wedge y +x\wedge z \\
+(x+y) \wedge z = x\wedge z +y\wedge z \\
+\lambda(x\wedge y) = (\lambda x)\wedge y = x \wedge(\lambda y)</script><h4 id="行列式的引入"><a href="#行列式的引入" class="headerlink" title="行列式的引入"></a>行列式的引入</h4><p>现在我们探讨一下$dy_1\wedge dy_2 \wedge \dots \wedge dy_n$和$dx_1\wedge dx_2 \wedge \dots \wedge dx_n$之间的关系，将$dy_1\wedge dy_2 \wedge \dots \wedge dy_n$ 写开：</p>
+<script type="math/tex; mode=display">
+\begin{split}
+dy_1\wedge dy_2 \wedge \dots \wedge dy_n
+&= 
+\left(\sum_{j=1}^n\frac{\partial f_1}{\partial x_j}dx_j \right) \wedge
+\left(\sum_{j=1}^n\frac{\partial f_2}{\partial x_j}dx_j \right) \wedge
+\dots \wedge
+\left(\sum_{j=1}^n\frac{\partial f_n}{\partial x_j}dx_j \right)\\
+&=
+\sum_{i_1,\dots,i_n=1}^{n}
+\frac{\partial f_1}{\partial x_{i_1}}\cdot
+\frac{\partial f_2}{\partial x_{i_2}}\dots
+\frac{\partial f_n}{\partial x_{i_n}}\cdot
+dx_{i_1}\wedge dx_{i_2} \wedge \dots \wedge dx_{i_n}
+\end{split}</script><p>由于</p>
+<script type="math/tex; mode=display">
+dx_i\wedge dx_j = - dx_j \wedge dx_i ;\ dx_i\wedge dx_i =0</script><p>所以可以得到</p>
+<script type="math/tex; mode=display">
+\begin{split}
+dy_1\wedge dy_2 \wedge \dots \wedge dy_n
+= \sum_{i_1\neq i_2\neq \dots \neq i_n}
+\frac{\partial f_1}{\partial x_{i_1}}\cdot
+\frac{\partial f_2}{\partial x_{i_2}}\dots
+\frac{\partial f_n}{\partial x_{i_n}}\cdot
+dx_{i_1}\wedge dx_{i_2} \wedge \dots \wedge dx_{i_n}
+\end{split}</script><p>此时我们引入<strong>“逆序数”</strong>的概念（具体的定义可以参考一般的线性代数教材，这里不作说明）</p>
+<script type="math/tex; mode=display">
+dx_{i_1}\wedge dx_{i_2} \wedge \dots \wedge dx_{i_n}
+=
+(-1)^{\tau(i_1 i_2 \dots i_n)}\cdot
+dx_1\wedge dx_2 \wedge \dots \wedge dx_n</script><p>这样可以把$dx_1,dx_2,\dots,dx_n$间外积的顺序统一成$dx_1\wedge dx_2 \wedge \dots \wedge dx_n$，于是</p>
+<script type="math/tex; mode=display">
+\begin{split}
+&dy_1\wedge dy_2 \wedge \dots \wedge dy_n \\
+&=
+\sum_{i_1\neq i_2\neq \dots \neq i_n}
+\frac{\partial f_1}{\partial x_{i_1}}\cdot
+\frac{\partial f_2}{\partial x_{i_2}}\dots
+\frac{\partial f_n}{\partial x_{i_n}}\cdot
+(-1)^{\tau(i_1 i_2 \dots i_n)}\cdot
+dx_1\wedge dx_2 \wedge \dots \wedge dx_n \\
+&=
+\left(
+\sum_{i_1\neq i_2\neq \dots \neq i_n}
+(-1)^{\tau(i_1 i_2 \dots i_n)}\cdot
+\frac{\partial f_1}{\partial x_{i_1}}\cdot
+\frac{\partial f_2}{\partial x_{i_2}}\dots
+\frac{\partial f_n}{\partial x_{i_n}}\cdot
+\right)
+dx_1\wedge dx_2 \wedge \dots \wedge dx_n 
+\end{split}</script><p>此时我们引入<strong>”行列式“</strong>的概念，把上式圆括号中的内容记作</p>
+<script type="math/tex; mode=display">
+det \left(\frac{\partial f_i}{\partial x_j} \right)
+或者
+\left|
+  \begin{matrix}
+   \frac{\partial f_1}{\partial x_1}  & \frac{\partial f_1}{\partial x_2} & \dots &\frac{\partial f_1}{\partial x_n} \\
+   \frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \dots &\frac{\partial f_2}{\partial x_n}\\
+   \vdots & \vdots & &\vdots \\
+   \frac{\partial f_n}{\partial x_1} & \frac{\partial f_n}{\partial x_2} & \dots &\frac{\partial f_n}{\partial x_n}\\  
+  \end{matrix}
+\right|</script><p>于是</p>
+<script type="math/tex; mode=display">
+dy_1\wedge dy_2 \wedge \dots \wedge dy_n =
+\left|
+  \begin{matrix}
+   \frac{\partial f_1}{\partial x_1}  & \frac{\partial f_1}{\partial x_2} & \dots &\frac{\partial f_1}{\partial x_n} \\
+   \frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \dots &\frac{\partial f_2}{\partial x_n}\\
+   \vdots & \vdots & &\vdots \\
+   \frac{\partial f_n}{\partial x_1} & \frac{\partial f_n}{\partial x_2} & \dots &\frac{\partial f_n}{\partial x_n}\\  
+  \end{matrix}
+\right| \cdot
+dx_1\wedge dx_2 \wedge \dots \wedge dx_n</script><p>可以看到$det \left(\frac{\partial f_i}{\partial x_j} \right)$实际上是在表示变换前后的有向面积$dx_1\wedge dx_2 \wedge \dots \wedge dx_n$和$dy_1\wedge dy_2 \wedge \dots \wedge dy_n$之间的关系，这个关系包括<strong>方向和大小</strong>。</p>
+<h4 id="几点说明"><a href="#几点说明" class="headerlink" title="几点说明"></a>几点说明</h4><p>【<strong>行列式的定义】</strong>： <strong>n阶行列式</strong>等于所有取自<strong>不同行不同列</strong>的<strong>n 个元素乘积</strong>的<strong>代数和</strong></p>
+<p>通过上面的过程你应该体会到在行列式的定义中</p>
+<p><strong>（1）【逆序数】</strong>的引入是必要的</p>
+<p>通过引入逆序数的概念把</p>
+<script type="math/tex; mode=display">
+dx_{i_1}\wedge dx_{i_2} \wedge \dots \wedge dx_{i_n}</script><p>的定向统一成</p>
+<script type="math/tex; mode=display">
+dx_1\wedge dx_2 \wedge \dots \wedge dx_n</script><p>两者相差一个 $+/-$ 号，正负号由逆序数判定。</p>
+<p><strong>（2）【不同行】</strong>的要求是必须的</p>
+<p>由最开始的式子</p>
+<script type="math/tex; mode=display">
+\small \left(\sum_{j=1}^n\frac{\partial f_1}{\partial x_j}dx_j \right) \wedge \left(\sum_{j=1}^n\frac{\partial f_2}{\partial x_j}dx_j \right) \wedge \dots \wedge \left(\sum_{j=1}^n\frac{\partial f_n}{\partial x_j}dx_j \right)</script><p>可以看到，同行的元素在同一个括号里面，不能相乘，所以不同行的要求是必须的。</p>
+<p><strong>（3）【不同列】</strong>的要求是合理的</p>
+<p>因为同列的元素对应的是同方向的矢量微元，同方向的矢量做外积$=0$ ，所以要求不同列。</p>
+<h4 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h4><p> <strong>[例] 求双曲线$x y=p, x y=q$与直线$y=ax, y=b x$在第一象限所围图形的面积</strong></p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/example.png" alt="example" style="zoom: 25%;" /></p>
+<p>令$xy = u, y/x = v$，即作变换</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+x = \sqrt{u/v}\\
+y = \sqrt{uv}
+\end{cases}</script><p>变换前后微分间的关系为：</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+dx \\
+dy
+\end{bmatrix}
+=
+\begin{bmatrix}
+\frac{1}{2\sqrt{uv}} & -\frac{1}{2}\sqrt{\frac{u}{v^3}} \\
+\frac{1}{2}\sqrt{\frac{v}{u}} & \frac{1}{2}\sqrt{\frac{u}{v}}
+\end{bmatrix}
+
+\begin{bmatrix}
+du \\
+dv
+\end{bmatrix}</script><p>在$x-y$坐标系内关于区域$D$求积分，变换到$u-v$坐标系内关于$D’$求积分，两者带方向的面积微元间的关系为：</p>
+<script type="math/tex; mode=display">
+\begin{split}
+
+dx\wedge dy &= 
+\left(
+\frac{1}{2\sqrt{uv}}du +  -\frac{1}{2}\sqrt{\frac{u}{v^3}}dv
+\right)
+\left(
+\frac{1}{2}\sqrt{\frac{v}{u}}du + \frac{1}{2}\sqrt{\frac{u}{v}}dv
+\right)  \\
+&=
+\left|
+\begin{matrix}
+\frac{1}{2\sqrt{uv}} & -\frac{1}{2}\sqrt{\frac{u}{v^3}} \\
+\frac{1}{2}\sqrt{\frac{v}{u}} & \frac{1}{2}\sqrt{\frac{u}{v}}
+\end{matrix}
+\right|
+du\wedge dv  \\
+&=
+\frac{1}{2v}du\wedge dv  \\
+&\Rightarrow
+\left| dx\wedge dy \right| = \left| \frac{1}{2v}du\wedge dv \right|  \\
+&\Rightarrow
+dxdy = \left| \frac{1}{2v}\right| dudv
+\end{split}</script><p>注意这里<strong>取绝对值是为了去掉了由定向不同而产生的符号</strong>，于是</p>
+<script type="math/tex; mode=display">
+\begin{split}
+S_D
+&=\iint \limits_{D} dxdy
+=\iint \limits_{D'} \left| \frac{1}{2v}\right| dudv\\
+&=\int_{p}^{q}du\int_{a}^{b}\frac{1}{2v}dv
+=\frac{1}{2}(q-p)ln\frac{b}{b}
+\end{split}</script><p>在这个例子中</p>
+<script type="math/tex; mode=display">
+\large dxdy = \frac{\partial(x,y)}{\partial(u,v)}dudv \\</script><p>其中 $\frac{\partial(x,y)}{\partial(u,v)}=\frac{1}{2v}$，在区域 $D$ 中，$\frac{\partial(x,y)}{\partial(u,v)}&gt;0$， $x-y$ 坐标系与 $u-v$ 坐标系的定向相同，它们面积微元间的比例系数为$\frac{\partial(x,y)}{\partial(u,v)}=\frac{1}{2v}$ （这里不是一个线性变换，所以不同位置的比例系数不一样；如果是一个线性变换，那么$\frac{\partial(x,y)}{\partial(u,v)}$ 将对应一个常矩阵的行列式，为常数)</p>
+<p><strong>——<em>xiaophai</em></strong> </p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://onexiaophai.gitee.io">张文翔</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://onexiaophai.gitee.io/2021/10/09/%E8%A1%8C%E5%88%97%E5%BC%8F%E6%98%AF%E5%A6%82%E4%BD%95%E8%A2%AB%E5%AE%9A%E4%B9%89%E5%87%BA%E6%9D%A5%E7%9A%84/">https://onexiaophai.gitee.io/2021/10/09/%E8%A1%8C%E5%88%97%E5%BC%8F%E6%98%AF%E5%A6%82%E4%BD%95%E8%A2%AB%E5%AE%9A%E4%B9%89%E5%87%BA%E6%9D%A5%E7%9A%84/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://onexiaophai.gitee.io" target="_blank">小P孩的脑洞</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E5%AD%A6/">数学</a><a class="post-meta__tags" href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2022/01/21/c++%E7%AC%94%E8%AE%B0/"><img class="prev-cover" src="/white" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">C++课程笔记</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/04/06/%E7%9F%A9%E9%98%B5%E5%AF%B9%E8%A7%92%E5%8C%96/" title="矩阵对角化"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-06</div><div class="title">矩阵对角化</div></div></a></div><div><a href="/2022/04/06/%E5%AE%9E%E7%9F%A9%E9%98%B5%E7%9A%84%E5%85%B1%E8%BD%AD%E5%A4%8D%E7%89%B9%E5%BE%81%E5%80%BC/" title="实矩阵的共轭复特征值"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-06</div><div class="title">实矩阵的共轭复特征值</div></div></a></div><div><a href="/2022/06/08/%E4%B8%80%E4%B8%AA%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9A%84%E6%B1%82%E8%A7%A3/" title="一个常微分方程的求解"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-08</div><div class="title">一个常微分方程的求解</div></div></a></div><div><a href="/2022/04/20/numpy/" title="numpy笔记"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-20</div><div class="title">numpy笔记</div></div></a></div><div><a href="/2022/05/05/%E6%84%9F%E7%9F%A5%E6%9C%BA/" title="感知机及Python3实现"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-05</div><div class="title">感知机及Python3实现</div></div></a></div><div><a href="/2022/05/15/%E5%AE%9E%E6%88%98mnist%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E8%AF%86%E5%88%AB/" title="NumPy神经网络实战——Mnist手写数字数据集的识别"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-15</div><div class="title">NumPy神经网络实战——Mnist手写数字数据集的识别</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%BC%80%E5%A4%B4"><span class="toc-number">1.</span> <span class="toc-text">写在开头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text">空间变换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E5%90%91%E9%9D%A2%E7%A7%AF%E5%92%8C%E7%9F%A2%E9%87%8F%E7%9A%84%E5%A4%96%E7%A7%AF"><span class="toc-number">3.</span> <span class="toc-text">有向面积和矢量的外积</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%8C%E5%88%97%E5%BC%8F%E7%9A%84%E5%BC%95%E5%85%A5"><span class="toc-number">4.</span> <span class="toc-text">行列式的引入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%A0%E7%82%B9%E8%AF%B4%E6%98%8E"><span class="toc-number">5.</span> <span class="toc-text">几点说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="toc-number">6.</span> <span class="toc-text">举个例子</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 张文翔</div><div class="footer_custom_text">Hi, welcome to my <a href="https://onexiaophai.gitee.io/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container').forEach(node => {
+            if (node.hasAttribute('display')) {
+              btf.wrap(node, 'div', { class: 'mathjax-overflow' })
+            } else {
+              btf.wrap(node, 'span', { class: 'mathjax-overflow' })
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

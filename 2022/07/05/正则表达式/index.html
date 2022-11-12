@@ -1,0 +1,717 @@
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>正则表达式 | 小P孩的脑洞</title><meta name="author" content="张文翔"><meta name="copyright" content="张文翔"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="正则表达式正则表达式在线验证工具：https:&#x2F;&#x2F;regex101.com&#x2F; 正则表达式在线验证工具：https:&#x2F;&#x2F;regexr-cn.com&#x2F; python官方文档：https:&#x2F;&#x2F;docs.python.org&#x2F;3&#x2F;howto&#x2F;regex.html 参考博客：https:&#x2F;&#x2F;www.byhy.net&#x2F;tut&#x2F;py&#x2F;extra&#x2F;regex&#x2F; 练习网站：https:&#x2F;&#x2F;codejiaonang.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式">
+<meta property="og:url" content="https://onexiaophai.gitee.io/2022/07/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
+<meta property="og:site_name" content="小P孩的脑洞">
+<meta property="og:description" content="正则表达式正则表达式在线验证工具：https:&#x2F;&#x2F;regex101.com&#x2F; 正则表达式在线验证工具：https:&#x2F;&#x2F;regexr-cn.com&#x2F; python官方文档：https:&#x2F;&#x2F;docs.python.org&#x2F;3&#x2F;howto&#x2F;regex.html 参考博客：https:&#x2F;&#x2F;www.byhy.net&#x2F;tut&#x2F;py&#x2F;extra&#x2F;regex&#x2F; 练习网站：https:&#x2F;&#x2F;codejiaonang.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://onexiaophai.gitee.io/white">
+<meta property="article:published_time" content="2022-07-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-26T09:59:06.782Z">
+<meta property="article:author" content="张文翔">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://onexiaophai.gitee.io/white"><link rel="shortcut icon" href="/img/avatar.jpg"><link rel="canonical" href="https://onexiaophai.gitee.io/2022/07/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '正则表达式',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-07-26 17:59:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">58</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: white"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小P孩的脑洞</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">正则表达式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-07-04T16:00:00.000Z" title="发表于 2022-07-05 00:00:00">2022-07-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-26T09:59:06.782Z" title="更新于 2022-07-26 17:59:06">2022-07-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/python/">python</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">6.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>24分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="正则表达式"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><p>正则表达式在线验证工具：<a target="_blank" rel="noopener" href="https://regex101.com/">https://regex101.com/</a></p>
+<p>正则表达式在线验证工具：<a target="_blank" rel="noopener" href="https://regexr-cn.com/">https://regexr-cn.com/</a></p>
+<p>python官方文档：<a target="_blank" rel="noopener" href="https://docs.python.org/3/howto/regex.html">https://docs.python.org/3/howto/regex.html</a></p>
+<p>参考博客：<a target="_blank" rel="noopener" href="https://www.byhy.net/tut/py/extra/regex/">https://www.byhy.net/tut/py/extra/regex/</a></p>
+<p>练习网站：<a target="_blank" rel="noopener" href="https://codejiaonang.com/#/course/regex_chapter1/0/0">https://codejiaonang.com/#/course/regex_chapter1/0/0</a></p>
+<p>练习讲解：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV19t4y1y7qP?share_source=copy_web">https://www.bilibili.com/video/BV19t4y1y7qP?share_source=copy_web</a></p>
+<h2 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h2><ul>
+<li>特殊字符，术语叫做metacharacters（元字符）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">. * + ? \ [ ] ^ $ &#123; &#125; | ( )</span><br></pre></td></tr></table></figure>
+<ul>
+<li>特殊字符表</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>实例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.</code></td>
+<td>匹配除 <code>\n</code> 之外的任何单个字符。要匹配包括 <code>\n</code> 在内的任何字符，请使用象 <code>[.\n]</code> 的模式。</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>匹配一个字符零次或一次，另一个作用是非贪婪模式</td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>匹配1次或多次</td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>匹配0次或多次</td>
+</tr>
+<tr>
+<td>`</td>
+<td>`</td>
+<td>或者</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>开头</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>结尾</td>
+</tr>
+<tr>
+<td><code>[^...]</code></td>
+<td>非</td>
+</tr>
+<tr>
+<td><code>(...)</code></td>
+<td>分组匹配</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>匹配单词边界</td>
+</tr>
+<tr>
+<td><code>\B</code></td>
+<td>匹配非单词边界，<code>\b</code>的补集</td>
+</tr>
+<tr>
+<td><code>\d</code></td>
+<td>匹配一个数字字符。等价于<code>[0-9]</code>。</td>
+</tr>
+<tr>
+<td><code>\D</code></td>
+<td>匹配一个非数字字符。等价于 <code>[^0-9]</code></td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>匹配任何空白字符，包括空格、制表符、换页符等等。等价于<code>[ \f\n\r\t\v]</code>。(注意方括号开头跟着一个空格)</td>
+</tr>
+<tr>
+<td><code>\S</code></td>
+<td>匹配任何非空白字符。等价于 <code>[^ \f\n\r\t\v]</code></td>
+</tr>
+<tr>
+<td><code>\w</code></td>
+<td>匹配数字字母和下划线。等价于<code>[A-Za-z0-9_]</code>。</td>
+</tr>
+<tr>
+<td><code>\W</code></td>
+<td>匹配任何非数字字母和下划线。等价于 <code>[^A-Za-z0-9_]</code>。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="——匹配所有字符"><a href="#——匹配所有字符" class="headerlink" title=".——匹配所有字符"></a><code>.</code>——匹配所有字符</h2><p>例如要从下面的文本中选出所有的颜色</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">苹果是绿色的</span><br><span class="line">橙子是橙色的</span><br><span class="line">香蕉是黄色的</span><br><span class="line">乌鸦是黑色的</span><br></pre></td></tr></table></figure>
+<p>观察文本后可以发现，也就是要找到所有以“色”字结尾，并且包括前面一个字发词语，那么可以写成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.色</span><br></pre></td></tr></table></figure>
+<p>其中<code>.</code>代表了任意的一个字符，注意只是一个字符。<code>.色</code>合起来就表示要找任意一个字符后面是“色“这个字。</p>
+<p>写在python代码中如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">content = <span class="string">&#x27;&#x27;&#x27;苹果是绿色的</span></span><br><span class="line"><span class="string">橙子是橙色的</span></span><br><span class="line"><span class="string">香蕉是黄色的</span></span><br><span class="line"><span class="string">乌鸦是黑色的&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">p = re.<span class="built_in">compile</span>(<span class="string">r&#x27;.色&#x27;</span>) <span class="comment"># r表示raw，表示原始字符串，不对字符串中的特殊字符进行转义</span></span><br><span class="line"><span class="keyword">for</span> one <span class="keyword">in</span>  p.findall(content):</span><br><span class="line">    <span class="built_in">print</span>(one)</span><br></pre></td></tr></table></figure>
+<p>运行结果如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">绿色</span><br><span class="line">橙色</span><br><span class="line">黄色</span><br><span class="line">黑色</span><br></pre></td></tr></table></figure>
+<h2 id="——重复匹配任意次"><a href="#——重复匹配任意次" class="headerlink" title="*——重复匹配任意次"></a><code>*</code>——重复匹配任意次</h2><p><code>*</code>表示匹配前面的子表达式任意此，包括0次。</p>
+<p>例如，在下面的文本中，选择每行逗号后面的字符串内容，包括逗号本身。（注意，这里的逗号是中文的逗号）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">苹果，是绿色的</span><br><span class="line">橙子，是橙色的</span><br><span class="line">香蕉，是黄色的</span><br><span class="line">乌鸦，是黑色的</span><br><span class="line">猴子，</span><br></pre></td></tr></table></figure>
+<p>此时可以使用正则表达式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">，.*  <span class="comment">#中文逗号</span></span><br></pre></td></tr></table></figure>
+<p>从逗号”，“开始，<code>.*</code>匹配任意字符任意次，即从逗号开始匹配到行末（注意匹配都是以行为单位的，<code>.*</code>是到行末结束不是到段末结束）</p>
+<p>python代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">content = <span class="string">&#x27;&#x27;&#x27;苹果，是绿色的</span></span><br><span class="line"><span class="string">橙子，是橙色的</span></span><br><span class="line"><span class="string">香蕉，是黄色的</span></span><br><span class="line"><span class="string">乌鸦，是黑色的</span></span><br><span class="line"><span class="string">猴子，&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">p = re.<span class="built_in">compile</span>(<span class="string">r&#x27;，.*&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> one <span class="keyword">in</span>  p.findall(content):</span><br><span class="line">    <span class="built_in">print</span>(one)</span><br></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">，是绿色的</span><br><span class="line">，是橙色的</span><br><span class="line">，是黄色的</span><br><span class="line">，是黑色的</span><br><span class="line">，</span><br></pre></td></tr></table></figure>
+<p>注意，<code>.*</code>在正则表达式中是非常常见的，表示匹配任意字符任意次数。当然<code>*</code>星号前面的不是非得是点<code>.</code>，也可以是其它字符，比如<code>绿色*</code>，”绿“字开头后接任意次数”色“字</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220705103412595.png" alt="image-20220705103412595"></p>
+<h2 id="——重复匹配多次"><a href="#——重复匹配多次" class="headerlink" title="+——重复匹配多次"></a><code>+</code>——重复匹配多次</h2><p><code>+</code>表示匹配前面的子表达式一次或多次，不包括0次。</p>
+<p>例如，从下面文本中选择逗号后面的内容（包括逗号本身），如果逗号后面没有内容就不匹配。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">苹果，是绿色的</span><br><span class="line">橙子，是橙色的</span><br><span class="line">香蕉，是黄色的</span><br><span class="line">乌鸦，是黑色的</span><br><span class="line">猴子，</span><br></pre></td></tr></table></figure>
+<p>正则表达式如下设计</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">，.+</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220705104211943.png" alt="image-20220705104211943"></p>
+<p><code>.+</code>和<code>.*</code>都是常见的组合</p>
+<h2 id="——匹配指定次数"><a href="#——匹配指定次数" class="headerlink" title="{}——匹配指定次数"></a><code>&#123;&#125;</code>——匹配指定次数</h2><p>花括号表示匹配前面的字符指定次数</p>
+<p>例如下面的文本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">红彤彤，绿油油，黑乎乎，绿油油油，绿油油油油</span><br></pre></td></tr></table></figure>
+<p>表达式<code>绿油&#123;2,4&#125;</code>表示“绿”字开头后接绿字2到4次</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220705105002395.png" alt="image-20220705105002395"></p>
+<ul>
+<li>典型应用场景——提取数字</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">zwxQQ：1379347218</span><br><span class="line">zggQQ：1051570475</span><br><span class="line">zxfQQ：3340225021</span><br></pre></td></tr></table></figure>
+<p>正则表达式<code>\d&#123;10&#125;</code>，其中<code>\d</code>表示数字</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220705105751138.png" alt="image-20220705105751138"></p>
+<ul>
+<li>开闭区间</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><code>&#123;x,&#125;</code></th>
+<th>表示$\ge x$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&#123;1,&#125;</code></td>
+<td>表示$\ge 1$，等价于<code>+</code></td>
+</tr>
+<tr>
+<td><code>&#123;0,&#125;</code></td>
+<td>表示$\ge 0$，等价于<code>*</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="和-——贪婪模式和非贪婪模式"><a href="#和-——贪婪模式和非贪婪模式" class="headerlink" title="*和*?——贪婪模式和非贪婪模式"></a><code>*</code>和<code>*?</code>——贪婪模式和非贪婪模式</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th><code>*</code></th>
+<th>贪婪模式——匹配尽可能长的字符串</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*?</code></td>
+<td><strong>非贪婪模式——匹配尽可能短的字符串</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>我们要把下面的字符串中的所有html标签都提取出来，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source = <span class="string">&#x27;&lt;html&gt;&lt;head&gt;&lt;title&gt;Title&lt;/title&gt;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>得到这样的一个列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">&#x27;&lt;html&gt;&#x27;</span>, <span class="string">&#x27;&lt;head&gt;&#x27;</span>, <span class="string">&#x27;&lt;title&gt;&#x27;</span>, <span class="string">&#x27;&lt;/title&gt;&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p>很容易想到使用正则表达式 <code>&lt;.*&gt;</code></p>
+<p>写出如下代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">source = <span class="string">&#x27;&lt;html&gt;&lt;head&gt;&lt;title&gt;Title&lt;/title&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">p = re.<span class="built_in">compile</span>(<span class="string">r&#x27;&lt;.*&gt;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(p.findall(source))</span><br></pre></td></tr></table></figure>
+<p>但是运行结果，却是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">&#x27;&lt;html&gt;&lt;head&gt;&lt;title&gt;Title&lt;/title&gt;&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220705111504393.png" alt="image-20220705111504393"></p>
+<p>怎么回事？ 原来 在正则表达式中， ‘*’, ‘+’ 都是贪婪地，使用他们时，会尽可能多的匹配内容，</p>
+<p>所以， <code>&lt;.*&gt;</code> 中的 星号（表示任意次数的重复），一直匹配到了 字符串最后的 <code>&lt;/title&gt;</code> 里面的e。</p>
+<p>解决这个问题，就需要使用非贪婪模式，也就是在星号后面加上 <code>?</code> ，变成这样 <code>&lt;.*?&gt;</code></p>
+<p>代码改为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">source = <span class="string">&#x27;&lt;html&gt;&lt;head&gt;&lt;title&gt;Title&lt;/title&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="comment"># 注意多出的问号</span></span><br><span class="line">p = re.<span class="built_in">compile</span>(<span class="string">r&#x27;&lt;.*?&gt;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(p.findall(source))</span><br></pre></td></tr></table></figure>
+<p>再运行一遍，就可以了</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220705111425393.png" alt="image-20220705111425393"></p>
+<h2 id="——指定字符为可选字符"><a href="#——指定字符为可选字符" class="headerlink" title="?——指定字符为可选字符"></a><code>?</code>——指定字符为可选字符</h2><p>有时，我们可能想要匹配一个单词的不同写法，比如<code>color</code>和<code>colour</code>，或者<code>honor</code>与<code>honour</code>。</p>
+<p>这个时候我们可以使用 <code>?</code> 符号指定一个字符、字符组或其他基本单元可选，这意味着正则表达式引擎将会期望该字符出现<strong>零次或一次</strong>。</p>
+<p>例如：</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/6U5]_H0BDA7JU88X%$V2YJH.png" alt="img"></p>
+<p>在这里 <code>u?</code> 表示<code>u</code>是可选的，即可以出现也可以不出现，可以匹配的是 <code>honor</code> 和 <code>honour</code> 。</p>
+<p>通过这个案例可以知道<code>?</code>的作用就是匹配它之前的字符<code>0</code>次或<code>1</code>次。</p>
+<h2 id="——或者条件"><a href="#——或者条件" class="headerlink" title="|——或者条件"></a><code>|</code>——或者条件</h2><p>例如要提取所有图片文件的后缀名，可以在各个后缀名之间加上一个 <code>|</code>符号：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(.jpg|.gif|.jpeg|.png)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220706152954637.png" alt="image-20220706152954637"></p>
+<h2 id="——对元字符的转义"><a href="#——对元字符的转义" class="headerlink" title="\——对元字符的转义"></a><code>\</code>——对元字符的转义</h2><p>在下面的文本中匹配点“.”前面的字符串，也包含点“.”本身</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">苹果.是绿色的</span><br><span class="line">橙子.是橙色的</span><br><span class="line">香蕉.是黄色的</span><br></pre></td></tr></table></figure>
+<p>正则表达式如下设计</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.*\.</span><br></pre></td></tr></table></figure>
+<p>其中<code>\.</code>表示对<code>.</code>的转义</p>
+<p>python代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">content = <span class="string">&#x27;&#x27;&#x27;苹果.是绿色的</span></span><br><span class="line"><span class="string">橙子.是橙色的</span></span><br><span class="line"><span class="string">香蕉.是黄色的&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">p = re.<span class="built_in">compile</span>(<span class="string">r&#x27;.*\.&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> one <span class="keyword">in</span>  p.findall(content):</span><br><span class="line">    <span class="built_in">print</span>(one)</span><br></pre></td></tr></table></figure>
+<p>运行结果如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">苹果.</span><br><span class="line">橙子.</span><br><span class="line">香蕉.</span><br></pre></td></tr></table></figure>
+<h2 id="——匹配某种类型的字符"><a href="#——匹配某种类型的字符" class="headerlink" title="\——匹配某种类型的字符"></a><code>\</code>——匹配某种类型的字符</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>快捷方式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\w</code></td>
+<td>与任意单词字符匹配，任意单词字符表示 <code>[A-Z]</code>、 <code>[a-z]</code>、<code>[0-9]</code>、<code>_</code></td>
+</tr>
+<tr>
+<td><code>\W</code></td>
+<td>匹配任意一个非文字字符，等价于表达式 <code>[^a-zA-Z0-9_]</code></td>
+</tr>
+<tr>
+<td><code>\d</code></td>
+<td>与任意数字匹配<code>[0-9]</code></td>
+</tr>
+<tr>
+<td><code>\D</code></td>
+<td>匹配任意一个不是0-9之间的数字字符，等价于表达式 <code>[^0-9]</code></td>
+</tr>
+<tr>
+<td><code>\s</code></td>
+<td>匹配任意一个空白字符，包括 空格、tab、换行符等，等价于表达式 <code>[\t\n\r\f\v]</code></td>
+</tr>
+<tr>
+<td><code>\S</code></td>
+<td>匹配任意一个非空白字符，等价于表达式 <code>[^ \t\n\r\f\v]</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Flag</th>
+<th style="text-align:left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>ASCII</code>, <code>A</code></td>
+<td style="text-align:left">Makes several escapes like <code>\w</code>, <code>\b</code>, <code>\s</code> and <code>\d</code> match only on ASCII characters with the respective property.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>DOTALL</code>, <code>S</code></td>
+<td style="text-align:left">Make <code>.</code> match any character, including newlines.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>IGNORECASE</code>, <code>I</code></td>
+<td style="text-align:left">Do case-insensitive matches.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>LOCALE</code>, <code>L</code></td>
+<td style="text-align:left">Do a locale-aware match.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>MULTILINE</code>, <code>M</code></td>
+<td style="text-align:left">Multi-line matching, affecting <code>^</code> and <code>$</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>VERBOSE</code>, <code>X</code> (for ‘extended’)</td>
+<td style="text-align:left">Enable verbose REs, which can be organized more cleanly and understandably.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="——匹配几个字符串之一"><a href="#——匹配几个字符串之一" class="headerlink" title="[]——匹配几个字符串之一"></a><code>[]</code>——匹配几个字符串之一</h2><ul>
+<li>方括号表示要匹配方括号中指定的几个字符中的一个</li>
+</ul>
+<p>比如<code>[abc]</code> 表示匹配 a, b, c 三者的任意一个字符</p>
+<ul>
+<li>方括号中的<code>-</code>表示范围</li>
+</ul>
+<p>例如<code>[a-z]</code> 表示所有的小写字母</p>
+<ul>
+<li>一些元字符在方括号内失去了魔法，变得和普通字符一样了</li>
+</ul>
+<p>比如<code>[akm.]</code> 匹配 <code>a k m .</code> 里面任意一个字符。</p>
+<p>这里 <code>.</code> 在括号里面不在表示匹配任意字符了，而就是表示 <code>.</code> 这个字符本身<code>\.</code></p>
+<ul>
+<li>如果在方括号中使用 <code>^</code> ， 表示 <code>非</code> 方括号里面的字符集合。</li>
+</ul>
+<p>比如<code>[^a-z]</code>表示匹配所有非小写字母的字符，<code>^</code>非的是整个方括号，而不只是<code>^</code>后接的表达式。</p>
+<h2 id="——匹配文本的起始位置"><a href="#——匹配文本的起始位置" class="headerlink" title="^——匹配文本的起始位置"></a><code>^</code>——匹配文本的起始位置</h2><p><code>^</code> 表示匹配文本的 <code>开头</code> 位置。</p>
+<p>正则表达式可以设定 <code>单行模式</code> 和 <code>多行模式</code></p>
+<p>如果是 <code>单行模式</code> ，表示匹配 <code>整个文本</code> 的开头位置。</p>
+<p>如果是 <code>多行模式</code> ，表示匹配 <code>文本每行</code> 的开头位置。</p>
+<p>比如，下面的文本中，每行最前面的数字表示水果的编号，最后的数字表示价格</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">001-苹果价格-60，</span><br><span class="line">002-橙子价格-70,</span><br><span class="line">003-香蕉价格-80,</span><br></pre></td></tr></table></figure>
+<p>如果我们要提取所有的水果编号，用这样的正则表达式 <code>^\d+</code></p>
+<ul>
+<li>python代码如下</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">content = <span class="string">&#x27;&#x27;&#x27;001-苹果价格-60</span></span><br><span class="line"><span class="string">002-橙子价格-70</span></span><br><span class="line"><span class="string">003-香蕉价格-80&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">p = re.<span class="built_in">compile</span>(<span class="string">r&#x27;^\d+&#x27;</span>, re.M) <span class="comment">#多行模式</span></span><br><span class="line"><span class="keyword">for</span> one <span class="keyword">in</span>  p.findall(content):</span><br><span class="line">    <span class="built_in">print</span>(one)</span><br></pre></td></tr></table></figure>
+<p>注意<code>re.compile()</code>的第二个参数<code>re.M</code>指定了多行模式</p>
+<p>运行结果如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">001</span><br><span class="line">002</span><br><span class="line">003</span><br></pre></td></tr></table></figure>
+<p>如果，去掉<code>re.compile()</code>的第二个参数<code>re.M</code>， 运行结果如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">001</span><br></pre></td></tr></table></figure>
+<p>就只有第一行了。因为单行模式下，^ 只会匹配整个文本的开头位置。</p>
+<h2 id="——匹配文本的结尾位置"><a href="#——匹配文本的结尾位置" class="headerlink" title="$——匹配文本的结尾位置"></a><code>$</code>——匹配文本的结尾位置</h2><p><code>$</code> 表示匹配文本的 <code>结尾</code> 位置。</p>
+<p>如果是 <code>单行模式</code> ，表示匹配 <code>整个文本</code> 的结尾位置。</p>
+<p>如果是 <code>多行模式</code> ，表示匹配 <code>文本每行</code> 的结尾位置。</p>
+<p>比如，下面的文本中，每行最前面的数字表示水果的编号，最后的数字表示价格</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">001-苹果价格-60，</span><br><span class="line">002-橙子价格-70,</span><br><span class="line">003-香蕉价格-80,</span><br></pre></td></tr></table></figure>
+<p>如果我们要提取所有的水果编号，用这样的正则表达式 <code>\d+$</code></p>
+<ul>
+<li>对应Python代码</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">content = <span class="string">&#x27;&#x27;&#x27;001-苹果价格-60</span></span><br><span class="line"><span class="string">002-橙子价格-70</span></span><br><span class="line"><span class="string">003-香蕉价格-80&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">p = re.<span class="built_in">compile</span>(<span class="string">r&#x27;\d+$&#x27;</span>, re.MULTILINE)</span><br><span class="line"><span class="keyword">for</span> one <span class="keyword">in</span>  p.findall(content):</span><br><span class="line">    <span class="built_in">print</span>(one)</span><br></pre></td></tr></table></figure>
+<p>注意，<code>re.compile()</code>的第二个参数<code>re.MULTILINE</code> ，指明了使用多行模式，</p>
+<ul>
+<li>运行结果如下</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">60</span><br><span class="line">70</span><br><span class="line">80</span><br></pre></td></tr></table></figure>
+<p>如果，去掉 <code>re.compile()</code>的第二个参数<code>re.MULTILINE</code>， 运行结果如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">80</span><br></pre></td></tr></table></figure>
+<p>就只有最后一行了。因为单行模式下，$ 只会匹配整个文本的结束位置。</p>
+<h2 id="b-B——匹配边界"><a href="#b-B——匹配边界" class="headerlink" title="\b\B——匹配边界"></a><code>\b\B</code>——匹配边界</h2><p><code>\b</code>——匹配<strong>数字字母下划线组成的单词</strong>的边界，即<code>\w</code>组成的单词的边界</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220707150016127.png" alt="image-20220707150016127"></p>
+<p><code>\B</code>——匹配非单词的边界，作为<code>\b</code>的补集</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220707150417751.png" alt="image-20220707150417751"></p>
+<h3 id="实例——匹配man"><a href="#实例——匹配man" class="headerlink" title="实例——匹配man"></a>实例——匹配man</h3><ul>
+<li>如果直接使用man进行匹配就会匹配所有的man</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220707151053475.png" alt="image-20220707151053475"></p>
+<ul>
+<li>使用<code>\b</code>可以识别出单词man</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\bman\b</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220707151236835.png" alt="image-20220707151236835"></p>
+<h2 id="——组选择"><a href="#——组选择" class="headerlink" title="()——组选择"></a><code>()</code>——组选择</h2><p>括号称之为 正则表达式的 组选择。</p>
+<p><code>组</code> 就是把正则表达式匹配的内容里面 <code>其中的某些部分</code> 标记为某个组。</p>
+<p>我们可以在正则表达式中标记 <code>多个</code> 组</p>
+<p>为什么要有组的概念呢？因为我们往往需要提取已经匹配的 内容里面的 某些部分的信息。</p>
+<p>前面，我们有个例子，从下面的文本中，选择每行逗号<strong>前面</strong>的字符串，也包括逗号本身。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">苹果，苹果是绿色的</span><br><span class="line">橙子，橙子是橙色的</span><br><span class="line">香蕉，香蕉是黄色的</span><br></pre></td></tr></table></figure>
+<p>就可以这样写正则表达式 <code>^.*，</code> 。</p>
+<p>但是，如果我们要求 <strong>不要包括逗号</strong> 呢？当然不能直接 这样写 <code>^.*</code>，因为最后的逗号是特征所在，如果去掉它，就没法找逗号前面的内容了。但是把逗号放在正则表达式中，又会包含逗号。</p>
+<p>解决问题的方法就是使用组选择符——<code>()</code>。</p>
+<p>我们这样写 <code>^(.*)，</code> ，结果如下</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220705141615050.png" alt="image-20220705141615050"></p>
+<ul>
+<li>实用场景——提取姓名和手机号</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">刘玄德，手机号码15945678901</span><br><span class="line">关云长，手机号码13945677701</span><br><span class="line">张翼德，手机号码13845666901</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^(.+)，.+(\d&#123;11&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220705142806644.png" alt="image-20220705142806644"></p>
+<h2 id="——非捕获组"><a href="#——非捕获组" class="headerlink" title="(?:)——非捕获组"></a><code>(?:)</code>——非捕获组</h2><p>有时候，我们并不需要捕获某个分组的内容，但是又想使用分组的特性。</p>
+<p>这个时候就可以使用非捕获组<code>(?:表达式)</code>，从而<strong>不捕获数据</strong>，还能使用分组的功能。例如：</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220706162232217.png" alt="image-20220706162232217"></p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220706162335795.png" alt="image-20220706162335795"></p>
+<h2 id="n——分组的回溯引用"><a href="#n——分组的回溯引用" class="headerlink" title="\n——分组的回溯引用"></a><code>\n</code>——分组的回溯引用</h2><p>正则表达式还提供了一种引用之前匹配分组的机制，有些时候，我们或许会寻找到一个子匹配，该匹配接下来会再次出现。</p>
+<p>例如，要匹配一段 HTML 代码，比如：<code>0123&lt;font&gt;提示&lt;/font&gt;abcd</code>，可能会编写出这样一段正则表达式：</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220706164839188.png" alt="image-20220706164839188"></p>
+<p>这确实可以匹配，不过可能还有另一种情况，如果数据改成这样：<code>&lt;font&gt;提示&lt;/bar&gt;</code></p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220706164918351.png" alt="image-20220706164918351"></p>
+<p>在这里<code>font</code> 和 <code>bar</code> 明显不是一对正确的标签，但是我们编写的正则表达式还是将它们给匹配了，所以这个结果是错误的。</p>
+<p>我们想让后面分组的正则也匹配<code>font</code>，但是现在所有形式的都会匹配。</p>
+<p>那如果想让后面分组的正则和第一个分组的正则匹配同样的数据该如何做呢？</p>
+<p>可以使用<strong>分组的回溯引用</strong>，使用<code>\N</code>可以引用编号为<code>N</code>的分组，因此上述例子的代码我们可以改为：</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220706165508254.png" alt="image-20220706165508254"></p>
+<p>通过这个例子，可以发现 <code>\1</code> 表示的就是第一个分组，在这里第一个分组匹配的是 <code>font</code> 所以<code>\1</code> 就代表<code>font</code>。</p>
+<p>另外一个例子，匹配\<abc\>…\<cba\>这种标签中间的内容</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220706165432774.png" alt="image-20220706165432774"></p>
+<h2 id="——正向先行断言"><a href="#——正向先行断言" class="headerlink" title="(?=)——正向先行断言"></a><code>(?=)</code>——正向先行断言</h2><p><strong>正向先行断言：</strong><code>(?=表达式)</code>，指在某个位置向右看，表示所在位置右侧必须能匹配<code>表达式</code></p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我喜欢你 我喜欢 我喜欢我 喜欢 喜欢你</span><br></pre></td></tr></table></figure>
+<p>如果要取出<strong>喜欢</strong>两个字，要求这个<strong>喜欢</strong>后面有你，这个时候就要这么写：<code>喜欢(?=你)</code>，这就是<strong>正向先行断言</strong>。</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220706175306061.png" alt="image-20220706175306061"></p>
+<h2 id="正向先行断言之密码强度验证"><a href="#正向先行断言之密码强度验证" class="headerlink" title="正向先行断言之密码强度验证"></a>正向先行断言之密码强度验证</h2><h3 id="b"><a href="#b" class="headerlink" title="(?=.*?b)"></a>(?=.*?b)</h3><p>给出一串字符串，它是<code>abcba</code>的每个字母间隙插入<code>i</code>构成的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iaibicibiai</span><br></pre></td></tr></table></figure>
+<p>使用下面的正则表达式对其进行匹配</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i(?=.*?b)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>i</code>是要匹配的内容</li>
+<li><code>(?=...)</code>这个表示先行断言</li>
+<li><code>.*?b</code>这个表示以b结尾的字符串，<code>?</code>表示以非贪婪模式匹配，比如<code>iaib</code>、<code>ib</code>、<code>icib</code>等</li>
+</ul>
+<p>使用这个正则表达式对该字符串进行匹配的结果如下</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220707092124132.png" alt="image-20220707092124132"></p>
+<p>它匹配了4个<code>i</code></p>
+<ul>
+<li>第一个<code>i</code>被匹配是因为它后面接着<code>aib</code>，满足先行断言条件<code>(?=.*?b)</code></li>
+<li>第二个<code>i</code>被匹配是因为它后面接着<code>b</code>，满足先行断言条件<code>(?=.*?b)</code></li>
+<li>第三个<code>i</code>被匹配是因为它后面接着<code>cib</code>，满足先行断言条件<code>(?=.*?b)</code></li>
+<li>第四个<code>i</code>被匹配是因为它后面接着<code>b</code>，满足先行断言条件<code>(?=.*?b)</code></li>
+<li>第五个和第六个<code>i</code>没有被匹配，因为它后面没有再接上<code>.*?b</code></li>
+</ul>
+<h3 id="b-1"><a href="#b-1" class="headerlink" title="(?=.*b)"></a>(?=.*b)</h3><p>换个正则表达式重新对上面的字符串进行匹配，去掉<code>?</code>断言中表达式改用贪婪模式，匹配的结果是一样的但是过程不一样</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i(?=.*b)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220707093445986.png" alt="image-20220707093445986"></p>
+<ul>
+<li>第一个<code>i</code>被匹配是因为它后面接着<code>aibicib</code>，满足先行断言条件<code>(?=.*b)</code></li>
+<li>第二个<code>i</code>被匹配是因为它后面接着<code>bicib</code>，满足先行断言条件<code>(?=.*b)</code></li>
+<li>第三个<code>i</code>被匹配是因为它后面接着<code>cib</code>，满足先行断言条件<code>(?=.*b)</code></li>
+<li>第四个<code>i</code>被匹配是因为它后面接着<code>b</code>，满足先行断言条件<code>(?=.*b)</code></li>
+<li>第五个和第六个<code>i</code>没有被匹配，因为它后面没有再接上<code>.*b</code></li>
+</ul>
+<p>和上面的不同只是先行断言的判断条件改成了贪婪模式，所以会看最远的<code>b</code></p>
+<h3 id="b-2"><a href="#b-2" class="headerlink" title="(?=.+b)"></a>(?=.+b)</h3><p>再改用正则表达式对字符串进行匹配，将<code>*</code>改为<code>+</code>，此时的第4个<code>i</code>将不会被匹配上</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i(?=.+b)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220707094028095.png" alt="image-20220707094028095"></p>
+<ul>
+<li>第一个<code>i</code>被匹配是因为它后面接着<code>aibicib</code>，满足先行断言条件<code>(?=.+b)</code></li>
+<li>第二个<code>i</code>被匹配是因为它后面接着<code>bicib</code>，满足先行断言条件<code>(?=.+b)</code></li>
+<li>第三个<code>i</code>被匹配是因为它后面接着<code>cib</code>，满足先行断言条件<code>(?=.+b)</code></li>
+<li>第四个<code>i</code>没有被匹配，因为它后面紧接着<code>b</code>，<code>.+b</code>要求<code>b</code>前面至少要有一个字符，单独的<code>b</code>是不满足先行断言条件<code>(?=.+b)</code>的</li>
+</ul>
+<h3 id="匹配null"><a href="#匹配null" class="headerlink" title="匹配null"></a>匹配<code>null</code></h3><p>将上面的<code>i</code>全部去掉，先行断言则会匹配<code>null</code>，因为断言表达式<code>(?=...)</code>前面没有接任何字符</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220707095347295.png" alt="image-20220707095347295"></p>
+<h3 id="密码强度验证"><a href="#密码强度验证" class="headerlink" title="密码强度验证"></a>密码强度验证</h3><p>请编写一个正则表达式进行密码强度的验证，要求密码必须：</p>
+<ul>
+<li>至少包含一个大写字母</li>
+<li>至少包含一个小写字母</li>
+<li>至少包含一个数字</li>
+<li>至少<code>8</code>个字符</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(?=.*[A-Z])(?=.*[a-z])(?=.*[<span class="number">0</span>-<span class="number">9</span>])(?=.&#123;<span class="number">8</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>这个正则表达式是由4个先行断言复合而成，对<code>null</code>进行匹配，依次判断<code>null</code>后面是否满足4个先行断言</p>
+<ul>
+<li><code>(?=.*[A-Z])</code>匹配后面接着大写字母的<code>null</code></li>
+<li><code>(?=.*[a-z])</code>匹配后面接着小写字母的<code>null</code></li>
+<li><code>(?=.*[0-9])</code>匹配后面接着数字的<code>null</code></li>
+<li><code>(?=.&#123;8&#125;)</code>匹配后面接着8个字符的<code>null</code></li>
+<li>合起来就是匹配后面接着大写字母、小写字母、数字和8个字符的<code>null</code>，即4个先行断言匹配的<code>null</code>的交集</li>
+</ul>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220707101633287.png" alt="image-20220707101633287"></p>
+<h2 id="——反向先行断言"><a href="#——反向先行断言" class="headerlink" title="(?!)——反向先行断言"></a><code>(?!)</code>——反向先行断言</h2><p><strong>反向先行断言</strong><code>(?!表达式)</code>的作用是保证右边不能出现某字符。</p>
+<p>例如： <code>我喜欢你 我喜欢 我喜欢我 喜欢 喜欢你</code></p>
+<p>如果要取出<strong>喜欢</strong>两个字，要求这个<strong>喜欢</strong>后面没有你，这个时候就要这么写：<code>喜欢(?!你)</code>，这就是<strong>反向先行断言</strong>。</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220707103353049.png" alt="image-20220707103353049"></p>
+<ul>
+<li>实例——匹配不是qq邮箱的邮箱</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@(?!qq)</span><br></pre></td></tr></table></figure>
+<p>用<code>@</code>作为关键词，匹配后面不接<code>qq</code>的<code>@</code></p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220707104407976.png" alt="image-20220707104407976"></p>
+<h2 id="lt-——正向后行断言"><a href="#lt-——正向后行断言" class="headerlink" title="(?&lt;=)——正向后行断言"></a><code>(?&lt;=)</code>——正向后行断言</h2><p><strong>正向后行断言：</strong><code>(?&lt;=表达式)</code>，指在某个位置向左看，表示所在位置左侧必须能匹配<code>表达式</code></p>
+<p>例如：如果要取出喜欢两个字，要求喜欢的<strong>前面有我</strong>，<strong>后面有你</strong>，这个时候就要这么写：<code>(?&lt;=我)喜欢(?=你)</code>。</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220707105639993.png" alt="image-20220707105639993"></p>
+<h2 id="lt-——反向后行断言"><a href="#lt-——反向后行断言" class="headerlink" title="(?&lt;!)——反向后行断言"></a><code>(?&lt;!)——反向后行断言</code></h2><p><strong>反向后行断言：</strong><code>(?&lt;!表达式)</code>，指在某个位置向左看，表示所在位置左侧不能匹配<code>表达式</code></p>
+<p>例如：如果要取出喜欢两个字，要求喜欢的<strong>前面没有我</strong>，<strong>后面没有你</strong>，这个时候就要这么写：<code>(?&lt;!我)喜欢(?!你)</code>。</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220707105809723.png" alt="image-20220707105809723"></p>
+<h3 id="实例——匹配单dollar符号"><a href="#实例——匹配单dollar符号" class="headerlink" title="实例——匹配单dollar符号"></a>实例——匹配单dollar符号</h3><p>请使用正则表达式匹配单dollar符号<script type="math/tex">...</script>中的数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(?&lt;!\$)\$[^$]+\$(?!\$)</span><br></pre></td></tr></table></figure>
+<p><code>(?&lt;!\$)\$</code>表示<code>\$</code>符号左边不能有<code>\$</code>符号</p>
+<p><code>\$(?!\$)</code>表示<code>\$</code>符号右边不能有<code>\$</code>符号</p>
+<p><code>[^$]+</code>表示中间是非<code>\$</code>符号组成的字符串，并且非空</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220707110935726.png" alt="image-20220707110935726"></p>
+<p>同理匹配双dollar符号$$$…$$$中间的内容可以使用下面的正则表达式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(?&lt;!\$)\$\$[^\$]+\$\$(?!\$)</span><br></pre></td></tr></table></figure>
+<h3 id="实例——匹配所有的小数"><a href="#实例——匹配所有的小数" class="headerlink" title="实例——匹配所有的小数"></a>实例——匹配所有的小数</h3><p>请使用正则表达式匹配所有的小数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(?&lt;!\..*)(?&lt;=\d)\.(?=\d)(?!.*\.)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>\.</code>以小数点作为标识符</li>
+<li><code>(?&lt;!\..*)</code>表示左边不能再有小数点</li>
+<li><code>(?&lt;=\d)</code>表示小数点左边要有数字</li>
+<li><code>(?=\d)</code>表示小数点右边要有数字</li>
+<li><code>(?!.*\.)</code>表示小数点右边不能再有小数点</li>
+</ul>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220707141310824.png" alt="image-20220707141310824"></p>
+<p>注意：有些正则表达式网址会对<code>(?&lt;!.*)</code>这个表达式报错</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220707141457593.png" alt="image-20220707141457593"></p>
+<h2 id="re-split方法——字符串切分"><a href="#re-split方法——字符串切分" class="headerlink" title="re.split方法——字符串切分"></a><code>re.split</code>方法——字符串切分</h2><p>字符串对象的 <code>split</code> 方法只适用于简单的字符串分割。 有时，你需要更加灵活的字符串切割。</p>
+<p>比如，我们需要从下面字符串中提取武将的名字。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">names = <span class="string">&#x27;关羽; 张飞, 赵云,马超, 黄忠  李逵&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>我们发现这些名字之间， 有的是分号隔开，有的是逗号隔开，有的是空格隔开， 而且分割符号周围还有不定数量的空格</p>
+<p>这时，可以使用正则表达式里面的 split 方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">names = <span class="string">&#x27;关羽; 张飞, 赵云,   马超, 黄忠  李逵&#x27;</span></span><br><span class="line"></span><br><span class="line">namelist = re.split(<span class="string">r&#x27;[;,\s]\s*&#x27;</span>, names)</span><br><span class="line"><span class="built_in">print</span>(namelist)</span><br></pre></td></tr></table></figure>
+<p>正则表达式 <code>[;,\s]\s*</code> 指定了，分割符为 分号、逗号、空格 里面的任意一种均可，并且该符号周围可以有不定数量的空格。</p>
+<p><img src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/image-20220705143820079.png" alt="image-20220705143820079"></p>
+<h2 id="re-sub方法——字符串替换"><a href="#re-sub方法——字符串替换" class="headerlink" title="re.sub方法——字符串替换"></a><code>re.sub</code>方法——字符串替换</h2><p>字符串 对象的 <code>replace</code> 方法只适应于 简单的 替换。 有时，你需要更加灵活的字符串替换。</p>
+<p>比如，我们需要在下面这段文本中 所有的 链接中 找到所以 <code>/avxxxxxx/</code> 这种 以 <code>/av</code> 开头，后面接一串数字， 这种模式的字符串。</p>
+<p>然后，这些字符串全部 替换为 <code>/cn345677/</code> 。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">names = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">下面是这学期要学习的课程：</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;a href=&#x27;https://www.bilibili.com/video/av66771949/?p=1&#x27; target=&#x27;_blank&#x27;&gt;点击这里，边看视频讲解，边学习以下内容&lt;/a&gt;</span></span><br><span class="line"><span class="string">这节讲的是牛顿第2运动定律</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;a href=&#x27;https://www.bilibili.com/video/av46349552/?p=125&#x27; target=&#x27;_blank&#x27;&gt;点击这里，边看视频讲解，边学习以下内容&lt;/a&gt;</span></span><br><span class="line"><span class="string">这节讲的是毕达哥拉斯公式</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;a href=&#x27;https://www.bilibili.com/video/av90571967/?p=33&#x27; target=&#x27;_blank&#x27;&gt;点击这里，边看视频讲解，边学习以下内容&lt;/a&gt;</span></span><br><span class="line"><span class="string">这节讲的是切割磁力线</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>被替换的内容不是固定的，所以没法用 字符串的replace方法。这时，可以使用正则表达式里面的 sub 方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">names = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">下面是这学期要学习的课程：</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;a href=&#x27;https://www.bilibili.com/video/av66771949/?p=1&#x27; target=&#x27;_blank&#x27;&gt;点击这里，边看视频讲解，边学习以下内容&lt;/a&gt;</span></span><br><span class="line"><span class="string">这节讲的是牛顿第2运动定律</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;a href=&#x27;https://www.bilibili.com/video/av46349552/?p=125&#x27; target=&#x27;_blank&#x27;&gt;点击这里，边看视频讲解，边学习以下内容&lt;/a&gt;</span></span><br><span class="line"><span class="string">这节讲的是毕达哥拉斯公式</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;a href=&#x27;https://www.bilibili.com/video/av90571967/?p=33&#x27; target=&#x27;_blank&#x27;&gt;点击这里，边看视频讲解，边学习以下内容&lt;/a&gt;</span></span><br><span class="line"><span class="string">这节讲的是切割磁力线</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">newStr = re.sub(<span class="string">r&#x27;/av\d+?/&#x27;</span>, <span class="string">&#x27;/cn345677/&#x27;</span> , names)</span><br><span class="line"><span class="built_in">print</span>(newStr)</span><br></pre></td></tr></table></figure>
+<p>sub 方法也是替换 字符串， 但是被替换的内容 用 正则表达式来表示 符合特征的所有字符串。</p>
+<p>第一个参数 <code>/av\d+?/</code> 这个正则表达式，表示以 <code>/av</code> 开头，后面是一串数字，再以 <code>/</code> 结尾的 这种特征的字符串 ，是需要被替换的内容。</p>
+<p>第二个参数，这里 是 <code>&#39;/cn345677/&#39;</code> 这个字符串，表示要替换上的内容。</p>
+<p>第三个参数是 源字符串。</p>
+<h2 id="re-sub方法——指定替换函数"><a href="#re-sub方法——指定替换函数" class="headerlink" title="re.sub方法——指定替换函数"></a><code>re.sub</code>方法——指定替换函数</h2><p>刚才的例子中，我们用来替换的是一个固定的字符串 <code>/cn345677/</code>。如果，我们要求，替换后的内容 的是原来的数字+6， 比如 <code>/av66771949/</code> 替换为 <code>/av66771955/</code> 。怎么办？这种更加复杂的替换，我们可以把 sub的第2个参数 <code>指定为一个函数</code> ，该函数的返回值，就是用来替换的字符串。如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">names = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">下面是这学期要学习的课程：</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;a href=&#x27;https://www.bilibili.com/video/av66771949/?p=1&#x27; target=&#x27;_blank&#x27;&gt;点击这里，边看视频讲解，边学习以下内容&lt;/a&gt;</span></span><br><span class="line"><span class="string">这节讲的是牛顿第2运动定律</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;a href=&#x27;https://www.bilibili.com/video/av46349552/?p=125&#x27; target=&#x27;_blank&#x27;&gt;点击这里，边看视频讲解，边学习以下内容&lt;/a&gt;</span></span><br><span class="line"><span class="string">这节讲的是毕达哥拉斯公式</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;a href=&#x27;https://www.bilibili.com/video/av90571967/?p=33&#x27; target=&#x27;_blank&#x27;&gt;点击这里，边看视频讲解，边学习以下内容&lt;/a&gt;</span></span><br><span class="line"><span class="string">这节讲的是切割磁力线</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 替换函数，参数是Match对象</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">subFunc</span>(<span class="params"><span class="keyword">match</span></span>):</span><br><span class="line">    <span class="comment"># Match对象 的 group(0) 返回的是整个匹配上的字符串， </span></span><br><span class="line">    src = <span class="keyword">match</span>.group(<span class="number">0</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Match对象 的 group(1) 返回的是第一个group分组的内容</span></span><br><span class="line">    number = <span class="built_in">int</span>(<span class="keyword">match</span>.group(<span class="number">1</span>)) + <span class="number">6</span></span><br><span class="line">    dest = <span class="string">f&#x27;/av<span class="subst">&#123;number&#125;</span>/&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;src&#125;</span> 替换为 <span class="subst">&#123;dest&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 返回值就是最终替换的字符串</span></span><br><span class="line">    <span class="keyword">return</span> dest</span><br><span class="line"></span><br><span class="line">newStr = re.sub(<span class="string">r&#x27;/av(\d+?)/&#x27;</span>, subFunc , names)</span><br><span class="line"><span class="built_in">print</span>(newStr)</span><br></pre></td></tr></table></figure>
+<p>其中的<code>match</code>对象由Python自动创建，每一个匹配都会创建一个match对象</p>
+<p>获取组内字符串，如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">match</span>.group(<span class="number">0</span>) <span class="comment"># 获取整个匹配字符串</span></span><br><span class="line"><span class="keyword">match</span>.group(<span class="number">1</span>) <span class="comment"># 获取第1个组内字符串</span></span><br><span class="line"><span class="keyword">match</span>.group(<span class="number">2</span>) <span class="comment"># 获取第2个组内字符串</span></span><br></pre></td></tr></table></figure>
+<p>Python 3.6 以后的版本 ，写法也可以更加简洁，直接像列表一样使用下标，如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">match</span>[<span class="number">0</span>]</span><br><span class="line"><span class="keyword">match</span>[<span class="number">1</span>]</span><br><span class="line"><span class="keyword">match</span>[<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<p>上面这个例子中：</p>
+<p>正则表达式 <code>re.sub</code> 函数执行时， 每发现一个匹配的子串就会：</p>
+<ul>
+<li>实例化一个 match对象。这个match 对象包含了这次匹配的信息， 比如：整个字符串是什么，匹配部分字符串是什么，里面的各个group分组 字符串是什么</li>
+<li>调用执行 sub函数的第2个参数对象，也就是调用回调函数<code>subFunc</code>，并且把刚才产生的 match 对象作为参数传递给 <code>subFunc</code></li>
+</ul>
+<h2 id="Python-re模块"><a href="#Python-re模块" class="headerlink" title="Python re模块"></a>Python re模块</h2><ul>
+<li><p>导入模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>findall</code></p>
+<p>findall返回一个列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lst = re.findall(<span class="string">r&quot;\d+&quot;</span>, <span class="string">&quot;移动客服10086，电信客服10000&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(lst, <span class="built_in">type</span>(lst))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回一个列表</span></span><br><span class="line">[<span class="string">&#x27;10086&#x27;</span>, <span class="string">&#x27;10000&#x27;</span>] &lt;<span class="keyword">class</span> <span class="string">&#x27;list&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>finditer</code></p>
+<p>finditer返回一个迭代器，从迭代器中拿数据需要用<code>.group()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">itr = re.finditer(<span class="string">r&quot;\d+&quot;</span>, <span class="string">&quot;移动客服10086，电信客服10000&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(itr, <span class="built_in">type</span>(itr))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回一个迭代器</span></span><br><span class="line">&lt;callable_iterator <span class="built_in">object</span> at <span class="number">0x000001C373DF2B20</span>&gt; &lt;<span class="keyword">class</span> <span class="string">&#x27;callable_iterator&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">iter</span>:</span><br><span class="line">    <span class="built_in">print</span>(i.group())</span><br><span class="line"><span class="comment"># 输出 </span></span><br><span class="line"><span class="number">10086</span></span><br><span class="line"><span class="number">10000</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>search</code></p>
+<p>search返回的结果是match对象，拿数据需要<code>.group()</code></p>
+<p>search全文匹配，并且只返回找到的第一个结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sch = re.search(<span class="string">r&quot;\d+&quot;</span>, <span class="string">&quot;移动客服10086，电信客服10000&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(sch.group())</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10086</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>match</code></p>
+<p>match是从头开始匹配的，默认在正则前加了一个<code>^</code>，不是常用方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mch = re.<span class="keyword">match</span>(<span class="string">r&quot;\d+&quot;</span>, <span class="string">&quot;移动客服10086，电信客服10000&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(mch.group())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出会报错，因为mch并没有匹配到</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>预加载正则表达式</p>
+<p>预加载正则表达式可以稍稍提高一点程序运行的效率，并且可以多次使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">obj = re.<span class="built_in">compile</span>(<span class="string">r&quot;\d+&quot;</span>)</span><br><span class="line"></span><br><span class="line">lst = obj.findall(<span class="string">r&quot;\d+&quot;</span>, <span class="string">&quot;移动客服10086，电信客服10000&quot;</span>)</span><br><span class="line">itr = obj.finditer(<span class="string">r&quot;\d+&quot;</span>, <span class="string">&quot;移动客服10086，电信客服10000&quot;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>re.S</code>让<code>.</code>能匹配换行符</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj = re.<span class="built_in">compile</span>(<span class="string">r&quot;xxx&quot;</span>, re.S)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用组</p>
+<p>使用<code>?P&lt;group_name&gt;</code>可以给组起名</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">s = <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">移动客服：10086；</span></span><br><span class="line"><span class="string">电信客服：10000；</span></span><br><span class="line"><span class="string">联通客服：10010。</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">obj = re.<span class="built_in">compile</span>(<span class="string">r&quot;^(?P&lt;Name&gt;.*客服).(?P&lt;Number&gt;\d&#123;5&#125;).$&quot;</span>,re.M)</span><br><span class="line"></span><br><span class="line">itr = obj.finditer(s)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> itr:</span><br><span class="line">    <span class="built_in">print</span>(i.group(<span class="string">&quot;Name&quot;</span>))</span><br><span class="line">    <span class="built_in">print</span>(i.group(<span class="string">&quot;Number&quot;</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输出</span></span><br><span class="line">移动客服</span><br><span class="line"><span class="number">10086</span></span><br><span class="line">电信客服</span><br><span class="line"><span class="number">10000</span></span><br><span class="line">联通客服</span><br><span class="line"><span class="number">10010</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="单行匹配和多行匹配"><a href="#单行匹配和多行匹配" class="headerlink" title="单行匹配和多行匹配"></a>单行匹配和多行匹配</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">re.<span class="built_in">compile</span>(<span class="string">r&quot;&quot;</span>, &lt;参数&gt;)</span><br><span class="line">re.S</span><br><span class="line"><span class="comment"># 表示单行模式</span></span><br><span class="line"><span class="comment"># 单行模式下无视换行符，即将整个字符串转换成一行</span></span><br><span class="line"><span class="comment"># 此时元字符点.可以匹配换行符</span></span><br><span class="line"><span class="comment"># 字符串只有一个开头^和一个结尾$</span></span><br><span class="line">re.M</span><br><span class="line"><span class="comment"># 表示多行模式</span></span><br><span class="line"><span class="comment"># 多行模式下，每一行都有一个开头^和一个结尾$</span></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://onexiaophai.gitee.io">张文翔</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://onexiaophai.gitee.io/2022/07/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">https://onexiaophai.gitee.io/2022/07/05/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://onexiaophai.gitee.io" target="_blank">小P孩的脑洞</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a></div><div class="post_share"><div class="social-share" data-image="/white" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/07/07/python%E7%88%AC%E8%99%AB/"><img class="prev-cover" src="/white" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python爬虫</div></div></a></div><div class="next-post pull-right"><a href="/2022/06/19/%E7%BA%A2%E7%B1%B3Note11TPro%E5%88%B7%E6%9C%BA/"><img class="next-cover" src="/white" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">红米Note11TPro刷机</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/07/07/python%E7%88%AC%E8%99%AB/" title="Python爬虫"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-07</div><div class="title">Python爬虫</div></div></a></div><div><a href="/2022/04/10/Conda%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" title="Conda使用教程"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-10</div><div class="title">Conda使用教程</div></div></a></div><div><a href="/2022/04/15/python/" title="Python3笔记"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-15</div><div class="title">Python3笔记</div></div></a></div><div><a href="/2022/04/20/numpy/" title="numpy笔记"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-20</div><div class="title">numpy笔记</div></div></a></div><div><a href="/2022/04/12/tensorflow/" title="Tensorflow2.0使用教程"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-12</div><div class="title">Tensorflow2.0使用教程</div></div></a></div><div><a href="/2022/04/05/Vscode&python%E9%85%8D%E7%BD%AE/" title="Vscode+python环境配置"><img class="cover" src="/white" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-05</div><div class="title">Vscode+python环境配置</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E8%A7%88"><span class="toc-number">1.1.</span> <span class="toc-text">总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94%E5%8C%B9%E9%85%8D%E6%89%80%E6%9C%89%E5%AD%97%E7%AC%A6"><span class="toc-number">1.2.</span> <span class="toc-text">.——匹配所有字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94%E9%87%8D%E5%A4%8D%E5%8C%B9%E9%85%8D%E4%BB%BB%E6%84%8F%E6%AC%A1"><span class="toc-number">1.3.</span> <span class="toc-text">*——重复匹配任意次</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94%E9%87%8D%E5%A4%8D%E5%8C%B9%E9%85%8D%E5%A4%9A%E6%AC%A1"><span class="toc-number">1.4.</span> <span class="toc-text">+——重复匹配多次</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94%E5%8C%B9%E9%85%8D%E6%8C%87%E5%AE%9A%E6%AC%A1%E6%95%B0"><span class="toc-number">1.5.</span> <span class="toc-text">{}——匹配指定次数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%92%8C-%E2%80%94%E2%80%94%E8%B4%AA%E5%A9%AA%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9D%9E%E8%B4%AA%E5%A9%AA%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.6.</span> <span class="toc-text">*和*?——贪婪模式和非贪婪模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94%E6%8C%87%E5%AE%9A%E5%AD%97%E7%AC%A6%E4%B8%BA%E5%8F%AF%E9%80%89%E5%AD%97%E7%AC%A6"><span class="toc-number">1.7.</span> <span class="toc-text">?——指定字符为可选字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94%E6%88%96%E8%80%85%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.8.</span> <span class="toc-text">|——或者条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94%E5%AF%B9%E5%85%83%E5%AD%97%E7%AC%A6%E7%9A%84%E8%BD%AC%E4%B9%89"><span class="toc-number">1.9.</span> <span class="toc-text">\——对元字符的转义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94%E5%8C%B9%E9%85%8D%E6%9F%90%E7%A7%8D%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AD%97%E7%AC%A6"><span class="toc-number">1.10.</span> <span class="toc-text">\——匹配某种类型的字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94%E5%8C%B9%E9%85%8D%E5%87%A0%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B9%8B%E4%B8%80"><span class="toc-number">1.11.</span> <span class="toc-text">[]——匹配几个字符串之一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94%E5%8C%B9%E9%85%8D%E6%96%87%E6%9C%AC%E7%9A%84%E8%B5%B7%E5%A7%8B%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.12.</span> <span class="toc-text">^——匹配文本的起始位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94%E5%8C%B9%E9%85%8D%E6%96%87%E6%9C%AC%E7%9A%84%E7%BB%93%E5%B0%BE%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.13.</span> <span class="toc-text">$——匹配文本的结尾位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#b-B%E2%80%94%E2%80%94%E5%8C%B9%E9%85%8D%E8%BE%B9%E7%95%8C"><span class="toc-number">1.14.</span> <span class="toc-text">\b\B——匹配边界</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E2%80%94%E2%80%94%E5%8C%B9%E9%85%8Dman"><span class="toc-number">1.14.1.</span> <span class="toc-text">实例——匹配man</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94%E7%BB%84%E9%80%89%E6%8B%A9"><span class="toc-number">1.15.</span> <span class="toc-text">()——组选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94%E9%9D%9E%E6%8D%95%E8%8E%B7%E7%BB%84"><span class="toc-number">1.16.</span> <span class="toc-text">(?:)——非捕获组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#n%E2%80%94%E2%80%94%E5%88%86%E7%BB%84%E7%9A%84%E5%9B%9E%E6%BA%AF%E5%BC%95%E7%94%A8"><span class="toc-number">1.17.</span> <span class="toc-text">\n——分组的回溯引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94%E6%AD%A3%E5%90%91%E5%85%88%E8%A1%8C%E6%96%AD%E8%A8%80"><span class="toc-number">1.18.</span> <span class="toc-text">(?&#x3D;)——正向先行断言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%90%91%E5%85%88%E8%A1%8C%E6%96%AD%E8%A8%80%E4%B9%8B%E5%AF%86%E7%A0%81%E5%BC%BA%E5%BA%A6%E9%AA%8C%E8%AF%81"><span class="toc-number">1.19.</span> <span class="toc-text">正向先行断言之密码强度验证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#b"><span class="toc-number">1.19.1.</span> <span class="toc-text">(?&#x3D;.*?b)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b-1"><span class="toc-number">1.19.2.</span> <span class="toc-text">(?&#x3D;.*b)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b-2"><span class="toc-number">1.19.3.</span> <span class="toc-text">(?&#x3D;.+b)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8Dnull"><span class="toc-number">1.19.4.</span> <span class="toc-text">匹配null</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%BC%BA%E5%BA%A6%E9%AA%8C%E8%AF%81"><span class="toc-number">1.19.5.</span> <span class="toc-text">密码强度验证</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%94%E2%80%94%E5%8F%8D%E5%90%91%E5%85%88%E8%A1%8C%E6%96%AD%E8%A8%80"><span class="toc-number">1.20.</span> <span class="toc-text">(?!)——反向先行断言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lt-%E2%80%94%E2%80%94%E6%AD%A3%E5%90%91%E5%90%8E%E8%A1%8C%E6%96%AD%E8%A8%80"><span class="toc-number">1.21.</span> <span class="toc-text">(?&lt;&#x3D;)——正向后行断言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lt-%E2%80%94%E2%80%94%E5%8F%8D%E5%90%91%E5%90%8E%E8%A1%8C%E6%96%AD%E8%A8%80"><span class="toc-number">1.22.</span> <span class="toc-text">(?&lt;!)——反向后行断言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E2%80%94%E2%80%94%E5%8C%B9%E9%85%8D%E5%8D%95dollar%E7%AC%A6%E5%8F%B7"><span class="toc-number">1.22.1.</span> <span class="toc-text">实例——匹配单dollar符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E2%80%94%E2%80%94%E5%8C%B9%E9%85%8D%E6%89%80%E6%9C%89%E7%9A%84%E5%B0%8F%E6%95%B0"><span class="toc-number">1.22.2.</span> <span class="toc-text">实例——匹配所有的小数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#re-split%E6%96%B9%E6%B3%95%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%87%E5%88%86"><span class="toc-number">1.23.</span> <span class="toc-text">re.split方法——字符串切分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#re-sub%E6%96%B9%E6%B3%95%E2%80%94%E2%80%94%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9B%BF%E6%8D%A2"><span class="toc-number">1.24.</span> <span class="toc-text">re.sub方法——字符串替换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#re-sub%E6%96%B9%E6%B3%95%E2%80%94%E2%80%94%E6%8C%87%E5%AE%9A%E6%9B%BF%E6%8D%A2%E5%87%BD%E6%95%B0"><span class="toc-number">1.25.</span> <span class="toc-text">re.sub方法——指定替换函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-re%E6%A8%A1%E5%9D%97"><span class="toc-number">1.26.</span> <span class="toc-text">Python re模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C%E5%8C%B9%E9%85%8D%E5%92%8C%E5%A4%9A%E8%A1%8C%E5%8C%B9%E9%85%8D"><span class="toc-number">1.27.</span> <span class="toc-text">单行匹配和多行匹配</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 张文翔</div><div class="footer_custom_text">Hi, welcome to my <a href="https://onexiaophai.gitee.io/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
