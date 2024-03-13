@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2022-11-20 17:40:45'
+  postUpdate: '2024-03-13 18:57:49'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -137,235 +137,146 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">61</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小P孩的脑洞</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">小P孩的脑洞</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/18/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="前馈神经网络和反向传播算法的一个简单实例">前馈神经网络和反向传播算法的一个简单实例</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-17T16:00:00.000Z" title="发表于 2022-04-18 00:00:00">2022-04-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><div class="content">问题描述Github地址
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">61</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">63</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background: linear-gradient(20deg, #0062be, #925696, #cc426e, #fb0347)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小P孩的脑洞</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">小P孩的脑洞</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/06/08/%E6%95%B0%E5%AD%A6/%E5%82%A8%E5%A4%87%E6%B1%A0%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95%E7%9A%84%E5%8F%82%E6%95%B0%E9%80%89%E6%8B%A9%E5%8F%8A%E5%9C%A8%E7%9F%AD%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E9%A2%84%E6%B5%8B%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" title="回声状态网络">回声状态网络</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-06-07T16:00:00.000Z" title="发表于 2022-06-08 00:00:00">2022-06-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="content">基本模型
+输入层和循环层
+对于一个输入信号u(n)∈RNu\boldsymbol{u}(n)\in\mathbb{R}^{N_u}u(n)∈RNu​,   给定期望的目标输出信号ytarget(n)∈RNy\boldsymbol{y}^{target}(n)\in\mathbb{R}^{N_y}ytarget(n)∈RNy​,   其中n=1,2,⋯ ,Tn=1,2,\cdots,Tn=1,2,⋯,T 是离散的时间点,   TTT是训练集中数据点的个数.   我们的目标是训练一个模型,   使得模型的输出y(n)∈RNy\boldsymbol{y}(n)\in\mathbb{R}^{N_y}y(n)∈RNy​尽可能地匹配期望的目标输出信号ytarget(n)∈RNy\boldsymbol{y}^{target}(n)\in\mathbb{R}^{N_y}ytarget(n)∈RNy​,   即最小化y\boldsymbol{y}y和ytarget\boldsymbol{y}^{target}ytarget之间的误差测度E(y,ytarget)E(\boldsymbol{y},\bold ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/05/27/%E6%95%B0%E5%AD%A6/%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC/" title="矩阵求导">矩阵求导</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-26T16:00:00.000Z" title="发表于 2022-05-27 00:00:00">2022-05-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a></span></div><div class="content">设A∈Rm×n,x∈Rn×1A\in\mathbb{R}^{m\times n},x\in \mathbb{R}^{n\times 1}A∈Rm×n,x∈Rn×1
+矩阵求导的本质是元素对元素一对一求导
+
+分子布局
+
+∂[Ax]m×1∂[xT]1×n=[∂Axx1∂Axx2⋯∂Axxn]=[∂A1xx1∂A1xx2⋯∂A1xxn∂A2xx1∂A2xx2⋯∂A2xxn⋮⋮⋱⋮∂Amxx1∂Amxx2⋯∂Amxxn]m×n=[a11a12⋯a1na21a22⋯a2n⋮⋮⋱⋮am1am2⋯amn]m×n=A\begin{split}
+\frac{\partial [Ax]_{m\times 1}}{\partial [x^T]_{1\times n}}
+&amp;=
+\begin{bmatrix}
+\frac{\partial Ax}{x_{1}} &amp; \frac{\partial Ax}{x_{2}} &amp; \cdots &amp; \frac{\partial Ax}{x_{n}} \\
+\end{bmatrix}\\
+&amp;=
+\begin{bmatrix}
+\frac ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/05/19/%E6%95%B0%E5%AD%A6/%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%BB%8B%E7%BB%8D/" title="循环神经网络RNN">循环神经网络RNN</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-18T16:00:00.000Z" title="发表于 2022-05-19 00:00:00">2022-05-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="content">循环神经网络Recurrent Neural Networks
+
+RNN的数学描述
+参考零基础入门深度学习(5) - 循环神经网络
+输入层
+网络的输入是一串m维向量序列  x1,x2,⋯ ,xt,⋯\boldsymbol{x^1},\boldsymbol{x^2},\cdots,\boldsymbol{x^t},\cdotsx1,x2,⋯,xt,⋯
+x1=[x11x21⋮xm1],x2=[x12x22⋮xm2],⋯ ,xt=[x1tx2t⋮xmt],⋯\boldsymbol{x^1} =
+\begin{bmatrix}
+x^1_1\\x^1_2\\\vdots\\x^1_m
+\end{bmatrix},
+\boldsymbol{x^2} =
+\begin{bmatrix}
+x^2_1\\x^2_2\\\vdots\\x^2_m
+\end{bmatrix},
+\cdots,
+\boldsymbol{x^t} =
+\begin{bmatrix}
+x^t_1\\x^t_2\\\vdots\\x^t_m
+\end{bmatrix},
+\cdots
+x1=​x11​x21​⋮xm1​​​,x2= ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/05/15/%E5%AD%A6%E6%9C%AF/%E5%AE%9E%E6%88%98mnist%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E8%AF%86%E5%88%AB/" title="NumPy神经网络实战——Mnist手写数字数据集的识别">NumPy神经网络实战——Mnist手写数字数据集的识别</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-14T16:00:00.000Z" title="发表于 2022-05-15 00:00:00">2022-05-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a></span></div><div class="content">MNIST手写数字数据集介绍
+参考：MNIST手写数据集的Python读取
+
+
+MNIST数据集的train-images.idex3-ubyte是60000张28×2828\times2828×28像素的图片，我们将其转换成784×1784\times1784×1的向量
+
+
+MNIST数据集的train-labels.idex1-ubyte是60000个[0−9][0-9][0−9]的整数，我们将其转换成10×110\times110×1的one-hot向量
+
+
+网络结构设计
+采用两层前馈网络结构,  输入层设置784个节点,  隐藏层设置30个节点,   输出层设置10个节点
+
+正向传播
+输入层
+oiI=xiI,i=1,2,⋯ ,784o^I_i= x_i^I,\qquad i=1,2,\cdots,784
+oiI​=xiI​,i=1,2,⋯,784
+隐藏层
+xjJ=∑i=1784wjiJoiI+bjJojJ=σ(xjJ),j=1,2,⋯ ,30\begin{split}
+x_j^J &amp;= \sum_{i=1}^{784} w_{ji}^Jo_i^I + b_j^J\\
+o ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/05/10/%E5%AD%A6%E6%9C%AF/MNIST%E6%89%8B%E5%86%99%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84Python%E8%AF%BB%E5%8F%96/" title="MNIST手写数据集的Python读取">MNIST手写数据集的Python读取</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-09T16:00:00.000Z" title="发表于 2022-05-10 00:00:00">2022-05-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="content">MNIST手写数字数据集介绍
+MNIST（Mixed National Institute of Standards and Technology）
+获取 MNIST 数据集
+数据库官网 THE MNIST DATABASEof handwritten digits
+
+在官网上下载如图所示的4个文件并解压，得到下面4个文件
+
+train-images.idx3-ubyte, Size: 44.8MB: ==训练集图片, 60000个样本, 每个样本是25*25像素的图片==
+train-labels.idx1-ubyte, Size: 58.6KB: ==训练集标签, 60000个标签, 每个标签是0-9的数字==
+t10k-images.idx3-ubyte, Size: 7.47MB: ==测试集图片, 10000个样本, 每个样本是25*25像素的图片==
+t10k-labels.idx1-ubyte, Size: 9.77KB: ==测试集标签, 10000个标签, 每个标签是0-9的数字==
+
+
+注意, 从官网下载的源文件是4个.gz格式的压缩包, 需要分别解压才能得到上面的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/05/08/%E6%95%B0%E5%AD%A6/%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E9%93%BE%E5%92%8C%E9%A6%96%E8%BE%BE%E6%A6%82%E7%8E%87/" title="关于一个随机游走的马尔科夫链">关于一个随机游走的马尔科夫链</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-07T16:00:00.000Z" title="发表于 2022-05-08 00:00:00">2022-05-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></span></div><div class="content">题目
+定义一个非对称的随机游走:   令Y1,Y2,⋯ ,Yi,⋯Y_1,Y_2,\cdots,Y_i,\cdotsY1​,Y2​,⋯,Yi​,⋯独立同分布,   其中Pr{Yi=1}=23,Pr{Yi=−1}=13Pr\{Y_i = 1\} = \frac{2}{3},Pr\{Y_i = -1\} = \frac{1}{3}Pr{Yi​=1}=32​,Pr{Yi​=−1}=31​,   且定义Z0=0,Zn=∑i=1nYiZ_0=0,Z_n = \sum_{i=1}^nY_iZ0​=0,Zn​=∑i=1n​Yi​ 的随机过程{Zn,n≥0}\{Z_n,n\geq0\}{Zn​,n≥0}.
+求这个过程从状态0到状态1的期望首达时间μ01\mu_{01}μ01​
+μ01=E{T01∣Z0=0}=∑i=1∞nf01(n)\mu_{01} = E\{T_{01}|Z_0 = 0\} = \sum_{i=1}^\infty nf_{01}^{(n)}
+μ01​=E{T01​∣Z0​=0}=i=1∑∞​nf01(n)​
+其中
+
+
+Tij=min{n∣Z0=i,Zn=j,n≥1}T_{ij} =  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/05/05/%E5%AD%A6%E6%9C%AF/%E6%84%9F%E7%9F%A5%E6%9C%BA/" title="感知机及Python3实现">感知机及Python3实现</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-05-04T16:00:00.000Z" title="发表于 2022-05-05 00:00:00">2022-05-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="content">感知机模型
+数学描述
+y^=f(wTx+b)\hat{y} = f
+\left( 
+\boldsymbol{w}^T\boldsymbol{x}
++b
+\right)
+y^​=f(wTx+b)
+w=[w1w2⋯wn]∈Rn,x=[x1x2⋮xn]∈Rn,b∈R\boldsymbol{w} = \begin{bmatrix}w_1 \\ w_2 \\ \cdots \\ w_n\end{bmatrix}\in\mathbb{R}^n,\qquad
+\boldsymbol{x} = \begin{bmatrix}x_1 \\ x_2 \\ \vdots \\ x_n\end{bmatrix}\in\mathbb{R}^n,\qquad
+b \in\mathbb{R}
+w=​w1​w2​⋯wn​​​∈Rn,x=​x1​x2​⋮xn​​​∈Rn,b∈R
+f(z)={1z≥00otherwisef(z) = \begin{cases}  1 &amp; z \geq 0 \\ 0 &amp; otherwise \end{cases}
+f(z)={10​z≥0otherwise​
+训练数据集
+T ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/28/%E6%95%B0%E5%AD%A6/%E8%8C%83%E6%95%B0/" title="向量和矩阵的范数">向量和矩阵的范数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-27T16:00:00.000Z" title="发表于 2022-04-28 00:00:00">2022-04-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></span></div><div class="content">向量范数
+对于向量
+x=[x1,x2,⋯ ,xn]x = [x_1,x_2,\cdots,x_n]
+x=[x1​,x2​,⋯,xn​]
+p-范数
+表示向量空间中的p阶闵氏距离
+∥x∥p=(∑i=1n∣xi∣p)1p\|x\|_p=(\sum_{i=1}^n|x_i|^p)^{\frac{1}{p}}
+∥x∥p​=(i=1∑n​∣xi​∣p)p1​
+1-范数
+当p取1时,  表示曼哈顿距离
+∥x∥1=∑i=1n∣xi∣\|x\|_1 = \sum_{i=1}^n|x_i|
+∥x∥1​=i=1∑n​∣xi​∣
+2-范数(欧氏范数)
+当p取2时,  表示欧式距离
+∥x∥2=(∑i=1nxi2)12\|x\|_2 = (\sum_{i=1}^n x_i^2)^{\frac{1}{2}}
+∥x∥2​=(i=1∑n​xi2​)21​
+∞\infty∞-范数
+当p→+∞p\rightarrow +\inftyp→+∞时
+∥x∥∞=max⁡∣xi∣\|x\|_{\infty}  = \max|x_i|
+∥x∥∞​=max∣xi​∣
+lim⁡p→+∞(∣x1∣p+∣x2∣p+⋯+∣xn∣p)1p=eli ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/20/%E5%AD%A6%E6%9C%AF/numpy/" title="numpy笔记">numpy笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-19T16:00:00.000Z" title="发表于 2022-04-20 00:00:00">2022-04-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></span></div><div class="content">NumPy的安装
+12pip install numpyconda list numpy
+12import numpy as npprint(np.__version__)
+NumPy属性
+123456Array = np.array([[1,2,3],                  [2,3,4]])print(Array)print(&#x27;number of dim: &#x27;, Array.ndim)print(&#x27;shape: &#x27;, Array.shape)print(&#x27;size: &#x27;, Array.size)
+123456# 输出[[1 2 3] [2 3 4]]number of dim:  2shape:  (2, 3)size:  6
+NumPy创建array
+NumPy中的数据类型
+
+NumPy中的常见数据类型有
+
+np.int_、np.int8、np.int16、np.int32、np.int64
+np.float16、np.float32、np.float64
+
+如果不指定dtype,  NumPy默认类型为fl ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/18/%E5%AD%A6%E6%9C%AF/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="前馈神经网络和反向传播算法的一个简单实例">前馈神经网络和反向传播算法的一个简单实例</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-17T16:00:00.000Z" title="发表于 2022-04-18 00:00:00">2022-04-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></span></div><div class="content">问题描述
+Github地址
 12345678910110.8 0.8 00.6 0.6 00.4 0.4 0.........0.2 0.2 0.........1.0 0.8 11.0 0.6 10.12 0.23 1.........0.89 0.99 1
-这是一个数据集,  它的第一项和第二项是输入$x_1,x_2$,  第三项是输出$y$,  构建一个前馈神经网路模型并采用反向传播算法训练它的参数.  
+这是一个数据集,  它的第一项和第二项是输入x1,x2x_1,x_2x1​,x2​,  第三项是输出yyy,  构建一个前馈神经网路模型并采用反向传播算法训练它的参数.
 前馈神经网路的数学描述
+
 激活函数
-f(x) = \frac{1}{1+e^{-x}}
-\begin{split}
-f'(x) &= \frac{e^{-x}}{(1+e^{-x})^2} \\
-& = (\frac{1}{1+e^{-x}})(1-\frac{1}{1+e^{-x}}) \\
-& = f(x)(1-f(x))
-\end{split}输入层输入层输入有$x_1$和$x_2$
-中间层
-中间层输入$q_1,q_2,q_3$
-
-
-\begin{split}
-q_1 = x_1\omega_{11}+x_2\omega_{12}-\beta_1 \\
-q_2 = x_1\o ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/15/python/" title="Python3笔记">Python3笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-14T16:00:00.000Z" title="发表于 2022-04-15 00:00:00">2022-04-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><div class="content">Python3基础语法Python标识符
-第一个字符必须是字母表中字母或下划线 _ 。
-标识符的其他的部分由字母、数字和下划线组成。
-标识符对大小写敏感。
-
-
-
-
-
-标识符
-意义
-
-
-
-
-单下划线开头 _foo
-不能直接访问的类属性，需通过类提供的接口进行访问，不能用 from xxx import * 而导入
-
-
-双下划线开头__foo
-类的私有成员
-
-
-双下划线开头和结尾__foo__
-Python 里特殊方法专用的标识，如 __init__() 代表类的构造函数
-
-
-
-
-Python保留字保留字即关键字，我们不能把它们用作任何标识符名称。Python 的标准库提供了一个 keyword 模块，可以输出当前版本的所有关键字：
-123&gt;&gt;&gt; import keyword&gt;&gt;&gt; keyword.kwlist[&#x27;False&#x27;, &#x27;None&#x27;, &#x27;True&#x27;, &#x27;and&#x27;, &#x27;as&#x27;, &#x27;assert&#x27;, &#x27;break&#x2 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/15/%E5%BE%AE%E8%BD%AF%E8%BE%93%E5%85%A5%E6%B3%95%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9F%AD%E8%AF%AD/" title="微软输入法添加自定义短语">微软输入法添加自定义短语</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-14T16:00:00.000Z" title="发表于 2022-04-15 00:00:00">2022-04-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%86%99%E4%BD%9C/">写作</a></span></div><div class="content">
-
-
-
-
-
-
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/15/%E5%BF%AB%E9%80%9F%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2/" title="搭建博客需要的基础插件">搭建博客需要的基础插件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-14T16:00:00.000Z" title="发表于 2022-04-15 00:00:00">2022-04-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%86%99%E4%BD%9C/">写作</a></span></div><div class="content">
-gitee
-安装git
-安装nodejs
-
-
-安装hexo-cli插件
-
-1npm install hexo-cli -g
-1hexo --version
-1npm list hexo
-
-初始化博客
-
-1hexo init
-
-安装部署插件
-
-1npm install hexo-deployer-git
-1npm list hexo-deployer-git
-
-安装butterfly主题
-
-1git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
-1npm uninstall hexo-theme-landscape
-
-安装pug和stylus渲染器
-
-1npm install hexo-renderer-pug hexo-renderer-stylus --save
-1npm list hexo-renderer-pug hexo-renderer-stylus
-
-安装数学公式渲染器
-
-12npm uninstall hexo-renderer-marked  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/12/tensorflow/" title="Tensorflow2.0使用教程">Tensorflow2.0使用教程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-11T16:00:00.000Z" title="发表于 2022-04-12 00:00:00">2022-04-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><div class="content">课程简介课程链接: https://www.bilibili.com/video/BV1B7411L7Qt主讲老师: 北京大学软件与微电子学院曹健老师源代码: https://pan.baidu.com/s/19XC28Hz_TwnSQeuVifg1UQ 提取码：mocm
-0. 开篇——Tensorflow2.1.0 安装及测试Tensorflow2.1.0安装12345678910111213141516conda create --name TF2.1 python=3.7# 创建虚拟环境，指定python版本3.7conda activate TF2.1# 激活TF2.1环境conda install cudatoolkit=10.1# 安装英伟达的SDK10.1版本（如果你的电脑有英伟达的显卡，否则跳过）conda install cudnn=7.6# 安装英伟达深度学习软件包7.6版本（如果你的电脑有英伟达的显卡，否则跳过）pip install tensorflow==2.1# 安装tensorflow2.1版本python# 进入python&gt;&gt;&gt; im ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/10/Conda%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" title="Conda使用教程">Conda使用教程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-09T16:00:00.000Z" title="发表于 2022-04-10 00:00:00">2022-04-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><div class="content">下载安装miniconda清华源下载地址
-安装完成后执行conda --version，如果没有输出，添加环境变量
-123D:\Python\Miniconda3D:\Python\Miniconda3\Library\binD:\Python\Miniconda3\Scripts
-换源
-在cmd中执行命令conda config --set show_channel_urls yes
-
-执行上面命令后会在路径C:\Users\xiaophai下生成一个.condarc文件
-
-进入Anaconda 镜像使用帮助，复制框框中的代码，覆盖掉.condarc文件中的全部内容
-
-123456789101112131415channels:  - defaultsshow_channel_urls: truedefault_channels:  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r  - https://mi ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/06/%E7%9F%A9%E9%98%B5%E5%AF%B9%E8%A7%92%E5%8C%96/" title="矩阵对角化">矩阵对角化</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-05T16:00:00.000Z" title="发表于 2022-04-06 00:00:00">2022-04-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></span></div><div class="content">定义  $n$阶矩阵$A$和$B$是相似的, 如果存在$n$阶可逆矩阵$P$使得$P^{-1}AP = B$, 记作$A\sim B$
-定理1  $n$阶矩阵$A$相似于一个对角矩阵, 充分必要条件是$A$有$n$个线性无关的特征向量.
-证明:   
-$\Rightarrow:  $  设$A\sim \Lambda$, $\Lambda=diag{\lambda_1,\cdots,\lambda_n}$, 即存在$n$阶可逆矩阵$P = {p_1,\cdots,p_n}$, 使得$P^{-1}AP = \Lambda$. 得到$AP = P\Lambda$, 即$Ap_i = \lambda_i p_i, i=1,\cdots,n$, 所以$p_1,\cdots,p_n$是$A$的特征向量, 其对应的特征值分别是$\lambda_1,\cdots,\lambda_n$.并且由于$P$是可逆矩阵, 所以它的列向量空间是满秩的, $p_1,\cdots,p_n$是线性无关的.
-$\Leftarrow:$  反过来设$A$有$n$个线性无关的特征向量, $Ap_i = \lambda_i  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/06/%E5%AE%9E%E7%9F%A9%E9%98%B5%E7%9A%84%E5%85%B1%E8%BD%AD%E5%A4%8D%E7%89%B9%E5%BE%81%E5%80%BC/" title="实矩阵的共轭复特征值">实矩阵的共轭复特征值</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-05T16:00:00.000Z" title="发表于 2022-04-06 00:00:00">2022-04-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></span></div><div class="content">题目    设矩阵$A \in \mathbb{R}^{3\times3}$ 的特征值为$a+bi,a-bi,c$, 其中$a,b,c\in \mathbb{R},b\ne0,i$是虚数单位.
-​            证明: 存在实可逆矩阵$Q$使得
-
-Q^{-1}AQ= 
-\begin{pmatrix}
-c & 0 & 0 \\
-0 & a & b \\
-0 &-b & a 
-\end{pmatrix}​            证明: 
-​                    对于矩阵$A$的一对共轭复根$\lambda = a+bi,\bar{\lambda} = a-bi$, 存在一对共轭复特征向量满足
-
-A\eta = \lambda\eta,\qquad\Leftrightarrow\qquad A\bar{\eta} = \bar{\lambda}\bar{\eta}​                    对于$\left( \begin{smallmatrix}a &amp; b  \ -b &amp; a \end{smallmatrix}\right)$有一对共 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/04/05/Vscode&amp;python%E9%85%8D%E7%BD%AE/" title="Vscode+python环境配置">Vscode+python环境配置</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-04T16:00:00.000Z" title="发表于 2022-04-05 00:00:00">2022-04-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><div class="content"></div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/03/15/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/" title="常用软件的常用快捷键">常用软件的常用快捷键</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-03-14T16:00:00.000Z" title="发表于 2022-03-15 00:00:00">2022-03-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><div class="content">Chrome
-
-
-
-命令
-快捷键
-
-
-
-
-打开新的标签页
-Ctrl+T
-
-
-打开新的窗口
-Ctrl+N
-
-
-在隐身模式下打开新窗口
-Ctrl+Shift+N
-
-
-重新打开上次关闭的标签页
-Ctrl+Shift+T
-
-
-切换下一个标签页
-Ctrl+Tab
-
-
-切换上一个标签页
-Ctrl+Shift+Tab
-
-
-打开当前网页的源代码
-Ctrl+U
-
-
-打开开发人员工具
-Ctrl+Shift+J
-
-
-横向滚动
-Shift+鼠标滚轮
-
-
-页内查找
-Ctrl+F
-
-
-显示或隐藏书签栏
-Ctrl+Shift+B
-
-
-
-
-Typora
-
-
-
-命令
-快捷键
-
-
-
-
-缩进 / 取消缩进
-Ctrl+]/[
-
-
-查找 / 替换
-Ctrl+F/H
-
-
-
-
-NodePad++
-
-
-
-命令
-快捷键
-
-
-
-
-注释 / 取消注释
-Ctrl+K / Ctrl+Shift+KCtrl+Q / Ctrl+Q
-
-
-缩进 / 取消缩进
-Tab / Shift+Tab
-
-
-查找 / 替换
-Ctrl+F/H
-
-
-
-
-VsCode
-
-
-
-命令
-快捷键
-
-
-
-
-显示命令面板
-Ctrl+Shift+P / F1
-
-
-注释 / 取消注释
- ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/4/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#content-inner">6</a><a class="page-number" href="/page/7/#content-inner">7</a><a class="extend next" rel="next" href="/page/6/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">张文翔</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">61</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">64</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://www.zhihu.com/people/onexiaophai"><i class="fa-brands fa-zhihu"></i><span></span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/11/15/Gamma%E5%87%BD%E6%95%B0%E5%92%8CBeta%E5%87%BD%E6%95%B0/" title="Gamma函数和Beta函数">Gamma函数和Beta函数</a><time datetime="2022-11-14T16:00:00.000Z" title="发表于 2022-11-15 00:00:00">2022-11-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/11/14/%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1%E4%B8%8EEM%E7%AE%97%E6%B3%95/" title="最大似然估计与EM算法">最大似然估计与EM算法</a><time datetime="2022-11-13T16:00:00.000Z" title="发表于 2022-11-14 00:00:00">2022-11-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/11/13/%E7%89%B9%E5%BE%81%E5%87%BD%E6%95%B0&amp;%E9%AB%98%E9%98%B6%E7%9F%A9%E7%9A%84%E8%AE%A1%E7%AE%97/" title="特征函数&amp;高阶矩的计算">特征函数&amp;高阶矩的计算</a><time datetime="2022-11-12T16:00:00.000Z" title="发表于 2022-11-13 00:00:00">2022-11-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/11/12/git%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80/" title="无题">无题</a><time datetime="2022-11-12T10:31:07.292Z" title="发表于 2022-11-12 18:31:07">2022-11-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/11/12/git%E6%8C%87%E4%BB%A4%E9%80%9F%E6%9F%A5/" title="无题">无题</a><time datetime="2022-11-12T10:31:07.291Z" title="发表于 2022-11-12 18:31:07">2022-11-12</time></div></div></div></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">61</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2022-11-20T09:40:44.498Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">141.6k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-11-20T09:40:44.560Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 张文翔</div><div class="footer_custom_text">Hi, welcome to my <a href="https://onexiaophai.gitee.io/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+f(x)=11+e−xf(x) = \frac{1}{1+e^{-x}}
+f(x)=1+e−x1​
+f′(x)=e−x(1+e−x)2=(11+e−x)(1−11+e−x)=f(x)(1−f(x))\begin{split}
+f&#x27;(x) &amp;= \frac{e^{-x}}{(1+e^{-x})^2} \\
+&amp; = (\frac{1}{1+e^{-x}})(1-\frac{1}{1+e^{-x}}) \\
+&amp; = f(x)(1-f(x))
+\end{split}
+f′(x)​=(1+e−x)2e− ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/4/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#content-inner">6</a><a class="page-number" href="/page/7/#content-inner">7</a><a class="extend next" rel="next" href="/page/6/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">张文翔</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">61</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">63</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://www.zhihu.com/people/onexiaophai"><i class="fa-brands fa-zhihu"></i><span></span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/04/%E7%BC%96%E7%A8%8B/C++%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E5%87%BD%E6%95%B0/" title="C++常用数据结构和函数">C++常用数据结构和函数</a><time datetime="2024-03-03T16:00:00.000Z" title="发表于 2024-03-04 00:00:00">2024-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/02/%E7%BC%96%E7%A8%8B/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" title="汇编语言">汇编语言</a><time datetime="2024-03-01T16:00:00.000Z" title="发表于 2024-03-02 00:00:00">2024-03-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/02/26/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络">计算机网络</a><time datetime="2024-02-25T16:00:00.000Z" title="发表于 2024-02-26 00:00:00">2024-02-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/11/%E7%BC%96%E7%A8%8B/git%E6%8C%87%E4%BB%A4%E9%80%9F%E6%9F%A5/" title="Git常用指令">Git常用指令</a><time datetime="2024-01-10T16:00:00.000Z" title="发表于 2024-01-11 00:00:00">2024-01-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/12/14/COCO%20format/" title="COCO format">COCO format</a><time datetime="2023-12-13T16:00:00.000Z" title="发表于 2023-12-14 00:00:00">2023-12-14</time></div></div></div></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">61</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2024-03-13T10:57:47.314Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">265.8k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-03-13T10:57:47.506Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 张文翔</div><div class="footer_custom_text">Hi, welcome to my <a href="https://onexiaophai.gitee.io/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
   if (true) { 
     window.typed = new Typed("#subtitle", {
       strings: ["Whatever happens happens","Whatever will be will be"],
