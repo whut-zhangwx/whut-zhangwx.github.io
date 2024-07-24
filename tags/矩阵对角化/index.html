@@ -48,7 +48,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-07-24 19:12:59'
+  postUpdate: '2024-07-24 21:23:34'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -142,7 +142,7 @@
   if ($mermaidWrap.length) {
     window.runMermaid = () => {
       window.loadMermaid = true
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'default' : 'default'
 
       Array.from($mermaidWrap).forEach((item, index) => {
         const mermaidSrc = item.firstElementChild

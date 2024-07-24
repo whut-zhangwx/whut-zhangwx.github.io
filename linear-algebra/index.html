@@ -854,7 +854,7 @@ c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v4200 v585 h43z'/></svg></span></span
   if ($mermaidWrap.length) {
     window.runMermaid = () => {
       window.loadMermaid = true
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'default' : 'default'
 
       Array.from($mermaidWrap).forEach((item, index) => {
         const mermaidSrc = item.firstElementChild

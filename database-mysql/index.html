@@ -531,7 +531,7 @@ cmd 中输入 <code>mysql -u root -p</code>，提示输入密码则环境变量�
   if ($mermaidWrap.length) {
     window.runMermaid = () => {
       window.loadMermaid = true
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'default' : 'default'
 
       Array.from($mermaidWrap).forEach((item, index) => {
         const mermaidSrc = item.firstElementChild

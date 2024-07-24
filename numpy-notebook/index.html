@@ -288,7 +288,7 @@ a_2-a_1,&amp;a_3-a_2,&amp;a_4-a_3
   if ($mermaidWrap.length) {
     window.runMermaid = () => {
       window.loadMermaid = true
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'default' : 'default'
 
       Array.from($mermaidWrap).forEach((item, index) => {
         const mermaidSrc = item.firstElementChild

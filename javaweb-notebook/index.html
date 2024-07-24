@@ -1148,7 +1148,7 @@ HTML通过标签来标记要显示的网页中的各个部分。网页文件本�
   if ($mermaidWrap.length) {
     window.runMermaid = () => {
       window.loadMermaid = true
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'default' : 'default'
 
       Array.from($mermaidWrap).forEach((item, index) => {
         const mermaidSrc = item.firstElementChild
