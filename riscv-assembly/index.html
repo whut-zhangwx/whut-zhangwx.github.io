@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://whut-zhangwx.github.io/white">
 <meta property="article:published_time" content="2024-08-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-14T14:19:36.901Z">
+<meta property="article:modified_time" content="2024-08-20T02:46:33.713Z">
 <meta property="article:author" content="文羊羽">
 <meta property="article:tag" content="操作系统">
 <meta property="article:tag" content="RISCV">
@@ -55,7 +55,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2024-08-14 22:19:36'
+  postUpdate: '2024-08-20 10:46:33'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -144,7 +144,7 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">72</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">84</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">文羊羽</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">RISCV汇编指令</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-13T16:00:00.000Z" title="发表于 2024-08-14 00:00:00">2024-08-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-14T14:19:36.901Z" title="更新于 2024-08-14 22:19:36">2024-08-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="RISCV汇编指令"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h2 id="参考">参考</h2>
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">73</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">87</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">文羊羽</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">RISCV汇编指令</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-13T16:00:00.000Z" title="发表于 2024-08-14 00:00:00">2024-08-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-20T02:46:33.713Z" title="更新于 2024-08-20 10:46:33">2024-08-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">7.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>31分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="RISCV汇编指令"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h2 id="参考">参考</h2>
 <p>技术规范 <a target="_blank" rel="noopener" href="https://riscv.org/technical/specifications/">Specifications</a></p>
 <ul>
 <li>Volume 1, Unprivileged Specification version 20240411 (非特权指令规范)<br>
@@ -161,12 +161,32 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[label:] [operation] [comment]</span><br></pre></td></tr></table></figure>
 <p>其中方括号表示可选项 (支持空行).</p>
 <p><strong>label</strong>: GNU 汇编中, 任何以冒号结尾的标识符都被认为是一个标号. label 可以理解为给地址起了一个别名, 方便后面的代码通过 label 引用该地址.</p>
+<ul>
+<li>
+<p>文件标签在程序文件中是全局可见的, 所以定义不可重复. 文本标签通常被作为分支或跳转指令的目标地址, 如:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">loop:      # 定义一个loop标签</span><br><span class="line">    ...</span><br><span class="line">    j loop # 跳转到loop标签处</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>数字标签属于一种局部标签, 可重复定义, 通常用 0~9 之间的数字定义. 在被引用时, 数字标签通常需要带上字母 “f” 或 “b” 字母后缀, 表示 forward 向前搜索和 backward 向后搜索</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    j 1f # 向前寻找并跳转至第一个数字为 1 的标签处</span><br><span class="line">    ...</span><br><span class="line">1:       # 数字标签1</span><br><span class="line">    ...</span><br><span class="line">    j 1b # 向后寻找并跳转至第一个数字为 1 的标签处</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <p><strong>operation</strong>: operation 有以下几种类型</p>
 <ul>
-<li>instruction (指令): 直接对应二进制机器指令的&quot;真实&quot;指令</li>
-<li>pseudo-instruction (伪指令): 为了提高编写代码的效率, 通过伪指令来封装一条或者多条 instruction 来实现一些功能</li>
-<li>directive (指示/伪操作): 通过类似指令的形式 (以 “.” 开头), 通知汇编器如何控制代码的产生等, 不对应具体的指令, 是写给汇编器看的指令.</li>
-<li>macro (宏): 采用 .macro /.endm 自定义的宏</li>
+<li>
+<p>instruction (指令): 直接对应二进制机器指令的&quot;真实&quot;指令</p>
+</li>
+<li>
+<p>pseudo-instruction (伪指令): 为了提高编写代码的效率, 通过伪指令来封装一条或者多条 instruction 来实现一些功能</p>
+</li>
+<li>
+<p>directive (指示/伪操作): 通过类似指令的形式 (以 “.” 开头), 通知汇编器如何控制代码的产生等, 不对应具体的指令, 是写给汇编器看的指令.</p>
+</li>
+<li>
+<p>macro (宏): 采用 .macro /.endm 自定义的宏</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.macro LOAD_IMM reg, imm</span><br><span class="line">    li \reg, \imm</span><br><span class="line">.endm</span><br></pre></td></tr></table></figure>
+<p>使用宏相比于函数有自己独特的优势. 例如函数调用会导致在函数体内 ra (return address) 寄存器, sp (stack point) 寄存器, 以及 a0 等参数寄存器的值发生变化, 这样不能访问到函数调用前寄存器的原始状态. 而宏不会, 宏只是单纯的文本替换, 不涉及到寄存器的变换.</p>
+</li>
 </ul>
 <p><strong>comment</strong>: 汇编语言中采用 <code>#</code>, <code>;</code> 等方式进行行注释</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.macro do_nothing   # directive</span><br><span class="line">    nop             # pseudo-instruction</span><br><span class="line">    nop             # pseudo-instruction</span><br><span class="line">.endm               # directive</span><br><span class="line"></span><br><span class="line">    .text           # directive</span><br><span class="line">    .global _start  # directive</span><br><span class="line">_start:             # Label</span><br><span class="line">    li x6, 5        # pseudo-instruction</span><br><span class="line">    li x7, 4        # pseudo-instruction</span><br><span class="line">    add x5, x6, x7  # instruction</span><br><span class="line">    do_nothing      # Calling macro</span><br><span class="line">stop: j stop        # statement in one line</span><br><span class="line"></span><br><span class="line">    .end            # End of file</span><br></pre></td></tr></table></figure>
@@ -639,7 +659,7 @@
 <table>
 <thead>
 <tr>
-<th>Inst</th>
+<th>Instruction</th>
 <th>Name</th>
 <th style="text-align:center">FMT</th>
 <th>Description ©</th>
@@ -705,6 +725,22 @@ jalr rd, imm(rs1) 跳转到 rs1 + imm 并将 jalr 下一指令的地址存放到
 </tr>
 </tbody>
 </table>
+<h2 id="常用伪操作-directive">常用伪操作 directive</h2>
+<p><code>.text</code>: 代码段, 之后跟的符号都在 .text 内<br>
+<code>.data</code>: 数据段, 之后跟的符号都在 .data 内<br>
+<code>.bss</code>: 未初始化数据段, 之后跟的符号都在 .bss 中<br>
+<code>.section .foo</code>: 自定义段, 之后跟的符号都在 .foo 段中, .foo段名可以做修改</p>
+<p><code>.align n</code>: 按 2 的 n 次幂字节对齐<br>
+<code>.balign n</code>: 按 n 字节对齐</p>
+<p><code>.global</code> / <code>.globl</code>: 用于定义全局符号, 使链接过程中能被其他程序文件可见, 类似于 extern<br>
+<code>.local</code>: 用于定义局部符号, 仅当前程序文件可见</p>
+<p><code>.string &quot;str&quot;</code>: 将字符串 str 放入内存<br>
+<code>.byte b1,…,bn</code>: 在内存中连续存储 n 个 bytes<br>
+<code>.half w1,…,wn</code>: 在内存中连续存储 n 个 half word (2 bytes)<br>
+<code>.word w1,…,wn</code>: 在内存中连续存储 n 个 word (4 bytes)<br>
+<code>.dword w1,…,wn</code>: 在内存中连续存储 n 个 double word (8字节)<br>
+<code>.float f1,…,fn</code>: 在内存中连续存储 n 个单精度浮点数<br>
+<code>.double d1,…,dn</code>: 在内存中连续存储 n 个双精度浮点数</p>
 <h2 id="函数调用约定">函数调用约定</h2>
 <table>
 <thead>
@@ -853,7 +889,7 @@ jalr rd, imm(rs1) 跳转到 rs1 + imm 并将 jalr 下一指令的地址存放到
 </tbody>
 </table>
 <p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%B0%BE%E8%B0%83%E7%94%A8">尾调用 | wiki</a></p>
-<h2 id="栈-stack">栈 (stack)</h2>
+<h2 id="使用栈-stack">使用栈 (stack)</h2>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> _start() &#123;</span><br><span class="line">  <span class="comment">// calling leaf routine</span></span><br><span class="line">  square(<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">square</span><span class="params">(<span class="type">int</span> num)</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> num * num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">    .text             # Define beginning of text section</span><br><span class="line">    .global  _start   # Define entry _start</span><br><span class="line"></span><br><span class="line">_start:</span><br><span class="line">    la sp, stack_end  # prepare stack for calling functions</span><br><span class="line"></span><br><span class="line">    li a0, 3</span><br><span class="line">    call square</span><br><span class="line">    # the time return here, a0 should stores the result</span><br><span class="line"></span><br><span class="line">stop: j stop          # dead loop to stop execution</span><br><span class="line"></span><br><span class="line"># int square(int num)</span><br><span class="line">square:</span><br><span class="line">    # prologue</span><br><span class="line">    addi sp, sp, -8</span><br><span class="line">    sw s0, 0(sp)</span><br><span class="line">    sw s1, 4(sp)</span><br><span class="line"></span><br><span class="line">    mul a0, a0, a0</span><br><span class="line"></span><br><span class="line">    # epilogue</span><br><span class="line">    lw s0, 0(sp)</span><br><span class="line">    lw s1, 4(sp)</span><br><span class="line">    addi sp, sp, 8</span><br><span class="line">    ret</span><br><span class="line"></span><br><span class="line"># allocate stack space</span><br><span class="line">stack_start:</span><br><span class="line">    .rept 12</span><br><span class="line">    .word 0</span><br><span class="line">    .endr</span><br><span class="line">stack_end:</span><br><span class="line"></span><br><span class="line">    .end   # End of file</span><br></pre></td></tr></table></figure>
 <p>注意在这个过程中函数栈以及栈指针是如何声明和使用的. 在整个程序的末尾声明了 stack_start 和 stack_end 两个 label, 方便程序对栈顶 stack_end (空栈顶) 和栈底 stack_start (满栈顶) 的地址进行引用</p>
@@ -868,11 +904,702 @@ jalr rd, imm(rs1) 跳转到 rs1 + imm 并将 jalr 下一指令的地址存放到
 <h3 id="汇编调用-c-语言函数">汇编调用 C 语言函数</h3>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># test.s</span><br><span class="line">    .text              # Define beginning of text section</span><br><span class="line">    .global    _start  # Define entry _start</span><br><span class="line">    .global    foo     # foo is a C function defined in test.c</span><br><span class="line"></span><br><span class="line">_start:</span><br><span class="line">    la sp, stack_end   # prepare stack for calling functions</span><br><span class="line"></span><br><span class="line">    # RISC-V uses a0 ~ a7 to transfer parameters</span><br><span class="line">    li a0, 1           # pass 1st argument</span><br><span class="line">    li a1, 2           # pass 2nd argument</span><br><span class="line">    call foo           # &lt;--</span><br><span class="line">    # RISC-V uses a0 &amp; a1 to transfer return value</span><br><span class="line">    # check value of a0</span><br><span class="line"></span><br><span class="line">stop: j stop           # Infinite loop to stop execution</span><br><span class="line"></span><br><span class="line">stack_start:</span><br><span class="line">    .rept 12</span><br><span class="line">    .word 0</span><br><span class="line">    .endr</span><br><span class="line">stack_end:</span><br><span class="line"></span><br><span class="line">    .end               # End of file</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test.c</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">foo</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="type">int</span> c = a + b;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="c-语言调用汇编">C 语言调用汇编</h3>
+<h3 id="c-语言调用汇编指令">C 语言调用汇编指令</h3>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">asm</span> [<span class="keyword">volatile</span>] (</span><br><span class="line">    <span class="string">&quot;汇编指令&quot;</span></span><br><span class="line">    : 输出操作数列表 (可选)</span><br><span class="line">    : 输入操作数列表 (可选)</span><br><span class="line">    : 可能影响的寄存器或存储器 (可选)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">foo</span> <span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">  <span class="type">int</span> c;</span><br><span class="line">  <span class="keyword">asm</span> <span class="title function_">volatile</span> <span class="params">(</span></span><br><span class="line"><span class="params">    <span class="string">&quot;add %[sum], %[add1], %[add2]&quot;</span></span></span><br><span class="line"><span class="params">    :[sum]<span class="string">&quot;=r&quot;</span>(c)               <span class="comment">// 输出操作数列表</span></span></span><br><span class="line"><span class="params">    :[add1]<span class="string">&quot;r&quot;</span>(a), [add2]<span class="string">&quot;r&quot;</span>(b) <span class="comment">// 输入操作数列表</span></span></span><br><span class="line"><span class="params">  )</span>;</span><br><span class="line">  <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">foo</span> <span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">  <span class="type">int</span> c;</span><br><span class="line">  <span class="keyword">asm</span> <span class="title function_">volatile</span> <span class="params">(</span></span><br><span class="line"><span class="params">    <span class="string">&quot;add %0, %1, %2&quot;</span></span></span><br><span class="line"><span class="params">    :<span class="string">&quot;=r&quot;</span>(c)        <span class="comment">// 输出操作数列表</span></span></span><br><span class="line"><span class="params">    :<span class="string">&quot;r&quot;</span>(a), <span class="string">&quot;r&quot;</span>(b) <span class="comment">// 输入操作数列表</span></span></span><br><span class="line"><span class="params">  )</span>;</span><br><span class="line">  <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://whut-zhangwx.github.io">文羊羽</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://whut-zhangwx.github.io/riscv-assembly/">https://whut-zhangwx.github.io/riscv-assembly/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://whut-zhangwx.github.io" target="_blank">文羊羽</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="post-meta__tags" href="/tags/RISCV/">RISCV</a><a class="post-meta__tags" href="/tags/%E6%B1%87%E7%BC%96/">汇编</a></div><div class="post_share"><div class="social-share" data-image="/white" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90"><span class="toc-text">汇编程序基本构成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E7%AB%AF%E5%BA%8F%E4%B8%8E%E5%B0%8F%E7%AB%AF%E5%BA%8F"><span class="toc-text">大端序与小端序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4"><span class="toc-text">常用汇编指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4"><span class="toc-text">算术运算指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4"><span class="toc-text">位运算指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E7%A7%BB%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4"><span class="toc-text">位移运算指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99%E6%8C%87%E4%BB%A4"><span class="toc-text">内存读写指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4-branch"><span class="toc-text">条件跳转指令 (branch)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E6%9D%A1%E4%BB%B6%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-text">无条件跳转指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A"><span class="toc-text">函数调用约定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88-stack"><span class="toc-text">栈 (stack)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E4%B8%8E-c-%E7%9A%84%E6%B7%B7%E5%90%88%E7%BC%96%E7%A8%8B"><span class="toc-text">汇编与 C 的混合编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E8%B0%83%E7%94%A8-c-%E8%AF%AD%E8%A8%80%E5%87%BD%E6%95%B0"><span class="toc-text">汇编调用 C 语言函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c-%E8%AF%AD%E8%A8%80%E8%B0%83%E7%94%A8%E6%B1%87%E7%BC%96"><span class="toc-text">C 语言调用汇编</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文羊羽</div><div class="footer_custom_text">Hi, welcome to my <a href="https://whut-zhangwx.github.io/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">w_mscratch</span><span class="params">(<span class="type">reg_t</span> x)</span> &#123;</span><br><span class="line">  <span class="keyword">asm</span> <span class="title function_">volatile</span><span class="params">(<span class="string">&quot;csrw mscratch, %0&quot;</span> : : <span class="string">&quot;r&quot;</span> (x))</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="c-语言调用汇编函数">C 语言调用汇编函数</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="type">void</span> <span class="title function_">switch_to</span><span class="params">(<span class="keyword">struct</span> context *next)</span>;</span><br><span class="line"><span class="comment">// switch_to defined in a assembly file</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># void switch_to(struct context *next);</span><br><span class="line">.globl switch_to</span><br><span class="line">switch_to:</span><br><span class="line">    csrrw    t6, mscratch, t6</span><br><span class="line">    beqz     t6, 1f</span><br><span class="line">    reg_save t6</span><br><span class="line">    mv       t5, t6</span><br><span class="line">    csrr     t6, mscratch</span><br><span class="line">    STORE    t6, 30*SIZE_REG(t5)</span><br><span class="line">1:</span><br><span class="line">    csrw    mscratch, a0</span><br><span class="line">    mv    t6, a0</span><br><span class="line">    reg_restore t6</span><br><span class="line">    ret</span><br></pre></td></tr></table></figure>
+<h2 id="csr寄存器">CSR寄存器</h2>
+<p>RISCV 除了 32 个通用寄存器组之外, 每个权限级别 (Level): User / Supervisor / Machine 都还有一组额外的寄存器 – 控制与状态寄存器 (CSRs, Control and Status Registers).</p>
+<p>高 Level 可以访问低 Level 的 CSRs, 反之不可以.</p>
+<p>普通的 ISA 指令, 如 lw/sw 指令, 不能对 CSRs 寄存器进行操作. ISA Specification (“Zicsr” 扩展) 定义了特殊的 (专门的) CSR 指令来访问这些 CSRs 寄存器.</p>
+<p>CSRRW (CSR Read and Write)<br>
+CSRRS (CSR Read and Set bits)<br>
+CSRRC (CSR Read and Clear bits)</p>
+<p>CSRRWI (CSR Read and Write Immediate)<br>
+CSRRSI (CSR Read and Set bits Immediate)<br>
+CSRRCI (CSR Read and Clear bits Immediate)</p>
+<table>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>Name</th>
+<th>Description ©</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>csrrw rd, csr, rs1</td>
+<td>CSR Read and Write (Atomic)</td>
+<td>rd = csr; csr = rs1</td>
+</tr>
+<tr>
+<td>csrrs rd, csr, rs1</td>
+<td>CSR Read and Set bits (Atomic)</td>
+<td>rd = csr; csr |= rs1</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>csrrw t6, mscratch, t6 # swap t6 and mscratch</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>pseudoinstruction</th>
+<th>Base Instruction(s)</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>csrw csr, rs</td>
+<td>csrrw x0, csr, rs</td>
+<td>Write CSR</td>
+</tr>
+<tr>
+<td>csrr rd, csr</td>
+<td>csrrs rd, csr, x0</td>
+<td>Read CSR</td>
+</tr>
+</tbody>
+</table>
+<h3 id="machine-level-csrs">Machine-level CSRs</h3>
+<p><strong>Machine Information Registers:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Privilege</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">MRO</td>
+<td>mvendorid</td>
+<td>Vendor ID.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRO</td>
+<td>marchid</td>
+<td>Architecture ID.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRO</td>
+<td>mimpid</td>
+<td>Implementation ID.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRO</td>
+<td>mhartid</td>
+<td>Hardware thread ID.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Machine Trap Setup:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Privilege</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mstatus</td>
+<td>Machine status register.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>misa</td>
+<td>ISA and extensions</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>medeleg</td>
+<td>Machine exception delegation register.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mideleg</td>
+<td>Machine interrupt delegation register.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mie</td>
+<td>Machine interrupt-enable register.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mtvec</td>
+<td>Machine trap-handler base address.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mcounteren</td>
+<td>Machine counter enable.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Machine Trap Handling:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Privilege</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mscratch</td>
+<td>Scratch register for machine trap handlers.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mepc</td>
+<td>Machine exception program counter.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mcause</td>
+<td>Machine trap cause.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mtval</td>
+<td>Machine bad address or instruction.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mip</td>
+<td>Machine interrupt pending.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Machine Memory Protection:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Privilege</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>pmpcfg0</td>
+<td>Physical memory protection configuration.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>pmpcfg1</td>
+<td>Physical memory protection configuration, RV32 only.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>pmpcfg2</td>
+<td>Physical memory protection configuration.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>pmpcfg3</td>
+<td>Physical memory protection configuration, RV32 only.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>pmpaddr0</td>
+<td>Physical memory protection address register.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>pmpaddr1</td>
+<td>Physical memory protection address register.</td>
+</tr>
+<tr>
+<td style="text-align:center">…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>pmpaddr15</td>
+<td>Physical memory protection address register.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="trap-相关的-csrs">Trap 相关的 CSRs</h2>
+<h3 id="mepc-mret">mepc &amp; mret</h3>
+<p>在 RISC-V 架构中, <code>mepc</code> 和 <code>mret</code> 是与异常处理和中断返回相关的两个重要 CSR寄存器 和 CSR 指令, 主要用于 Machine 模式.</p>
+<p><code>mepc</code> 是 “Machine Exception Program Counter” 的缩写, 它是一个控制和状态寄存器(CSR), 用于保存发生异常或中断时的程序计数器 (PC) 值. 也就是说, 当一个异常或中断发生时, RISC-V 处理器会自动将当前的 PC 值保存到 <code>mepc</code> 寄存器中 (这里的 “自动” 是硬件上的实现), 以便异常处理程序处理完异常后知道从哪里恢复执行.</p>
+<ul>
+<li>当发生异常或中断时, 当前执行的指令地址 (PC) 会被保存到 <code>mepc</code> 中;</li>
+<li>在异常处理程序中, 处理器通过读取和修改 <code>mepc</code> 来决定异常处理结束后应该跳转到哪里;</li>
+<li>当使用 <code>mret</code> 指令时, 处理器会将 <code>mepc</code> 中的值恢复到 PC 中, 从而返回到异常或中断发生的那一条指令继续执行.</li>
+</ul>
+<p><code>mret</code> 是 “Machine Mode Return” 的缩写, 用于从 Machine 模式返回到之前的模式 (例如 User 模式或 Supervisor 模式). 当发生异常或中断时, 处理器会跳转到一个预定义的异常处理程序. 在异常处理程序执行完毕后, 使用 <code>mret</code> 指令可以将处理器状态恢复到异常或中断发生之前的状态, 并跳转回被中断的程序的地址继续执行.</p>
+<ul>
+<li>程序正常执行, 当遇到异常或中断时, 当前的 PC 值被保存到 <code>mepc</code> 中, 处理器跳转到异常处理程序;</li>
+<li>异常处理程序执行完毕后, 调用 <code>mret</code> 指令;</li>
+<li><code>mret</code> 指令将 <code>mepc</code> 中的值恢复到 PC 中, 处理器返回到异常或中断发生时的地址, 继续执行被中断的指令.</li>
+</ul>
+<h2 id="trap-相关的-csr-寄存器">Trap 相关的 CSR 寄存器</h2>
+<p>Asynchronous Trap - Interrupt 中断 (异步的 Trap)<br>
+Synchronous Trap - Exception 异常 (同步的 Trap)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Privilege</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mtvec</td>
+<td>Machine Trap-Vector base address.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mepc</td>
+<td>Machine Exception Program Counter.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mcause</td>
+<td>Machine trap Cause.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mtval</td>
+<td>Machine Trap Value.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mstatus</td>
+<td>Machine Status register.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mscratch</td>
+<td>Scratch register for machine trap handlers.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mie</td>
+<td>Machine Interrupt-Enable register.</td>
+</tr>
+<tr>
+<td style="text-align:center">MRW</td>
+<td>mip</td>
+<td>Machine Interrupt Pending register.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>mtvec</strong> (Machine Trap-Vector Base-Address): 它保存发生异常时处理器需要跳转到的地址, 即 trap_vector 函数的基地址.</li>
+<li>mepc (Machine Exception Program Counter): 当 trap 发生时, hart 会将发生 trap 所对应指令的地址值 (pc) 保存在 mepc 中.</li>
+<li><strong>mcause</strong> (Machine Cause): 当 trap 发生时, hart 会设置该寄存器通知我们 trap 发生的原因.</li>
+<li><strong>mtval</strong> (Machine Trap Value): 它保存了 exception 发生时的附加信息, 譬如访问地址出错时的地址信息, 或者执行非法指令时的指令本身. 对于其他异常, 它的值为 0.</li>
+<li><strong>mstatus</strong> (Machine Status): 用于跟踪和控制 hart 的当前操作状态 (特别地, 包括关闭和打开全局中断).</li>
+<li><strong>mscratch</strong> (Machine Scratch): Machine 模式下专用寄存器, 我们可以自己定义其用法, 譬如用该寄存器保存当前在 hart 上运行的 task 的上下文 (context) 的地址.</li>
+<li><strong>mie</strong> (Machine Interrupt Enable): 用于进一步控制 (打开和关闭) software interrupt/timer interrupt/external interrupt.</li>
+<li><strong>mip</strong> (Machine Interrupt Pending): 它列出目前已发生等待处理的中断.</li>
+</ul>
+<h3 id="mtvec-machine-trap-vector-寄存器">mtvec (Machine Trap-Vector) 寄存器</h3>
+<p>Machine trap-vector base-address register (mtvec)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> MXLEN-1(31)            2 1           0</span><br><span class="line">| BASE(MXLEN-1:2) (WARL) | MODE (WARL) |</span><br><span class="line"> \_____base_address_____/ \____mode___/</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>RV32 的 MXLEN = 32, 这里的 MXLEN - 1 = 31<br>
+WARL: Write Any Values, Reads Legal Values</p>
+</blockquote>
+<p>BASE: Trap 入口函数 trap_vector 的基地址, 必须保证 4 字节对齐;</p>
+<blockquote>
+<p>关于 4 字节对齐. 完整的 base_address 应该是 32 位的, 但考虑到 base_address 是关于 4 字节对齐的, 即 base_address 的值是 4 的倍数 base_address % 4 = 0, 所以 base_address 值的后两位一定是 00. 于是这里可以只用 30 位 mtvec(31:2) 就对 base_address 进行存储 (存储 base_addres 的高 30 位).</p>
+</blockquote>
+<p>MODE: 进一步控制入口函数地址的配置方式. Trap 入口函数的形式有 2 种方式, 一种叫做 Direct 方式, 一种叫做 Vectored 方式</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Direct</td>
+<td>All exceptions set <code>pc</code> to BASE.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Vectored</td>
+<td>Asynchronous interrupts set <code>pc</code> to BASE + 4 × cause.</td>
+</tr>
+<tr>
+<td>&gt;= 2</td>
+<td>—</td>
+<td><em>Reserved</em></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>Direct (MODE = 00): 所有的 Exception 和 Interrupt 发生后 PC 都跳转到 Base 指定的地址处. 即 Trap 处理函数只有 1 个, 在 Trap 处理函数中再通过 switch-case / if-else 等方式依据 Trap 类型进行分别处理.</p>
+</li>
+<li>
+<p>Vectored (MODE = 01): Exception 处理方式同 Direct; 但 Interrupt 的入口函数的地址以数组方式排列. BASE 中保存这个指针数组的基地址.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">————————.- (base_address)</span><br><span class="line">pointer0| ——&gt; trap_handler0</span><br><span class="line">————————|- (base_addr + 1*4)</span><br><span class="line">pointer1| ——&gt; trap_handler1</span><br><span class="line">————————|- (base_addr + 2*4)</span><br><span class="line">pointer2| ——&gt; trap_handler2</span><br><span class="line">————————.</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="mcause-machine-cause">mcause (Machine Cause)</h3>
+<p>当 Trap 发生时, Hart 会设置该寄存器通知我们 Trap 发生的原因, 最高位 Interrupt 位为 1 时标识了当前 Trap 类型为 Interrupt, 为 0 时则标识为 Exception.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> MXLEN-1(31)  MXLEN-2(30)         0</span><br><span class="line">| Interrupt | Exception Code (WLRL) |</span><br><span class="line"> \___ 1 ___/ \_____ MXLEN - 1 _____/</span><br></pre></td></tr></table></figure>
+<p>剩余的 Exception Code 用于标识具体的 Interrupt 或者 Exception 的种类</p>
+<p><strong>Software Interrupt 软件中断:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Interrupt</th>
+<th style="text-align:right">Exception Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">0</td>
+<td>User software interrupt</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1</td>
+<td>Supervisor software interrupt</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">2</td>
+<td><em>Reserved for future standard use</em></td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">3</td>
+<td>Machine software interrupt</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Time Interrupt 定时器中断:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Interrupt</th>
+<th style="text-align:right">Exception Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">4</td>
+<td>User timer interrupt</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">5</td>
+<td>Supervisor timer interrupt</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">6</td>
+<td><em>Reserved for future standard use</em></td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">7</td>
+<td>Machine timer interrupt</td>
+</tr>
+</tbody>
+</table>
+<p><strong>External Interrupt 外部中断:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Interrupt</th>
+<th style="text-align:right">Exception Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">8</td>
+<td>User external interrupt</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">9</td>
+<td>Supervisor external interrupt</td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">10</td>
+<td><em>Reserved for future standard use</em></td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">11</td>
+<td>Machine external interrupt</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reserved:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Interrupt</th>
+<th style="text-align:right">Exception Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">12-15</td>
+<td><em>Reserved for future standard use</em></td>
+</tr>
+<tr>
+<td style="text-align:right">1</td>
+<td style="text-align:right">&gt;=16</td>
+<td><em>Reserved for platform use</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exception 异常:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Interrupt</th>
+<th style="text-align:right">Exception Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">0</td>
+<td>Instruction address misaligned</td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1</td>
+<td>Instruction access fault</td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">2</td>
+<td>Illegal instruction</td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">3</td>
+<td>Breakpoint</td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">4</td>
+<td>Load address misaligned</td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5</td>
+<td>Load access fault</td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">6</td>
+<td>Store/AMO address misaligned</td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">7</td>
+<td>Store/AMO access fault</td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">8</td>
+<td>Environment call from U-mode</td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">9</td>
+<td>Environment call from S-mode</td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">10</td>
+<td><em>Reserved</em></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">11</td>
+<td>Environment call from M-mode</td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">12</td>
+<td>Instruction page fault</td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">13</td>
+<td>Load page fault</td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">14</td>
+<td><em>Reserved for future standard use</em></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">15</td>
+<td>Store/AMO page fault</td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">16–23</td>
+<td><em>Reserved for future standard use</em></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">24–31</td>
+<td><em>Reserved for custom use</em></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">32–47</td>
+<td><em>Reserved for future standard use</em></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">48–63</td>
+<td><em>Reserved for custom use</em></td>
+</tr>
+<tr>
+<td style="text-align:right">0</td>
+<td style="text-align:right">&gt;=64</td>
+<td><em>Reserved for future standard use</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="mstatus-machine-status-寄存器">mstatus (Machine Status) 寄存器</h3>
+<p>Machine-mode status register</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...| 12      11 10   9   8  |  7      6      5      4   |  3     2      1     0  |</span><br><span class="line">...| MPP[1: 0] | WPRI | SPP | MPIE | WPRI | SPIE | UPIE | MIE | WPRI | SIE | UIE |</span><br><span class="line">... \_ Previous Privilege _/ \______ Previous IE ______/ \__ Interrupt Enable __/</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>MIE/SIE/UIE (M/S/U Interrupt Enable)</strong><br>
+分别用于打开 (= 1) 或关闭 (= 0) Machine/Supervisor/User 模式下的全局中断. 当 Trap 发生时, Hart 会自动将 MIE/SIE/UIE 设置为 0, 即关闭全局中断.</li>
+<li><strong>MPIE/SPIE/UPIE (M/S/U Previous Interrupt Enable)</strong><br>
+当 Trap 发生时, 分别用于保存 Machine/Supervisor/User 模式下 Trap 发生之前的 MIE/SIE/UIE 的值.</li>
+<li><strong>MPP/SPP (M/S Previous Privilege)</strong><br>
+当 Trap 发生时, 分别用于保存 Trap 发生之前的权限级别. MPP 有 2 位, 00/01/11 分别表示 Trap 之前是 User/Supervisor/Machine 模式; SPP 有 1 位, 0/1 分别表示 Trap 之前是 User/Superior 模式; 注意没有 UPP.<br>
+Trap 发生时只能从低权限模式向高权限模式切换. 对于 Machine 模式可以从 User/Supervisor/Machine 模式切换到 (Trap) 到 Machine 模式; 对于 Supervisor 模式可以从 User/Supervisor 模式 Trap 到 Supervisor 模式; 对于 User 模式只能从 User 模式切换. 所以 MPP 需要 2 bits 进行编码 (3 中情况), SPP 需要 1 bits 进行编码 (2 中情况), 而 UPP 不需要额外进行编码.</li>
+</ul>
+<h3 id="mie-machine-interrupt-enable">mie (Machine Interrupt Enable)</h3>
+<p><strong>mie</strong> 寄存器用于进一步控制 M/S/U 权限模式下 Software/Timer/External Interrupt 三种中断的开关. 注意区别 mstatus 寄存器的 MIE/SIE/UIE 域是三种模式中断的全局控制开关, 而 mie 是一个二级的更细分的控制开关.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> MXLEN-1  12  11   10   9    8    7    6    5    4    3    2    1    0</span><br><span class="line">|    WPRI   |MEIE|WPRI|SEIE|UEIE|MTIE|WPRI|STIE|UTIE|MSIE|WPRI|SSIE|USIE|</span><br><span class="line">             \_________________/ \_________________/ \_________________/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>MEIE/SEIE/UEIE (M/S/U External Interrupt Enable) 分别用于控制 M/S/U 模式下的外部中断</li>
+<li>MTIE/STIE/UTIE (M/S/U Timer Interrupt Enable) 分别用于控制 M/S/U 模式下的定时器中断</li>
+<li>MSIE/SSIE/USIE (M/S/U Timer Interrupt Enable) 分别用于控制 M/S/U 模式下的软件中断</li>
+</ul>
+<h3 id="mip-machine-interrupt-pending">mip (Machine Interrupt Pending)</h3>
+<p><strong>mip</strong> 寄存器用于获取当前 M/S/U 模式下对应的 External/Timer/Software 中断是否发生并在等待的状态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> MXLEN-1  12  11   10   9    8    7    6    5    4    3    2    1    0</span><br><span class="line">|    WPRI   |MEIP|WPRI|SEIP|UEIP|MTIP|WPRI|STIP|UTIP|MSIP|WPRI|SSIP|USIP|</span><br><span class="line">             \_________________/ \_________________/ \_________________/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>MEIP/SEIP/UEIP (M/S/U External Interrupt Pending) 分别用于获取 M/S/U 模式下的外部中断的 Pending 状态</li>
+<li>MTIE/STIE/UTIE (M/S/U Timer Interrupt Pending) 分别用于获取 M/S/U 模式下的定时器中断的 Pending 状态</li>
+<li>MSIE/SSIE/USIE (M/S/U Timer Interrupt Pending) 分别用于获取 M/S/U 模式下的软件中断的 Pending 状态</li>
+</ul>
+<h3 id="trap-发生流程">Trap 发生流程</h3>
+<p><strong>1. Trap 初始化:</strong></p>
+<p>设置入口函数, 将 trap_vector (trap 入口函数) 的地址赋给 mtvec 寄存器</p>
+<p><strong>2. Trap 的 Top Half:</strong></p>
+<p>Trap 发生, Hart 自动执行如下状态转换, 这个过程是硬件实现的, 不需要软件操作.</p>
+<ul>
+<li>把 mstatus 的 MIE 值复制到 MPIE 中, 清除 mstatus 中的 MIE 标志位 (置 0), 效果是关闭全局中断, 防止新触发的中断打断 Trap.</li>
+<li>设置 mepc; 同时 PC 被设置为 mtvec (其中保存着 trap_vector 的基地址), 即程序跳转到 trap 入口函数
+<ul>
+<li>对于 Exception, mepc 指向导致异常的指令的地址</li>
+<li>对于 Interrupt, mepc 指向被中断的指令的下一条指令的地址</li>
+</ul>
+</li>
+<li>根据 trap 的种类设置 mcause, 井根据需要为 mtval 设置附加信息.</li>
+<li>将 trap 发生之前的权限模式保存在 mstatus 的 MPP 域中, 再把 hart 权限模式更改为 M (也就是说无论在任何 Level 下触发 trap, hart 首先切换到 Machine 模式)</li>
+</ul>
+<p><strong>3. Trap 的 Bottom Half:</strong></p>
+<p>trap_vector 所需要做的事情. 这部分是软件上的实现.</p>
+<ul>
+<li>保存 (save) 当前控制流的上下文 (context) 信息 (利用 mscratch 寄存器)</li>
+<li>调用 C 语言的 trap_handler</li>
+<li>从 trap_handler 函数返回 (mepc 的值有可能需要调整)</li>
+<li>恢复 (restore) 上下文的信息</li>
+<li>执行 MRET 指令返回到 trap 之前的状态</li>
+</ul>
+<blockquote>
+<p>上下文 context 信息指的是 x1-x31 除去 x0 的 31 个寄存器的状态</p>
+</blockquote>
+<p><strong>4. Trap 返回:</strong></p>
+<p>在 Trap 结束进行返回时, 不同模式会调用各自的返回命令</p>
+<ul>
+<li>mret (Machine)</li>
+<li>sret (Supervisor)</li>
+<li>uret (User)</li>
+</ul>
+<p>例如在 Machine 模式下执行完 trap_vector 后会调用 mret 指令进行返回.</p>
+<p>mret 会做 3 件事情</p>
+<ul>
+<li><strong>恢复权限级别</strong>: 将当前 Hart 的权限级别设为 mstatus.MPP. 再重新将 mstatus.MPP 设为 U (如果 Hart 不支持 U 则设为 M)</li>
+<li><strong>恢复中断状态</strong>: 将 mstatus.MIE 设为 mstatus.MPIE; 将 mstatus.MPIE 的值重置为 1;</li>
+<li><strong>PC 跳转</strong>: pc = mepc. pc 跳转到 Trap 发生时保存的地址. 对于异常, 则为触发异常的指令的基地址, 对于中断则为触发中断的指令的下一条指令的基地址.</li>
+</ul>
+<h2 id="plic-寄存器">PLIC 寄存器</h2>
+<p>PLIC (Platform-Level Interrupt Controller)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PLIC_BASE 0x0c000000L</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UART0_IRQ 10</span></span><br><span class="line"><span class="comment">// Note what we did in start.S</span></span><br><span class="line"><span class="comment">// csrr  t0, mhartid       # read current m-hart-id to t0</span></span><br><span class="line"><span class="comment">// mv    tp, t0            # keep CPU&#x27;s hartid in its tp for later usage.</span></span><br><span class="line"><span class="type">int</span> hart; <span class="keyword">asm</span> <span class="title function_">volatile</span><span class="params">(<span class="string">&quot;mv %0, tp&quot;</span> : <span class="string">&quot;=r&quot;</span> (hart))</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>Priority: Base + Interrupt_source_id * 4<br>
+设置某一路中断源的优先级. Qemu-virt 支持 7 个优先级. 0 表示对该中断源禁用中断, 1 最低, 7 最高. 如果两个中断源优先级相同, 则根据中断源的 ID 值进一步区分优先级, ID 值越小优先级越高.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PLIC_PRIORITY(id) (PLIC_BASE + (id) * 4)</span></span><br><span class="line">*(<span class="type">uint32_t</span>*)PLIC_PRIORITY(UART0_IRQ) = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Pending: Base + 0x1000 + Interrupt_source_id / 32 * 4<br>
+用于指示某一路中断源是否发生.</p>
+</li>
+<li>
+<p>Enable: Base + 0x2000 + Hart_id * 0x80 + Interrupt_source_id / 32 * 4<br>
+针对某个 Hart 开启或关闭某一路中断源. 每个 Hart 有 2 个 Enable 寄存器 (Enable1 和 Enable2) 用于针对该 Hart 启动或者关闭某路中断源. 每个中断源对应 Enable 寄存器的一个 bit, 其中 Enable1 负责控制 1~31 号中断源; Enable2 负责控制 32 ~53 号中断源. 将对应的bit位设置为1表示使能该中断源, 否则表示关闭该中断源.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PLIC_MENABLE(hart, id) (PLIC_BASE + 0x2000 + (hart) * 0x80 + ((id) / 32) * 4)</span></span><br><span class="line">*(<span class="type">uint32_t</span>*)PLIC_MENABLE(hart, UART0_IRQ)= (<span class="number">1</span> &lt;&lt; (UART0_IRQ % <span class="number">32</span>));</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Threshold: Base + 0x200000 + Hart_id * 0x1000<br>
+针对某个 Hart 设置中断源优先级的阈值. 每个 Hart 有一个 Threshold 寄存器用于设置中断优先级的阈值. 所有小于或等于该阈值的中断源, 即使发生了也会被 PLIC 丢弃. 特别的, 当阈值设为 0 时允许所有中断源发生中断; 当阈值设为 7 时丢弃所有中断源上发生的中断.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PLIC_MTHRESHOLD(hart) (PLIC_BASE + 0x200000 + (hart) * 0x1000)</span></span><br><span class="line">*(<span class="type">uint32_t</span>*)PLIC_MTHRESHOLD(hart) = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Claim/Complete: Base + 0x200004 + Hart_id * 0x1000<br>
+Claim 和 Complete 是同一个寄存器, 每个 Hart 一个. 对该寄存器执行读操作称之为 Claim, 即获取当前发生的最高优先级的中断源的 ID. Claim 成功后会清除对应的 Pending 位. 对该寄存器执行写操作称之为 Complete, 所谓 Complete 指的是通知 PLIC 对该路中断的处理已经结束.</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://whut-zhangwx.github.io">文羊羽</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://whut-zhangwx.github.io/riscv-assembly/">https://whut-zhangwx.github.io/riscv-assembly/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://whut-zhangwx.github.io" target="_blank">文羊羽</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="post-meta__tags" href="/tags/RISCV/">RISCV</a><a class="post-meta__tags" href="/tags/%E6%B1%87%E7%BC%96/">汇编</a></div><div class="post_share"><div class="social-share" data-image="/white" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90"><span class="toc-text">汇编程序基本构成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E7%AB%AF%E5%BA%8F%E4%B8%8E%E5%B0%8F%E7%AB%AF%E5%BA%8F"><span class="toc-text">大端序与小端序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4"><span class="toc-text">常用汇编指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4"><span class="toc-text">算术运算指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4"><span class="toc-text">位运算指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E7%A7%BB%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A4"><span class="toc-text">位移运算指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E8%AF%BB%E5%86%99%E6%8C%87%E4%BB%A4"><span class="toc-text">内存读写指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4-branch"><span class="toc-text">条件跳转指令 (branch)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E6%9D%A1%E4%BB%B6%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-text">无条件跳转指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E4%BC%AA%E6%93%8D%E4%BD%9C-directive"><span class="toc-text">常用伪操作 directive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%BA%A6%E5%AE%9A"><span class="toc-text">函数调用约定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%A0%88-stack"><span class="toc-text">使用栈 (stack)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E4%B8%8E-c-%E7%9A%84%E6%B7%B7%E5%90%88%E7%BC%96%E7%A8%8B"><span class="toc-text">汇编与 C 的混合编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E8%B0%83%E7%94%A8-c-%E8%AF%AD%E8%A8%80%E5%87%BD%E6%95%B0"><span class="toc-text">汇编调用 C 语言函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c-%E8%AF%AD%E8%A8%80%E8%B0%83%E7%94%A8%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4"><span class="toc-text">C 语言调用汇编指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c-%E8%AF%AD%E8%A8%80%E8%B0%83%E7%94%A8%E6%B1%87%E7%BC%96%E5%87%BD%E6%95%B0"><span class="toc-text">C 语言调用汇编函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#csr%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">CSR寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#machine-level-csrs"><span class="toc-text">Machine-level CSRs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#trap-%E7%9B%B8%E5%85%B3%E7%9A%84-csrs"><span class="toc-text">Trap 相关的 CSRs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mepc-mret"><span class="toc-text">mepc &amp; mret</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#trap-%E7%9B%B8%E5%85%B3%E7%9A%84-csr-%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">Trap 相关的 CSR 寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mtvec-machine-trap-vector-%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">mtvec (Machine Trap-Vector) 寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mcause-machine-cause"><span class="toc-text">mcause (Machine Cause)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mstatus-machine-status-%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">mstatus (Machine Status) 寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mie-machine-interrupt-enable"><span class="toc-text">mie (Machine Interrupt Enable)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mip-machine-interrupt-pending"><span class="toc-text">mip (Machine Interrupt Pending)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trap-%E5%8F%91%E7%94%9F%E6%B5%81%E7%A8%8B"><span class="toc-text">Trap 发生流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#plic-%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">PLIC 寄存器</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文羊羽</div><div class="footer_custom_text">Hi, welcome to my <a href="https://whut-zhangwx.github.io/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
   document.querySelectorAll('#article-container span.katex-display').forEach(item => {
     btf.wrap(item, 'div', { class: 'katex-wrap'})
   })
