@@ -1,0 +1,641 @@
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>RISC-V 操作系统 | 文羊羽</title><meta name="author" content="文羊羽"><meta name="copyright" content="文羊羽"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="参考 循序渐进，学习开发一个RISC-V上的操作系统 - 汪辰 - 2021春 riscv-operating-system-mooc | Gitub riscv-operating-system-mooc | Gitee 环境配置 建议使用 docker 容器来配置环境 12# 拉取 github 仓库git clone git@github.com:plctlab&#x2F;riscv-operatin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RISC-V 操作系统">
+<meta property="og:url" content="https://whut-zhangwx.github.io/riscv-operating-system/index.html">
+<meta property="og:site_name" content="文羊羽">
+<meta property="og:description" content="参考 循序渐进，学习开发一个RISC-V上的操作系统 - 汪辰 - 2021春 riscv-operating-system-mooc | Gitub riscv-operating-system-mooc | Gitee 环境配置 建议使用 docker 容器来配置环境 12# 拉取 github 仓库git clone git@github.com:plctlab&#x2F;riscv-operatin">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://whut-zhangwx.github.io/white">
+<meta property="article:published_time" content="2024-07-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-26T02:38:49.850Z">
+<meta property="article:author" content="文羊羽">
+<meta property="article:tag" content="操作系统">
+<meta property="article:tag" content="Operating System">
+<meta property="article:tag" content="RISC-V">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://whut-zhangwx.github.io/white"><link rel="shortcut icon" href="/img/avatar.jpg"><link rel="canonical" href="https://whut-zhangwx.github.io/riscv-operating-system/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'RISC-V 操作系统',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-08-26 10:38:49'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">75</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">89</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">文羊羽</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">RISC-V 操作系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-07-19T16:00:00.000Z" title="发表于 2024-07-20 00:00:00">2024-07-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-26T02:38:49.850Z" title="更新于 2024-08-26 10:38:49">2024-08-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">7.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>30分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="RISC-V 操作系统"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h2 id="参考">参考</h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Q5411w7z5/">循序渐进，学习开发一个RISC-V上的操作系统 - 汪辰 - 2021春</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/plctlab/riscv-operating-system-mooc">riscv-operating-system-mooc | Gitub</a><br>
+<a target="_blank" rel="noopener" href="https://gitee.com/unicornx/riscv-operating-system-mooc">riscv-operating-system-mooc | Gitee</a></p>
+<h2 id="环境配置">环境配置</h2>
+<p>建议使用 docker 容器来配置环境</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">拉取 github 仓库</span></span><br><span class="line">git clone git@github.com:plctlab/riscv-operating-system-mooc.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">从 dockerhub 拉取 ubuntu:20.04 镜像</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">https://hub.docker.com/layers/library/ubuntu/24.04/images/sha256-3963c438d67a34318a3672faa6debd1dfff48e5d52de54305988b932c61514ca</span></span><br><span class="line">docker pull ubuntu:20.04</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">通过镜像创建 docker 容器, 并将 github 仓库对应的目录挂载到容器中</span></span><br><span class="line">docker run -dit --privileged=true --name riscv \</span><br><span class="line">--volume path/to/riscv-operating-system-mooc:/root/riscv-operating-system-mooc \</span><br><span class="line">ubuntu:20.04 /bin/bash</span><br></pre></td></tr></table></figure>
+<p>建议使用 VSCode Dev-Containers 连接容器. 当然也可以使用 docker attach 命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker attach riscv</span><br></pre></td></tr></table></figure>
+<p>进入容器, 在终端中执行下面的命令安装 GNU 套件, 包括 gcc, make, git, qemu-system-misc 等工具</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install build-essential gcc make perl dkms git gcc-riscv64-unknown-elf gdb-multiarch qemu-system-misc</span><br></pre></td></tr></table></figure>
+<p>测试各个工具的版本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gcc --version</span><br><span class="line">make --version</span><br><span class="line">git --version</span><br><span class="line">gdb --version</span><br><span class="line">gdb-multiarch --version</span><br><span class="line">riscv64-unknown-elf-gcc --version</span><br><span class="line">qemu-system-riscv32 --version</span><br><span class="line">qemu-system-riscv64 --version</span><br></pre></td></tr></table></figure>
+<p>建议额外安装 gcc-riscv64-linux-gnu 和 qemu-user</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt install gcc-riscv64-linux-gnu</span><br><span class="line">riscv64-linux-gnu-gcc --version</span><br></pre></td></tr></table></figure>
+<p>gcc-riscv64-unknown-elf 工具所对应的 riscv64-unknown-elf-gcc 命令不能编译带 c 库的源码, gcc-riscv64-linux-gnu 所带的 riscv64-linux-gnu-gcc 命令可以用于编译带 c 库的 c 语言源码.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt install qemu-user</span><br><span class="line">qemu-riscv32 --version</span><br><span class="line">qemu-riscv64 --version</span><br></pre></td></tr></table></figure>
+<p>qemu-system-misc 工具所带的 qemu-system-riscv32 和 qemu-system-riscv64 两个命令用于运行完整的 riscv 仿真操作系统, 而 qemu-user 的 qemu-riscv32 和 qemu-riscv64 命令可以用于模拟 riscv 机器执行单个 riscv 应用程序.</p>
+<h3 id="qemu-system-riscv64-和-qemu-riscv64">qemu-system-riscv64 和 qemu-riscv64</h3>
+<p>Qemu 有两种运作模式:</p>
+<ul>
+<li>User mode: 直接运行 riscv 应用程序</li>
+<li>System mode: 模拟整个计算机系统, 包括中央处理器以及其它周边设备</li>
+</ul>
+<p>System mode 对应着 qemu-system-riscv64 命令, User mode 对应着 qemu-riscv64 命令:</p>
+<ul>
+<li>
+<p>qemu-system-riscv64: 这是一个用于运行完整虚拟机的命令，通常用于仿真整个 RISC-V 计算机系统. 它提供了对 RISC-V 硬件和系统模拟的支持, 允许您运行 RISC-V 操作系统和应用程序, 就像在真实硬件上一样. 您可以使用此命令启动 RISC-V 虚拟机, 安装操作系统, 并在虚拟机内部运行应用程序. 它通常用于开发和测试操作系统和系统软件.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-riscv64 -machine virt -cpu rv64 -m 512M -kernel your_kernel_image</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>qemu-riscv64: 这是一个用于运行 RISC-V 用户空间程序的命令, 通常用于在主机操作系统上运行单个 RISC-V 应用程序. 与 qemu-system-riscv64 不同, 它不涉及虚拟机或完整的系统仿真, 而是仅运行一个 RISC-V 用户空间程序. 这对于在主机操作系统上运行 RISC-V 二进制文件或进行应用程序开发和调试非常有用.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qemu-riscv64 your_riscv_executable</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>简单来说, qemu-system-riscv64 用于完整的 RISC-V 系统仿真, 而 qemu-riscv64 用于在主机操作系统上运行单个 RISC-V 应用程序.</p>
+<h2 id="第2章-上-risc-v-isa-介绍">第2章(上)-RISC-V ISA 介绍</h2>
+<h3 id="参考文档">参考文档</h3>
+<p>技术规范 <a target="_blank" rel="noopener" href="https://riscv.org/technical/specifications/">Specifications</a></p>
+<ul>
+<li>Volume 1, Unprivileged Specification version 20240411<br>
+<a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1uviu1nH-tScFfgrovvFCrj7Omv8tFtkp/view">The RISC-V Instruction Set Manual Volume I Unprivileged Architecture Version 20240411</a></li>
+<li>Volume 2, Privileged Specification version 20240411<br>
+<a target="_blank" rel="noopener" href="https://drive.google.com/file/d/17GeetSnT5wW3xNuAHI95-SI1gPGd5sJ_/view">The RISC-V Instruction Set Manual: Volume II Privileged Architecture Version 20240411</a></li>
+</ul>
+<p>参考手册</p>
+<p><a target="_blank" rel="noopener" href="http://riscvbook.com/">The RISC-V Reader: An Open Architecture Atlas Authored by David Patterson, Andrew Waterman Edition: 1st</a></p>
+<h3 id="isa是什么">ISA是什么</h3>
+<p>ISA (Instruction Set Architecture) 指令集架构是底层硬件电路面向上层软件程序提供的一层<strong>接口规范</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Application</span><br><span class="line">Operating System</span><br><span class="line">ISA &lt;--</span><br><span class="line">Microarchitecture</span><br></pre></td></tr></table></figure>
+<p>ISA 定义了</p>
+<ul>
+<li>基本数据类型: BYTE | HALFWORD | WORD</li>
+<li>寄存器 (Register)</li>
+<li>指令 (Instruction)</li>
+<li>寻址模式</li>
+<li>异常或者中断的处理方式</li>
+</ul>
+<p>CISA vs RISC</p>
+<ul>
+<li>CISA (Complex ISA) 复杂指令集: 针对特定的功能实现特定的指令, 导致指令的数目比较多, 但生成的程序长度相对较短. 例如 x86 指令集</li>
+<li>RISA (Reduced ISA) 精简指令集: 只定义基本的指令, 对复杂的功能采用基本指令组合实现, 这样指令的数目比较精简, 但生成的程序长度相对较长. 例如 RISC-V 指令集.</li>
+</ul>
+<h3 id="isa的宽度">ISA的宽度</h3>
+<p>ISA (处理器) 的宽度指的是 CPU 中 “通用寄存器” 的宽度 (二进制的位数). 宽度决定了寻址的范围大小, 以及数据运算的能力.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">通用寄存器的宽度</th>
+<th style="text-align:center">寻址范围</th>
+<th style="text-align:center">应用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">8位</td>
+<td style="text-align:center">2^8 = 256</td>
+<td style="text-align:center">早期单片机 8051</td>
+</tr>
+<tr>
+<td style="text-align:center">16位</td>
+<td style="text-align:center">2^16 = 65536</td>
+<td style="text-align:center">x86系列的鼻祖 8086, MSP430系列单片机</td>
+</tr>
+<tr>
+<td style="text-align:center">32位</td>
+<td style="text-align:center">2^32 = 4294967296</td>
+<td style="text-align:center">早期的终端, 个人计算机和服务器</td>
+</tr>
+<tr>
+<td style="text-align:center">64位</td>
+<td style="text-align:center">2^64 = 18446744073709551616</td>
+<td style="text-align:center">目前主流的移动智能设备, 个人计算机和服务器</td>
+</tr>
+</tbody>
+</table>
+<h3 id="知名-isa-介绍">知名 ISA 介绍</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">X86</th>
+<th style="text-align:center">SPARC</th>
+<th style="text-align:center">Power</th>
+<th style="text-align:center">ARM</th>
+<th style="text-align:center">MIPS</th>
+<th style="text-align:center">RISC-V</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Intel</td>
+<td style="text-align:center">Sun</td>
+<td style="text-align:center">IBM</td>
+<td style="text-align:center">ARM</td>
+<td style="text-align:center">MIPS</td>
+<td style="text-align:center">RISC-V</td>
+</tr>
+</tbody>
+</table>
+<h2 id="第2章-下-risc-v-isa-介绍">第2章(下)-RISC-V ISA 介绍</h2>
+<h3 id="risc-v-简介">RISC-V 简介</h3>
+<p>RISC-V 读作 “risk-five”, 代表着 Berkeley 所研发的第五代精简指令集</p>
+<h3 id="risc-v-isc-技术规范">RISC-V ISC 技术规范</h3>
+<p><a target="_blank" rel="noopener" href="https://riscv.org/technical/specifications/">Specifications</a></p>
+<ul>
+<li>
+<p>Volume 1, Unprivileged Specification version 20240411<br>
+<a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1uviu1nH-tScFfgrovvFCrj7Omv8tFtkp/view">The RISC-V Instruction Set Manual Volume I Unprivileged Architecture Version 20240411</a></p>
+</li>
+<li>
+<p>Volume 2, Privileged Specification version 20240411<br>
+<a target="_blank" rel="noopener" href="https://drive.google.com/file/d/17GeetSnT5wW3xNuAHI95-SI1gPGd5sJ_/view">The RISC-V Instruction Set Manual: Volume II Privileged Architecture Version 20240411</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://github.com/riscv/riscv-isa-manual/releases/tag/20240411">RISC-V ISA Manual, version 20240411 | Github Release</a></p>
+</li>
+</ul>
+<h3 id="risc-v-isc-命名规范">RISC-V ISC 命名规范</h3>
+<p>ISA 命名格式为 <code>RV + 32|64 + I|E + [M][A][F[D]][C][G]...</code>, 其中</p>
+<ul>
+<li>RV 用于表示 RISC-V 体系架构的前缀, 即 RISC-V 的缩写;</li>
+<li><code>32|64|128</code> 用于表示处理器的字宽, 也就是处理器的寄存器的宽度 (bit);</li>
+<li><code>I|E</code>: 表示必选的基本整数指令集, 其中 I 表示 Integer 整数, E 表示 Embedded 嵌入式;</li>
+<li><code>[M][A][F][D][C][G]...</code>: 为可选的扩展指令集.</li>
+</ul>
+<p>RISC-V ISA = 1 个基本整数指令集 + 多个可选的扩展指令集</p>
+<p>基本指令集:</p>
+<ul>
+<li>RV32I (32位整数指令集)</li>
+<li>RV32E (RV32I的子集, 用于小型嵌入式Embedded场景)</li>
+<li>RV64I (64位整数指令集)</li>
+<li>RV128I (128位整数指令集)</li>
+</ul>
+<p>扩展指令集:</p>
+<ul>
+<li>M (Multiplication, 整数乘法与除法指令集)</li>
+<li>A (Atomic, 存储器原子指令集)</li>
+<li>F (Float, 单精度浮点指令集)</li>
+<li>D (Double, 双精度浮点指令集)</li>
+<li>C (Compressed, 压缩指令集)</li>
+<li>G (General, IMAFD 的通用组合)</li>
+</ul>
+<p>例子:</p>
+<ul>
+<li>RV32I (最基本的 RISC-V 的实现)</li>
+<li>RV32IMAC (32位实现, 并支持 Interger 基本整数指令集, 和 Multiply + Atomic + Compressed 扩展指令集)</li>
+<li>RV64GC (64位实现, 支持 IMAFDC)</li>
+</ul>
+<h3 id="通用寄存器">通用寄存器</h3>
+<p>RISC-V 的 Unprivileged Specification 定义了 32 个通用寄存器 (General Purpose Registers) 和一个 PC (Program Counter) 寄存器.</p>
+<p>RV32I | RV64I | RV128I 指令集都只包括 32 个通用寄存器, 如果要实现支持 F/D 扩展则需要额外支持 32 个浮点寄存器, RV32E 将 32 个通用寄存器缩减到 16 个.</p>
+<h3 id="hart">HART</h3>
+<p>在 RISC-V 体系结构中, HART（Hardware Thread）指的是硬件线程或硬件处理器核. 每个 HART 是一个独立的执行单元, 能够独立地执行指令流. 通常一个 CPU Core 可以一次执行多个指令流, 为了避免与 CPU 核心的概念混淆, RISC-V 抽象出 HART 的概念. 假设一个四核 RISC-V 处理器, 每个核有两个 HART (并不是硬线上的实现, 而是根据处理器的并行处理能力抽象出的一个该奶奶), 这个处理器总共有 8 个 HART. 每个 HART 都可以执行独立的指令流, 具有自己的程序计数器和寄存器集, 操作系统可以将不同的任务分配给不同的 HART 以实现并行处理.</p>
+<h3 id="特权级别">特权级别</h3>
+<p>RISC-V 的 Privileged  Specification 定义了三个特权级别 (Privilege Level)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Level</th>
+<th style="text-align:center">Encoding</th>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Abbreviation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">00</td>
+<td style="text-align:center">User/Application</td>
+<td style="text-align:center">U</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">01</td>
+<td style="text-align:center">Supervisor</td>
+<td style="text-align:center">S</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center"><em>Reserved</em></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">Machine</td>
+<td style="text-align:center">M</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Number of levels</th>
+<th style="text-align:center">Supported Modes</th>
+<th style="text-align:center">Intended Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">M</td>
+<td style="text-align:center">Simple embedded systems</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">M, U</td>
+<td style="text-align:center">Secure embedded systems</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">M, S, U</td>
+<td style="text-align:center">Systems running Unix-like operating systems</td>
+</tr>
+</tbody>
+</table>
+<p>不同的特权级别分别对应各自的一套 “控制和状态寄存器” (CSR, Control and Status Register), 用于控制相应 Level 下的处理器和获取工作状态. 高级别的特权级别下可以访问低级别的 CSR, 譬如 Machine Level 下可以访问 Supervisor/User Level 的 CSR, 以此类推. 但反之不可以.</p>
+<p>RISC-V 定义了专门用于操作 CSR 的指令, 以及特定的指令可以用于在不同特权级别之间进行切换.</p>
+<h3 id="内存管理与保护">内存管理与保护</h3>
+<p>物理内存保护 (PMP, Physical Memory Protection)</p>
+<p>虚拟内存 (Virtual Memory)</p>
+<h3 id="异常和中断">异常和中断</h3>
+<p>异常 (Exception): “an unusual condition occurringat run time associated with an instruction in the current RISC-V hart”<br>
+中断 (lnterrupt): “an external asynchronous eventthat may cause a RISC-V hart to experience an unexpected transfer of control”</p>
+<p>&quot;异常&quot;是操作系统自身导致的问题, 而&quot;中断&quot;是由外设触发的问题. 在处理完异常后操作系统还会继续执行当前指令, 而在处理完中断后操作系统会跳到当前指令的下一个指令继续往下执行.</p>
+<h2 id="第3章-编译与链接">第3章-编译与链接</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/chuckb/riscv-helloworld-c/blob/NbZDowmXzZs/Makefile">riscv-helloworld-c/Makefile</a></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">default: hello.elf</span></span><br><span class="line"></span><br><span class="line"><span class="section">hello.o: hello.c</span></span><br><span class="line">	riscv64-unknown-elf-gcc -c -g -O0 -ffreestanding -march=rv32i -mabi=ilp32 -o hello.o hello.c</span><br><span class="line"></span><br><span class="line"><span class="section">start.o: start.s</span></span><br><span class="line">	riscv64-unknown-elf-as -g -march=rv32i -mabi=ilp32 -o start.o start.s</span><br><span class="line"></span><br><span class="line"><span class="section">hello.elf: hello.o start.o baremetal.ld</span></span><br><span class="line">	riscv64-unknown-elf-ld -T baremetal.ld -m elf32lriscv -o hello.elf hello.o start.o</span><br><span class="line"></span><br><span class="line"><span class="section">run: hello.elf</span></span><br><span class="line">	@echo <span class="string">&quot;Ctrl-A C for QEMU console, then quit to exit&quot;</span></span><br><span class="line">	qemu-system-riscv32 -nographic -serial mon:stdio -machine virt -bios hello.elf</span><br><span class="line"></span><br><span class="line"><span class="section">debug: hello.elf</span></span><br><span class="line">	@echo <span class="string">&quot;Ctrl-A C for QEMU console, then quit to exit&quot;</span></span><br><span class="line">	qemu-system-riscv32 -nographic -serial mon:stdio -machine virt -s -S -bios hello.elf</span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm -f hello.o start.o hello.elf</span><br></pre></td></tr></table></figure>
+<h3 id="c-c-编译流程">C/C++ 编译流程</h3>
+<p>预处理 Preprocess - 编译 Compile - 汇编 Assemble - 链接 linking</p>
+<p><strong>预处理</strong>: 在这个阶段主要做了三件事: 展开头文件 、宏替换 、去掉注释. 这个阶段需要GCC调用<strong>预处理器</strong>来完成, 最终得到的还是源文件.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -E ./helloworld.cpp -o ./helloworld.i # 预处理, 调用 cc1plus 命令</span><br></pre></td></tr></table></figure>
+<p><strong>编译</strong>: 这个阶段需要GCC调用<strong>编译器</strong>对文件进行编译, 最终得到一个 <code>.s</code> 的汇编文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -S ./helloworld.i -o ./helloworld.s   # 编译, 调用 cc1plus 命令</span><br></pre></td></tr></table></figure>
+<p><strong>汇编</strong>: 这个阶段需要GCC调用<strong>汇编器</strong>对文件进行汇编, 最终得到一个二进制文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -c ./helloworld.s -o ./helloworld.o   # 汇编, 调用 as 命令</span><br></pre></td></tr></table></figure>
+<p><strong>链接</strong>: 这个阶段需要GCC调用<strong>链接器</strong>对程序需要调用的库进行链接, 最终得到一个可执行的二进制文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ ./helloworld.o -o ./helloworld.out    # 链接, 调用 ld 命令</span><br></pre></td></tr></table></figure>
+<p>最后执行可执行程序</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./helloworld.out</span><br><span class="line">hello, world!</span><br></pre></td></tr></table></figure>
+<p>上面的所有步骤可以使用一次命令完成</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ ./helloworld.cpp -o ./helloworld # (预处理+编译+汇编)链接-&gt;可执行文件</span><br></pre></td></tr></table></figure>
+<p>上述是单个文件编译生成可执行文件的过程, 对于多个文件也是类似的过程. 先编译生成二进制的动态链接库或者静态链接库, 再将多个 <code>.o</code>, <code>.so</code> 文件进行链接生成可执行文件</p>
+<pre class="mermaid">%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#ffffffff',
+      'primaryTextColor': '#000000ff',
+      'primaryBorderColor': '#000000ff',
+      'lineColor': '#000000ff',
+      'secondaryColor': '#00000000',
+      'tertiaryColor': '#00000000'
+    }
+  }
+}%%
+graph LR
+a.cpp --"preprocess"--> a.i --"compile"--> a.s --"assemble"--> a.o --> ld(("link"))
+b.cpp --"preprocess"--> b.i --"compile"--> b.s --"assemble"--> b.o --> ld(("link"))
+c.cpp --"preprocess"--> c.i --"compile"--> c.s --"assemble"--> c.o --> ld(("link"))
+ld --> abc.out</pre>
+<p>另外并不是只能使用 g++ 编译 c++ 文件, 只能使用 gcc 编译 c 文件. 事实上 gcc 也可以编译 c++ 文件. 使用 gcc 编译 cpp 文件需要加参数 <code>-l stdc++</code>, 表示在<strong>链接时</strong>指定使用 C++ 的动态链接库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc ./helloworld.cpp -o ./helloworld -l stdc++</span><br></pre></td></tr></table></figure>
+<h3 id="elf-二进制文件格式">ELF 二进制文件格式</h3>
+<p>ELF (Executable Linkable Format) 是一种 Unix-like 系统上的二进制文件格式标准</p>
+<p>section</p>
+<p>segment</p>
+<p>ELF 文件处理相关工具: Binutils</p>
+<p>使用 readelf 命令可以查看二进制可执行文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -c hello.c -o hello.o</span><br><span class="line">readelf -SW hello.o</span><br></pre></td></tr></table></figure>
+<p>详细请参考&lt;&lt;程序员的自我修养&gt;&gt;</p>
+<h2 id="第4章-嵌入式开发介绍">第4章-嵌入式开发介绍</h2>
+<h3 id="x86-64-riscv-编译器">x86_64 + riscv 编译器</h3>
+<p>ubuntu 上的 gcc 编译工具默认指向 <code>/usr/bin/x86_64-linux-gnu-gcc-9</code>, 这是一个 x86_64 位机器上的编译器, 即由它所编译生成的二进制可执行文件只能在 x86_64 位机器上运行, 而不能在 risc-v 机器上运行, 应为两者的使用的指令集不同.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">whereis gcc</span></span><br><span class="line">gcc: /usr/bin/gcc /usr/lib/gcc /usr/share/gcc</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> -l /usr/bin/gcc</span></span><br><span class="line">lrwxrwxrwx 1 root root 5 Mar 20  2020 /usr/bin/gcc -&gt; gcc-9</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> -l /usr/bin/gcc-9</span></span><br><span class="line">lrwxrwxrwx 1 root root 22 Oct 24  2022 /usr/bin/gcc-9 -&gt; x86_64-linux-gnu-gcc-9</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">ls</span> -l /usr/bin/x86_64-linux-gnu-gcc-9</span></span><br><span class="line">-rwxr-xr-x 1 root root 1158288 Oct 24  2022 /usr/bin/x86_64-linux-gnu-gcc-9</span><br></pre></td></tr></table></figure>
+<p>要编译生成能在 risc-v 机器上运行的可执行文件, 需要使用 risc-v 的编译器</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">riscv64-unknown-elf-gcc</span><br></pre></td></tr></table></figure>
+<h3 id="运行-riscv-helloworld">运行 riscv helloworld</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// hello.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;hello, world!);</span></span><br><span class="line"><span class="string">  return 0;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="关于-stdio-的报错">关于 stdio 的报错</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">riscv64-unknown-elf-gcc -march=rv32ima -mabi=ilp32 hello.c -o hello_riscv.out</span></span><br><span class="line">hello.c:1:10: fatal error: stdio.h: No such file or directory</span><br><span class="line">    1 | #include &lt;stdio.h&gt;</span><br><span class="line">      |          ^~~~~~~~~</span><br><span class="line">compilation terminated.</span><br></pre></td></tr></table></figure>
+<p>这个报错在汪辰老师 gitee 仓库中有人提出过, 老师也给了详细的回答 <a target="_blank" rel="noopener" href="https://gitee.com/unicornx/riscv-operating-system-mooc/issues/I4D6N9">stdio.h 头文件找不到 | gitee issues</a>.</p>
+<p>其原因是 riscv64-unknown-elf-gcc 不能编译如 <code>#include &lt;stdio.h&gt;</code> 这样包含 c 库的源码. 如果需要编译带 c 库的代码, 建议安装 gcc-riscv64-linux-gnu 编译器, 这个版本的 riscv64-linux-gnu-gcc 命令可以编译带 c 库的源码, 并生成能够在 riscv 机器上运行的可执行文件. 使用下面的命令来安装  gcc-riscv64-linux-gnu</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt install gcc-riscv64-linux-gnu</span><br><span class="line">riscv64-linux-gnu-gcc --version</span><br></pre></td></tr></table></figure>
+<p>使用 riscv64-linux-gnu-gcc 命令来编译包含 c 库的源码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">riscv64-linux-gnu-gcc hello.c -o hello_riscv.out</span><br></pre></td></tr></table></figure>
+<h4 id="编译报错">编译报错</h4>
+<p>使用如下命令编译 hello.c 生成 rv32ima 指令集的可执行文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">riscv64-linux-gnu-gcc -march=rv32ima -mabi=ilp32 hello.c -o hello_riscv.out</span><br></pre></td></tr></table></figure>
+<p>报错如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">riscv64-linux-gnu-gcc -march=rv32ima -mabi=ilp32 hello.c -o hello_riscv.out</span></span><br><span class="line">In file included from /usr/riscv64-linux-gnu/include/sys/cdefs.h:452,</span><br><span class="line">                 from /usr/riscv64-linux-gnu/include/features.h:461,</span><br><span class="line">                 from /usr/riscv64-linux-gnu/include/bits/libc-header-start.h:33,</span><br><span class="line">                 from /usr/riscv64-linux-gnu/include/stdio.h:27,</span><br><span class="line">                 from hello.c:1:</span><br><span class="line">/usr/riscv64-linux-gnu/include/bits/wordsize.h:28:3: error: #error &quot;rv32i-based targets are not supported&quot;</span><br><span class="line">   28 | # error &quot;rv32i-based targets are not supported&quot;</span><br><span class="line">      |   ^~~~~</span><br><span class="line">In file included from /usr/riscv64-linux-gnu/include/gnu/stubs.h:5,</span><br><span class="line">                 from /usr/riscv64-linux-gnu/include/features.h:485,</span><br><span class="line">                 from /usr/riscv64-linux-gnu/include/bits/libc-header-start.h:33,</span><br><span class="line">                 from /usr/riscv64-linux-gnu/include/stdio.h:27,</span><br><span class="line">                 from hello.c:1:</span><br><span class="line">/usr/riscv64-linux-gnu/include/bits/wordsize.h:28:3: error: #error &quot;rv32i-based targets are not supported&quot;</span><br><span class="line">   28 | # error &quot;rv32i-based targets are not supported&quot;</span><br><span class="line">      |   ^~~~~</span><br><span class="line">In file included from /usr/riscv64-linux-gnu/include/bits/types.h:27,</span><br><span class="line">                 from /usr/riscv64-linux-gnu/include/stdio.h:38,</span><br><span class="line">                 from hello.c:1:</span><br><span class="line">/usr/riscv64-linux-gnu/include/bits/wordsize.h:28:3: error: #error &quot;rv32i-based targets are not supported&quot;</span><br><span class="line">   28 | # error &quot;rv32i-based targets are not supported&quot;</span><br><span class="line">      |   ^~~~~</span><br><span class="line">In file included from /usr/riscv64-linux-gnu/include/bits/timesize.h:19,</span><br><span class="line">                 from /usr/riscv64-linux-gnu/include/bits/types.h:28,</span><br><span class="line">                 from /usr/riscv64-linux-gnu/include/stdio.h:38,</span><br><span class="line">                 from hello.c:1:</span><br><span class="line">/usr/riscv64-linux-gnu/include/bits/wordsize.h:28:3: error: #error &quot;rv32i-based targets are not supported&quot;</span><br><span class="line">   28 | # error &quot;rv32i-based targets are not supported&quot;</span><br><span class="line">      |   ^~~~~</span><br></pre></td></tr></table></figure>
+<h4 id="执行报错">执行报错</h4>
+<p>使用 riscv64-linux-gnu-gcc 的默认参数编译 hello.c 得到 hello_riscv.out</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">riscv64-linux-gnu-gcc [-march=rv64gc] [-mabi=lp64d] hello.c -o hello_riscv.out</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>riscv64-linux-gnu-gcc 命令的 march 和 mabi 两个参数的默认值为 <code>-march=rv64gc -mabi=lp64d</code><br>
+<a target="_blank" rel="noopener" href="https://gcc.gnu.org/onlinedocs/gcc/RISC-V-Options.html#index-march-14">index-march-14 | gnu onlinedocs</a><br>
+<a target="_blank" rel="noopener" href="https://gcc.gnu.org/onlinedocs/gcc/RISC-V-Options.html#index-mabi-5">index-mabi-5 | gnu onlinedocs</a></p>
+</blockquote>
+<p>使用 qemu-riscv64 执行 hello_riscv.out 报错如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">qemu-riscv64 ./hello_riscv.out</span> </span><br><span class="line">/lib/ld-linux-riscv64-lp64d.so.1: No such file or directory</span><br></pre></td></tr></table></figure>
+<p>指定 riscv64-linux-gnu 的路径</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qemu-riscv64 -L /usr/riscv64-linux-gnu ./hello_riscv.out</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://time.geekbang.org/comment/nice/555771">/lib/ld-linux-riscv64-lp64d.so.1: No such file or directory</a></p>
+<h3 id="risc-v-gcc工具链介绍">RISC-V GCC工具链介绍</h3>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wzx19970918/p/15729044.html">RISC-V GCC工具链介绍</a></p>
+<h2 id="第6章-rtos-介绍">第6章-RTOS 介绍</h2>
+<p>RTOS, Real Time Operating System</p>
+<p><a target="_blank" rel="noopener" href="https://www.freertos.org/">FreeRTOS</a>是一个很流行的应用在嵌入式设备上的实时操作系统内核, 诞生于2003年, 采用MIT许可证发布.</p>
+<ul>
+<li>设计小巧, 整个核心代码只有3到4个C文件;</li>
+<li>可读性强, 易维护, 大部分的代码都是C语言编写, 很少的部分采用汇编语言;</li>
+<li>支持优先级多线程(threads)、互斥锁(mutex)、信号量(semaphore)和软件计时器(software timer), 支持低功耗处理以及一定程度的内存保护;</li>
+<li>支持多种平台架构, 包括ARM, x86, RISC-V等, 已经被移植到多款微处理器上.</li>
+</ul>
+<h2 id="第7章-上-hello-rvos">第7章 (上) - Hello RVOS</h2>
+<h3 id="rom-dram">ROM &amp; DRAM</h3>
+<p>ROM (Read Only Memory): 只读存储器, 内容写入后就不能更改了, 制造成本比较低, 常用于电脑中的开机启动, 如启动光盘BIOS. 在系统装好的电脑上时, 计算机将C盘目录下的操作系统文件读取至内存, 然后通过CPU调用各种配件进行工作这时系统存放存储器为RAM。</p>
+<p>RAM (Random Access Memory)：随机存取存储器, 也叫主存, 是与CPU直接交换数据的内部存储器, 以随时读写, 而且速度快, 通常作为操作系统或其他正在运行程序的临时数据存储介质. RAM工作时可以随时从任何一个指定地址写入或读出信息. 他与ROM的最大区别是数据的易失性, 断电丢失. RAM在计算机和数字系统中用来暂时存储程序、数据和中间结果. 手机和电脑的运行内存都是使用RAM为存储空间, 内存条的作用是增加运行RAM空间.</p>
+<ul>
+<li>SRAM (Static RAM): 静态随机存储器, SRAM存放的信息在不停电的情况下能长时间保留, 状态稳定, 不需外加刷新电路, 从而简化了外部电路设计, 常作为Cache;</li>
+<li>DRAM (Dynamic RAM): 动态随机存储器, DRAM与SRAM相比具有集成度高、功耗低、价格便宜等优点, 所以在大容量存储器中普遍采用. DRAM的缺点是需要刷新逻辑电路, 且刷新操作时不能进行正常读写操作, 常作为主存储器;</li>
+<li>SDRAM (Synchronous Dynamic RAM): 同步动态随机存取内存, 就是 DDR (Double Data Rate SDRAM), 常见的产品如DDR1、DDR2、DDR3.</li>
+</ul>
+<h3 id="csr-指令">CSR 指令</h3>
+<h4 id="csrrw指令">CSRRW指令</h4>
+<p>CSRRW (Atomic Read/Write CSR) 指令能够将 CSR 寄存器中的值放入 RD 寄存器中, 同时将 RS1 寄存器中的值放入 CSR 寄存器, 并且这个过程是原子性的.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">; 语法</span><br><span class="line">CSRRW RD, CSR, RS1</span><br><span class="line">; 示例</span><br><span class="line">CSRRW t6, mscratch, t6</span><br></pre></td></tr></table></figure>
+<p>上面的示例将 mscratch 寄存器 (一种CSR寄存器) 中的值放入 t6 寄存器中, 同时将 t6 寄存器的值放入 mscratch 寄存器中. 实现了交换 mscratch 和 t6 寄存器值的效果.</p>
+<p><code>CSRRW RD, CSR, RD</code> 指令能够在不需要额外临时寄存器的情况下实现 <code>RD</code> 和 <code>CSR</code> 值的交换, 这是因为该指令内部实现上已经包含了保存和更新操作. <code>CSRRW</code> 指令的功能是原子性地读取 CSR 寄存器的值并同时更新 CSR 寄存器的值, 而这些操作都是在单条指令周期内完成的. 具体步骤如下：</p>
+<ul>
+<li><strong>读取 CSR 值</strong>: 指令开始时, 从 <code>SCR</code> 寄存器中读取当前值, 并暂时存储在内部 (在硬件层面上);</li>
+<li><strong>更新 CSR 值</strong>: 将 <code>RD</code> 寄存器的值写入 <code>CSR</code> 寄存器;</li>
+<li><strong>更新目标寄存器</strong>: 将最初读取的 <code>CSR</code> 值 (暂时存储的值) 写入 <code>RD</code> 寄存器.</li>
+</ul>
+<p>因为这些步骤在硬件层面是原子的, 确保了在单个指令周期内完成所有操作, 因此不需要使用额外的临时寄存器. 通过上述原子操作, <code>CSRRW t6, mscratch, t6</code> 指令能够在单条指令内完成值的交换, 不需要额外的临时寄存器来暂存数据. 这也是为什么该指令能够高效地进行寄存器与 CSR 寄存器值的交换.</p>
+<h4 id="csrrs指令">CSRRS指令</h4>
+<p>CSRRS (Atomic Read and Set Bits in CSR)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 语法</span><br><span class="line">SCRRS RD, CSR, RS1</span><br><span class="line"># 示例</span><br><span class="line">scrrs x5, mie, x6 # 效果: x5 = mie, mie |= x6</span><br></pre></td></tr></table></figure>
+<p>CSRRS 先读出 CSR 寄存器中的值, 将其按 XLEN 位的宽度进行 “零扩展(zero-extend)” 后写入RD; 然后逐个检查 RS1 中的值, 如果某一位为 1 则对 CSR 的对应位置 1, 否则保持不变. 以上两步操作以 “原子性(atomically)” 方式完成。</p>
+<p>通常会用一下方式来使用 CSRRS 指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">; pseudo instruction</span><br><span class="line">csrr rd, csr</span><br><span class="line">; base instruction</span><br><span class="line">scrrs rd, csr, x0</span><br></pre></td></tr></table></figure>
+<p>csrr 是一个伪指令, 底层实现是 csrrs 来实现, 将 csr 中的值零扩展后写入 rd 中.</p>
+<h4 id="mhartid-寄存器">mhartid 寄存器</h4>
+<p>mhartid 是一个用于存储 Hart ID 的 CSR 寄存器, 它的名字可以拆开来看 m-hart-id, 其中的 m 表示 machine 模式, hart id 即 hart id.</p>
+<p>这个寄存器是只读的 read-only, 其包含了运行当前指令的 hart 的 id. 多个 hart 的 id 必须是唯一的, 并且必须有一个 hart 的 id 值为 0 (第一个 hart 的 id).</p>
+<h4 id="引导程序要做哪些事">引导程序要做哪些事</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">_start:</span><br><span class="line">  # park harts with id != 0</span><br><span class="line">  csrr  t0, mhartid</span><br><span class="line">  mv    tp, t0</span><br><span class="line">  bnez  t0, park</span><br><span class="line">; ... ...</span><br><span class="line">; endless loop</span><br><span class="line">park:</span><br><span class="line">  wfi   ; wait for interrupt instruction</span><br><span class="line">  j park</span><br></pre></td></tr></table></figure>
+<h2 id="第7章-下-hello-rvos">第7章 (下) - Hello RVOS</h2>
+<h3 id="uart">UART</h3>
+<p>UART (Universal Asynchronous Receiver and Transmitter) 通信协议</p>
+<ul>
+<li>串行: 相对于并行，串行是按位来进行传递，即一位一位的发送和接收。波特率(baud rate)，每秒传输的二进制位数，单位为bps(bit per second)。</li>
+<li>异步: 相对于同步，异步数据传输的过程中，不需要时钟线，直接发送数据，但需要约定通讯协议格式。</li>
+<li>全双工: 相对于单工和半双工，全双工指可以同时进行收发两方向的数据传递。</li>
+</ul>
+<h3 id="串口收发器-ns16550a-介绍">串口收发器 NS16550A 介绍</h3>
+<p>总结文档: <a target="_blank" rel="noopener" href="http://byterunner.com/16550.html">TECHNICAL DATA ON 16550 | byterunner</a></p>
+<p>标准文档: <a target="_blank" rel="noopener" href="http://bitsavers.trailing-edge.com/components/national/_appNotes/AN-0491.pdf">The NS16550A: UART Design and Application Considerations</a></p>
+<p>内存映射</p>
+<h2 id="riscv调试">RISCV调试</h2>
+<h3 id="vscode调试riscv程序">VSCode调试RISCV程序</h3>
+<p><a target="_blank" rel="noopener" href="https://nnfw.readthedocs.io/en/stable/howto/how-to-remote-debugging-with-visual-studio-code.html">How to Remote Debugging with Visual Studio Code</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=NbZDowmXzZs">RiscV Debugging With QEMU, GDB, and VSCode | youtube</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/chuckb/riscv-helloworld-c/tree/NbZDowmXzZs">riscv-helloworld-c | github</a></p>
+<p><a target="_blank" rel="noopener" href="https://lifeislife.cn/posts/vscode%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F/">VSCode 调试 RISC-V 程序 | 夜云泊</a></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// tasks.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;tasks&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;shell&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;01-helloRVOS-make&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceFolder&#125;/01-helloRVOS&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;make&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;all&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="comment">// &quot;&gt; Run Task&quot; -&gt; &quot;01-helloRVOS-qemu&quot;</span></span><br><span class="line">      <span class="comment">// lsof -i tcp:1234 -&gt; kill [pid]</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;shell&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;01-helloRVOS-qemu&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;dependsOn&quot;</span><span class="punctuation">:</span> <span class="string">&quot;01-helloRVOS&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceFolder&#125;/01-helloRVOS&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;qemu-system-riscv32&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">          <span class="string">&quot;-nographic&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="string">&quot;-smp&quot;</span><span class="punctuation">,</span> <span class="string">&quot;1&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="string">&quot;-machine&quot;</span><span class="punctuation">,</span> <span class="string">&quot;virt&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="string">&quot;-bios&quot;</span><span class="punctuation">,</span> <span class="string">&quot;none&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="string">&quot;-kernel&quot;</span><span class="punctuation">,</span> <span class="string">&quot;./out/os.elf&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="string">&quot;-gdb&quot;</span><span class="punctuation">,</span> <span class="string">&quot;tcp::1234&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="string">&quot;-S&quot;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;shell&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Kill Qemu Server&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ps -ef | grep qemu-riscv64 | grep -v grep | awk &#x27;&#123;print $2&#125;&#x27; | xargs -i kill -9 &#123;&#125;&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>因为启动 qemu 会导致阻塞, 所以 launch.json 中没有加preLaunchTask, 在启动调试之前, 先把 qemu-system-riscv32 server 运行起来.</p>
+<ul>
+<li>快捷键 Ctrl/Command+Shift+P, 打开 VSCode Panel;</li>
+<li>输入 Run Task 并回车, 再选择对应 label 的 task.</li>
+</ul>
+<blockquote>
+<p>如果提示 <code>Failed to find an available port: Address already in use</code>, 使用 <code>lsof -i tcp:1234</code> 命令 (需要 <code>apt install lsof</code>) 列出占用这个端口的进程, 再使用命令 <code>kill [pid]</code> kill 对应的进程.</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// launch.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.2.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;configurations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;01-helloRVOS&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cppdbg&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;request&quot;</span><span class="punctuation">:</span> <span class="string">&quot;launch&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;program&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceFolder&#125;/01-helloRVOS/out/os.elf&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="comment">// &quot;args&quot;: [],</span></span><br><span class="line">      <span class="comment">// &quot;stopAtEntry&quot;: false,</span></span><br><span class="line">      <span class="attr">&quot;cwd&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;workspaceFolder&#125;/01-helloRVOS&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="comment">// &quot;environment&quot;: [],</span></span><br><span class="line">      <span class="comment">// &quot;externalConsole&quot;: false,</span></span><br><span class="line">      <span class="attr">&quot;MIMode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;gdb&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;miDebuggerPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/usr/bin/gdb-multiarch&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="comment">// &quot;setupCommands&quot;: [</span></span><br><span class="line">      <span class="comment">//   &#123;</span></span><br><span class="line">      <span class="comment">//     &quot;description&quot;: &quot;Enable pretty-printing for gdb&quot;,</span></span><br><span class="line">      <span class="comment">//     &quot;text&quot;: &quot;-enable-pretty-printing&quot;,</span></span><br><span class="line">      <span class="comment">//     &quot;ignoreFailures&quot;: true</span></span><br><span class="line">      <span class="comment">//   &#125;,</span></span><br><span class="line">      <span class="comment">//   &#123;</span></span><br><span class="line">      <span class="comment">//     &quot;description&quot;: &quot;Set Disassembly Flavor to Intel&quot;,</span></span><br><span class="line">      <span class="comment">//     &quot;text&quot;: &quot;-gdb-set disassembly-flavor intel&quot;,</span></span><br><span class="line">      <span class="comment">//     &quot;ignoreFailures&quot;: true</span></span><br><span class="line">      <span class="comment">//   &#125;</span></span><br><span class="line">      <span class="comment">// ],</span></span><br><span class="line">      <span class="comment">// &quot;preLaunchTask&quot;: &quot;01-helloRVOS-qemu&quot;, // &lt;--</span></span><br><span class="line">      <span class="attr">&quot;miDebuggerServerAddress&quot;</span><span class="punctuation">:</span> <span class="string">&quot;localhost:1234&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>此时再启动 launch.json 中对应配置的 debug 程序. 注意需要在 launch.json 中指定 miDebuggerPath 以及对应端口号的 miDebuggerServerAddress.</p>
+<h3 id="关于如何在-s-s-文件中打断点">关于如何在 .s/.S 文件中打断点</h3>
+<p>需要在 VSCode &gt; Preference &gt; Settings 中勾选 Debug: Allow Breakpoints Everywhere</p>
+<h2 id="gdb调试riscv程序">GDB调试RISCV程序</h2>
+<p>首先编译生成可调式的文件, gcc 加 -g 参数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">riscv64-unknown-elf-gcc -nostdlib -fno-builtin -g -Wall -march=rv32g -mabi=ilp32 -c -o out/start.o start.S</span><br><span class="line">riscv64-unknown-elf-gcc -nostdlib -fno-builtin -g -Wall -march=rv32g -mabi=ilp32 -c -o out/kernel.o kernel.c</span><br><span class="line">riscv64-unknown-elf-gcc -nostdlib -fno-builtin -g -Wall -march=rv32g -mabi=ilp32 -c -o out/uart.o uart.c</span><br><span class="line">riscv64-unknown-elf-gcc -nostdlib -fno-builtin -g -Wall -march=rv32g -mabi=ilp32 -Ttext=0x80000000 -o out/os.elf out/start.o out/kernel.o out/uart.o</span><br></pre></td></tr></table></figure>
+<p>通过 qemu 启动一个 server, 并指定端口 1234</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Press Ctrl-A and <span class="keyword">then</span> X to <span class="built_in">exit</span> QEMU</span></span><br><span class="line">qemu-system-riscv32 -nographic -smp 1 -machine virt -bios none -kernel out/os.elf -gdb tcp::1234 -S</span><br></pre></td></tr></table></figure>
+<p>在另一个终端中通过 gdb-multiarch 命令来启动一个调试程序, 并通过 target remote:1234 来连接 qemu server, 最后通过 gdb 命令进行调试</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">gdb-multiarch out/os.elf</span><br><span class="line">...</span><br><span class="line">--Type &lt;RET&gt; for more, q to quit, c to continue without paging--</span><br><span class="line">q # &lt;-- there is a q to quit GNU gdb manual</span><br><span class="line">(gdb) target remote:1234</span><br><span class="line">(gdb) list</span><br><span class="line">(gdb) break 9</span><br><span class="line">(gdb) continue</span><br><span class="line">(gdb) print $t0</span><br><span class="line">(gdb) layout regs # ctrl + x + a to quit windows</span><br><span class="line">(gdb) quit</span><br></pre></td></tr></table></figure>
+<h2 id="内存对齐">内存对齐</h2>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30007037">C/C++内存对齐详解 | zhihu</a></p>
+<h3 id="为什么要进行内存对齐">为什么要进行内存对齐</h3>
+<p>尽管内存是以字节为单位进行划分的, 但是大部分处理器并不是按字节块来存取内存的. 它一般会以 2字节, 4字节, 8字节, 16字节甚至32字节为单位来存取内存, 我们将上述这些存取单位称为<strong>内存存取粒度</strong>.</p>
+<p>现在考虑4字节存取粒度的处理器取int类型变量(32位系统), 该处理器只能从地址为4的倍数的内存开始读取数据.</p>
+<p>假如没有内存对齐机制, 数据可以任意存放, 现在一个int变量存放在从地址1开始的连续4个字节地址中, 该处理器去取数据时, 要先从0地址开始读取第一个4字节块, 剔除不想要的字节(0地址), 然后从地址4开始读取下一个4字节块, 同样剔除不要的数据(5,6,7地址), 最后留下的两块数据合并放入寄存器. 相比于将int变量存放在从地址0开始的连续4字节地址中, 这种不对齐的读取方式效率很低.</p>
+<h3 id="对齐规则">对齐规则</h3>
+<ul>
+<li>结构体对齐<br>
+编译器为结构体的每个成员按照其自然边界(alignment)分配空间。各成员按照它们被声明的顺序在内存中顺序存储，第一个成员的地址和整个结构的地址相同, 即第一个数据成员的 offset = 0。</li>
+<li>数据类型自身的对齐值：char型数据自身对齐值为 1 字节，short型数据为 2 字节，int/float 型为 4 字节，double型为 8 字节。</li>
+<li>结构体的自身对齐值：其成员中自身对齐值最大的那个值。</li>
+<li>指定对齐值：<code>#pragma pack (value)</code> 时的指定对齐值 value, 默认是4。</li>
+<li>数据成员/结构体的有效对齐值：自身对齐值和指定对齐值中较小者，即有效对齐值 = min{自身对齐值, 当前指定的pack值}。</li>
+</ul>
+<blockquote>
+<p>使用pragma指定对齐值，其实是指定了数据结构的最大有效对齐值。</p>
+</blockquote>
+<p>有效对齐值 N 是最终用来决定数据存放地址方式的值。有效对齐N表示 “对齐在 N 上”，即该数据的 “存放起始地址 % N = 0”。<br>
+结构体的成员变量要对齐存放，结构体本身也要根据自身的有效对齐值圆整, 即结构体成员变量占用总长度为结构体有效对齐值的整数倍。</p>
+<p>示例, 假设 pack 使用默认值 4</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span>&#123;</span></span><br><span class="line">  <span class="type">int</span> i;</span><br><span class="line">  <span class="type">char</span> c;</span><br><span class="line">  <span class="type">short</span> s;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span> <span class="title">a1</span>;</span></span><br></pre></td></tr></table></figure>
+<p>结构体 A 中</p>
+<ul>
+<li>
+<p>sizeof(a1.i) = 4 bytes, 第一个成员占用 4 字节的空间, 自身对齐值为 4, 有效对齐值为 min{4, pack} = 4, offset = 0;</p>
+</li>
+<li>
+<p>sizeof(a1.c) = 1 byte, 第二个成员占用 1 字节的空间, 自身对齐值为 1, 有效对齐值为 min{1, pack} = 1, offset = 4;</p>
+</li>
+<li>
+<p>sizeof(a1.s) = 2 bytes, 第三个成员占用 2 字节的空间, 自身对齐值为 2, 有效对齐值为 min{2, pack} = 2, offset = 6;</p>
+</li>
+<li>
+<p>sizeof(a1) = 8 bytes, 结构体本身占用 8 字节的空间, 自身对齐值为 max{4, 1, 2} = 4, 有效对齐值为 min{4, 4} = 4, 结构变量实际占用空间为 4 的倍数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> 0 1 2 3 4 5 6 7</span><br><span class="line">|i|i|i|i|c|0|s|s|</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>结构体 B 中</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">B</span>&#123;</span></span><br><span class="line">  <span class="type">char</span> c;</span><br><span class="line">  <span class="type">int</span> i;</span><br><span class="line">  <span class="type">short</span> s;</span><br><span class="line">&#125; a2;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>sizeof(a1.c) = 1 bytes, 第一个成员占用 1 字节的空间, 自身对齐值为 1, 有效对齐值为 min{1, pack} = 1, offset = 0;</p>
+</li>
+<li>
+<p>sizeof(a1.i) = 4 bytes, 第二个成员占用 4 字节的空间, 自身对齐值为 4, 有效对齐值为 min{4, pack} = 4, offset = 4;</p>
+</li>
+<li>
+<p>sizeof(a1.s) = 2 bytes, 第三个成员占用 2 字节的空间, 自身对齐值为 2, 有效对齐值为 min{2, pack} = 2, offset = 8;</p>
+</li>
+<li>
+<p>sizeof(a1) = 12 bytes, 结构体本身占用 12 字节的空间, 自身对齐值为 max{1, 4, 2} = 4, 有效对齐值为 min{4, 4} = 4, 为保证结构实际占用空间为 4 的倍数, 需要在 short 后面补 2 个字节</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> 0 1 2 3 4 5 6 7 8 9 10 11</span><br><span class="line">|c|0|0|0|i|i|i|i|s|s|0 |0 |</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>只是更改了以下结构体成员的顺序, 由于对齐的原因, 便导致结构体的占用空间改变, 这是在实际编程中需要注意的.</p>
+<h2 id="关于宏的讨论">关于宏的讨论</h2>
+<p>宏定义函数仅仅在预处理过程中做简单的文本替换, 并不是函数调用, 所以没有压栈和出栈的过程, 在这个过程中寄存器不会发生变化. 所以如果需要对寄存器本身进行一些操作, 使用宏可以做到函数调用无法完成的一些工作.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://whut-zhangwx.github.io">文羊羽</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://whut-zhangwx.github.io/riscv-operating-system/">https://whut-zhangwx.github.io/riscv-operating-system/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://whut-zhangwx.github.io" target="_blank">文羊羽</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="post-meta__tags" href="/tags/Operating-System/">Operating System</a><a class="post-meta__tags" href="/tags/RISC-V/">RISC-V</a></div><div class="post_share"><div class="social-share" data-image="/white" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text">环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#qemu-system-riscv64-%E5%92%8C-qemu-riscv64"><span class="toc-text">qemu-system-riscv64 和 qemu-riscv64</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E7%AB%A0-%E4%B8%8A-risc-v-isa-%E4%BB%8B%E7%BB%8D"><span class="toc-text">第2章(上)-RISC-V ISA 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="toc-text">参考文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isa%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">ISA是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isa%E7%9A%84%E5%AE%BD%E5%BA%A6"><span class="toc-text">ISA的宽度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E5%90%8D-isa-%E4%BB%8B%E7%BB%8D"><span class="toc-text">知名 ISA 介绍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC2%E7%AB%A0-%E4%B8%8B-risc-v-isa-%E4%BB%8B%E7%BB%8D"><span class="toc-text">第2章(下)-RISC-V ISA 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#risc-v-%E7%AE%80%E4%BB%8B"><span class="toc-text">RISC-V 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#risc-v-isc-%E6%8A%80%E6%9C%AF%E8%A7%84%E8%8C%83"><span class="toc-text">RISC-V ISC 技术规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#risc-v-isc-%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83"><span class="toc-text">RISC-V ISC 命名规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">通用寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hart"><span class="toc-text">HART</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%9D%83%E7%BA%A7%E5%88%AB"><span class="toc-text">特权级别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%9D%E6%8A%A4"><span class="toc-text">内存管理与保护</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%92%8C%E4%B8%AD%E6%96%AD"><span class="toc-text">异常和中断</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC3%E7%AB%A0-%E7%BC%96%E8%AF%91%E4%B8%8E%E9%93%BE%E6%8E%A5"><span class="toc-text">第3章-编译与链接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#c-c-%E7%BC%96%E8%AF%91%E6%B5%81%E7%A8%8B"><span class="toc-text">C&#x2F;C++ 编译流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#elf-%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="toc-text">ELF 二进制文件格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC4%E7%AB%A0-%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E4%BB%8B%E7%BB%8D"><span class="toc-text">第4章-嵌入式开发介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#x86-64-riscv-%E7%BC%96%E8%AF%91%E5%99%A8"><span class="toc-text">x86_64 + riscv 编译器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C-riscv-helloworld"><span class="toc-text">运行 riscv helloworld</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E-stdio-%E7%9A%84%E6%8A%A5%E9%94%99"><span class="toc-text">关于 stdio 的报错</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E6%8A%A5%E9%94%99"><span class="toc-text">编译报错</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E6%8A%A5%E9%94%99"><span class="toc-text">执行报错</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#risc-v-gcc%E5%B7%A5%E5%85%B7%E9%93%BE%E4%BB%8B%E7%BB%8D"><span class="toc-text">RISC-V GCC工具链介绍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC6%E7%AB%A0-rtos-%E4%BB%8B%E7%BB%8D"><span class="toc-text">第6章-RTOS 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC7%E7%AB%A0-%E4%B8%8A-hello-rvos"><span class="toc-text">第7章 (上) - Hello RVOS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rom-dram"><span class="toc-text">ROM &amp; DRAM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#csr-%E6%8C%87%E4%BB%A4"><span class="toc-text">CSR 指令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#csrrw%E6%8C%87%E4%BB%A4"><span class="toc-text">CSRRW指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#csrrs%E6%8C%87%E4%BB%A4"><span class="toc-text">CSRRS指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mhartid-%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">mhartid 寄存器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E5%AF%BC%E7%A8%8B%E5%BA%8F%E8%A6%81%E5%81%9A%E5%93%AA%E4%BA%9B%E4%BA%8B"><span class="toc-text">引导程序要做哪些事</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC7%E7%AB%A0-%E4%B8%8B-hello-rvos"><span class="toc-text">第7章 (下) - Hello RVOS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#uart"><span class="toc-text">UART</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%B2%E5%8F%A3%E6%94%B6%E5%8F%91%E5%99%A8-ns16550a-%E4%BB%8B%E7%BB%8D"><span class="toc-text">串口收发器 NS16550A 介绍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#riscv%E8%B0%83%E8%AF%95"><span class="toc-text">RISCV调试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vscode%E8%B0%83%E8%AF%95riscv%E7%A8%8B%E5%BA%8F"><span class="toc-text">VSCode调试RISCV程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E5%9C%A8-s-s-%E6%96%87%E4%BB%B6%E4%B8%AD%E6%89%93%E6%96%AD%E7%82%B9"><span class="toc-text">关于如何在 .s&#x2F;.S 文件中打断点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gdb%E8%B0%83%E8%AF%95riscv%E7%A8%8B%E5%BA%8F"><span class="toc-text">GDB调试RISCV程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90"><span class="toc-text">内存对齐</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%9B%E8%A1%8C%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90"><span class="toc-text">为什么要进行内存对齐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E9%BD%90%E8%A7%84%E5%88%99"><span class="toc-text">对齐规则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%AE%8F%E7%9A%84%E8%AE%A8%E8%AE%BA"><span class="toc-text">关于宏的讨论</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 文羊羽</div><div class="footer_custom_text">Hi, welcome to my <a href="https://whut-zhangwx.github.io/">blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'default' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
