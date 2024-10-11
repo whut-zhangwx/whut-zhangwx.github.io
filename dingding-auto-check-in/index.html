@@ -1,13 +1,13 @@
-<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>ios快捷指令实现自动钉钉打卡 | 文羊羽</title><meta name="author" content="文羊羽"><meta name="copyright" content="文羊羽"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="注:仅用于技术分享，切勿滥用 我的实现方案是将 iPad 放在需要打卡的位置实现定位，例如工位&#x2F;实验室，并通过 “快捷指令” 创建自动打卡脚本实现自动化，具体操作如下:   首先需要关闭iPad的锁屏，这样就避免了运行快捷指令时的手动解锁屏幕      然后需要将 iPad 的 “自动锁定” 时间设置为 10 分钟，这是为了在随机等待时间 (2~6分钟) 中，防止 iPad 自动锁屏而中断快捷指令">
+<!DOCTYPE html><html class="hide-aside" lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>ios快捷指令实现自动钉钉打卡 | 文羊羽</title><meta name="author" content="文羊羽"><meta name="copyright" content="文羊羽"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="注: 仅用于技术分享，切勿滥用 我的实现方案是将 iPad 放在需要打卡的位置实现定位，例如工位&#x2F;实验室，并通过 “快捷指令” 创建自动打卡脚本实现自动化，具体操作如下:   首先需要关闭iPad的锁屏，这样就避免了运行快捷指令时的手动解锁屏幕      然后需要将 iPad 的 “自动锁定” 时间设置为 10 分钟，这是为了在随机等待时间 (2~6分钟) 中，防止 iPad 自动锁屏而中断快捷指">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ios快捷指令实现自动钉钉打卡">
 <meta property="og:url" content="https://whut-zhangwx.github.io/dingding-auto-check-in/index.html">
 <meta property="og:site_name" content="文羊羽">
-<meta property="og:description" content="注:仅用于技术分享，切勿滥用 我的实现方案是将 iPad 放在需要打卡的位置实现定位，例如工位&#x2F;实验室，并通过 “快捷指令” 创建自动打卡脚本实现自动化，具体操作如下:   首先需要关闭iPad的锁屏，这样就避免了运行快捷指令时的手动解锁屏幕      然后需要将 iPad 的 “自动锁定” 时间设置为 10 分钟，这是为了在随机等待时间 (2~6分钟) 中，防止 iPad 自动锁屏而中断快捷指令">
+<meta property="og:description" content="注: 仅用于技术分享，切勿滥用 我的实现方案是将 iPad 放在需要打卡的位置实现定位，例如工位&#x2F;实验室，并通过 “快捷指令” 创建自动打卡脚本实现自动化，具体操作如下:   首先需要关闭iPad的锁屏，这样就避免了运行快捷指令时的手动解锁屏幕      然后需要将 iPad 的 “自动锁定” 时间设置为 10 分钟，这是为了在随机等待时间 (2~6分钟) 中，防止 iPad 自动锁屏而中断快捷指">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://whut-zhangwx.github.io/white">
 <meta property="article:published_time" content="2024-10-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-10-11T03:56:50.300Z">
+<meta property="article:modified_time" content="2024-10-11T04:43:18.071Z">
 <meta property="article:author" content="文羊羽">
 <meta property="article:tag" content="快捷指令">
 <meta property="article:tag" content="钉钉打卡">
@@ -54,7 +54,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-10-11 11:56:50'
+  postUpdate: '2024-10-11 12:43:18'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -143,7 +143,7 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">78</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">96</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">文羊羽</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">ios快捷指令实现自动钉钉打卡</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-10T16:00:00.000Z" title="发表于 2024-10-11 00:00:00">2024-10-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-11T03:56:50.300Z" title="更新于 2024-10-11 11:56:50">2024-10-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/">快捷指令</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">563</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ios快捷指令实现自动钉钉打卡"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><p>注:仅用于技术分享，切勿滥用</p>
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">78</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">96</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">文羊羽</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">ios快捷指令实现自动钉钉打卡</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-10T16:00:00.000Z" title="发表于 2024-10-11 00:00:00">2024-10-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-11T04:43:18.071Z" title="更新于 2024-10-11 12:43:18">2024-10-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/">快捷指令</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">564</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ios快捷指令实现自动钉钉打卡"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><p>注: 仅用于技术分享，切勿滥用</p>
 <p>我的实现方案是将 iPad 放在需要打卡的位置实现定位，例如工位/实验室，并通过 “快捷指令” 创建自动打卡脚本实现自动化，具体操作如下:</p>
 <ul>
 <li>
@@ -165,7 +165,7 @@
 </div>
 </li>
 <li>
-<p>最关键的部分，需要创建一个 “快捷指令” 的脚本用于钉钉打，可以参考一下我的实现。我在其中加入了随机等待时间的功能，注意其中等待时间的单位是秒，表示随机等待 120s~360s 再运行 “打开钉钉”，这样避免了每天都在同一时间打卡</p>
+<p>最关键的部分，需要创建一个 “快捷指令” 的脚本用于钉钉打卡，可以参考一下我的实现。我在其中加入了随机等待时间的功能，注意其中等待时间的单位是秒，表示随机等待 120s~360s 再运行 “打开钉钉”，这样避免了每天都在同一时间打卡</p>
 <div style="text-align:center">
 <img alt="dingdingautocheckin4" src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/dingdingautocheckin4.JPG" height="auto" width="50%"/>
 </div>
@@ -174,7 +174,7 @@
 </blockquote>
 </li>
 <li>
-<p>需要特别注意的是 “快捷指令/钉钉/考勤打卡” 这个指令只是打开钉钉考勤打卡的界面，而!!!不触发打卡!!!，请不要用这个指令来进行打卡，它需要额外手动点击屏幕才能完成打卡。</p>
+<p>需要特别注意的是 “快捷指令/钉钉/考勤打卡” 这个指令只是打开钉钉考勤打卡的界面，而!!!不触发打卡!!!，请不要用这个指令来进行打卡，它需要额外手动点击屏幕才能完成打卡</p>
 <div style="text-align:center">
 <img alt="dingdingautocheckin5" src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/dingdingautocheckin5.PNG" height="auto" width="50%"/>
 </div>
@@ -186,7 +186,7 @@
 </div>
 </li>
 <li>
-<p>自动化的触发方式有很多，比如指定时间、闹钟、定位、还有开关勿扰模式等。其中开关勿扰模式触发是分别在打开勿扰模式和关闭勿扰模式时各触发一次，可以通过设定勿扰模式的开关时间来定时触发脚本。</p>
+<p>自动化的触发方式有很多，比如指定时间、闹钟、定位、还有开关勿扰模式等。其中开关勿扰模式触发是分别在打开勿扰模式和关闭勿扰模式时各触发一次，可以通过设定勿扰模式的开关时间来定时触发脚本</p>
 <div style="text-align:center">
 <img alt="dingdingautocheckin7" src="https://xiaophai-typora.oss-cn-shanghai.aliyuncs.com/dingdingautocheckin7.PNG" height="auto" width="50%"/>
 </div>
